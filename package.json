@@ -24,13 +24,14 @@
     "cookie-parser": "^1.4.1",
     "express": "^4.17.1",
     "express-session": "^1.13.0",
+    "prometheus-query": "^3.3.0",
     "prop-types": "^15.6.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",
-    "react-router": "^6.4.4",
-    "react-router-dom": "^6.4.5"
+    "react-router-dom": "^6.4.5",
+    "sass": "^1.57.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
