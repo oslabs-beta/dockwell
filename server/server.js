@@ -1,12 +1,48 @@
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const PrometheusDriver = require('prometheus-query').PrometheusDriver;
 const path = require('path');
+const { response } = require('express');
 const app = express();
 
-const PORT = 3000;
+const PORT = 3535;
+const queries = {
+  avg_cpu:
+    'avg by(job) (rate(process_cpu_seconds_total{job="prometheus"}[1m]))',
+  rate_cpu: 'rate(process_cpu_seconds_total{job="prometheus"}[1m])',
+  cpu: 'process_cpu_seconds_total{job="prometheus"}',
+};
 
 app.use(cookieParser()).use(express.json()).use(cors());
+
+//EXAMPLE PROM CLIENT
+
+const prom = new PrometheusDriver({
+  endpoint: 'http://localhost:9090',
+  baseURL: '/api/v1', // default value
+});
+
+app.get('/api/:q', (req, res) => {
+  const q = queries[req.params.q];
+  prom
+    .instantQuery(q)
+    .then((y) => {
+      const series = y.result;
+      const x = [];
+      series.forEach((serie) => {
+        console.log('============================', serie);
+        x.push(serie);
+        // !cache[serie.metric.metric?.name] ? cache[serie.metric.metric?.name] : '';
+        // console.log('Serie:', serie?.metric.toString());
+        // console.log('Time:', serie?.value.time);
+        // console.log('Value:', serie?.value.value);
+      });
+      console.log(x);
+      res.json(x);
+    })
+    .catch(console.error);
+});
 
 if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res, err) => {
