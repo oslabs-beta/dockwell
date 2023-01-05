@@ -7,11 +7,9 @@ const App = () => {
   return (
     <div className="App">
       <header className="header">
-        <div className="overlay">
-          {/* <div className="logo">🐳</div>
-          <div className="title">DOCKWELL</div> */}
-          <div className="links"></div>
-        </div>
+        <div className="logo"></div>
+        {/* <div className="title">DOCKWELL</div>  */}
+        <div className="links"></div>
       </header>
       <div className="main">
         <Environments />
