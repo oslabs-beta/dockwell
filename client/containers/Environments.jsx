@@ -1,16 +1,15 @@
 import React from 'react';
-import Preview from '../components/ImagePreview.jsx';
+import ImagePreview from '../components/ImagePreview.jsx';
+
+// const ImagePreviewArray = [];
 
 const Environments = () => {
   return (
     <div className="Environments">
-      <Preview />
-      <Preview />
-      <Preview />
-      <Preview />
-      <Preview />
-      <Preview />
-      <Preview />
+      <div className="EnvContainer">
+        <ImagePreview />
+        <ImagePreview />
+      </div>
     </div>
   );
 };
