@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+  background-color: rgb(195, 227, 254);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 10%;
+  background-color: rgb(195, 227, 254);
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 85% 85% / 30%;
+  background: rgba(134,
+      163,
+      204);
+}
+
+header.overlay {
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  color: #FFF;
+  text-shadow: 1px 1px 1px #333;
+
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 80%;
+  padding: 15px 30px;
+}
+
+.Environments,
+// .Carousel, 
+.SystemMetrics {
+  border: 3px solid rgb(134, 163, 204);
+  border-radius: 15px;
+  margin: 3px;
+}
+
+.Environments {
+  width: 15%;
+  overflow-y: scroll;
+}
+
+.Carousel {
+  width: 100%;
+}
+
+.SystemMetrics {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.CPU-metric,
+.Memory-metric {
+  height: 40%;
+  width: 80%;
+  margin: 2px;
+  background-color: rgb(134, 163, 204);
+  margin: auto;
+}
+
+.ImagePreview {
+  height: 160px;
+  width: 160px;
+  margin: 2px;
+  background-color: rgb(134, 163, 204);
+  margin: 40px auto 0 auto;
+}
+
+// .carousel {
+//   overflow: hidden;
+// }
+
+.inner {
+  white-space: nowrap;
+  transition: transform 0.3s;
+}
+
+// .carousel-item {
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   height: 200px;
+//   background-color: green;
+//   color: #fff;
+// }
+
+// .indicators {
+//   display: flex;
+//   justify-content: center;
+// }
+
+// .indicators > button {
+//   margin: 5px;
+// }
+
+// .indicators > button.active {
+//   background-color: green;
+//   color: #fff;
+// }

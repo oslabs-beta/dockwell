@@ -52,6 +52,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
+        exclude: [/node_modules/],
       },
       {
         test: /\.module\.css$/,
@@ -61,6 +62,14 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: () => [require('autoprefixer')],
+              },
             },
           },
         ],
