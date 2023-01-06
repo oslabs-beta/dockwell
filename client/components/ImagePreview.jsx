@@ -30,7 +30,7 @@ const ImagePreview = () => {
           className="btn btn-success"
           data-toggle="button"
           aria-pressed="false"
-          autocomplete="off"
+          autoComplete="off"
         >
           Start
         </button>
@@ -39,7 +39,7 @@ const ImagePreview = () => {
           className="btn btn-danger"
           data-toggle="button"
           aria-pressed="false"
-          autocomplete="off"
+          autoComplete="off"
         >
           Stop
         </button>
