@@ -4,7 +4,6 @@ const cookieParser = require('cookie-parser');
 const PrometheusDriver = require('prometheus-query').PrometheusDriver;
 const path = require('path');
 const { response } = require('express');
-const { useState } = require('react');
 const app = express();
 
 //METRICS QUERIES
