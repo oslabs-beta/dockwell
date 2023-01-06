@@ -29,7 +29,7 @@ module.exports = {
     //   '/api': 'http://localhost:3000/api',
     // },
     compress: true,
-    port: 8080,
+    port: 7070,
   },
 
   module: {

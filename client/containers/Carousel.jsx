@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 
 function CarouselDisplay() {
-  const interval = 5000000000
+  const interval = 5000000000;
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -10,7 +10,13 @@ function CarouselDisplay() {
   };
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect}>
+    <Carousel
+      controls={true}
+      prevLabel={''}
+      nextLabel={''}
+      activeIndex={index}
+      onSelect={handleSelect}
+    >
       <Carousel.Item interval={interval}>
         <img
           className="d-block w-100"
@@ -52,4 +58,4 @@ function CarouselDisplay() {
   );
 }
 
-export default CarouselDisplay
+export default CarouselDisplay;
