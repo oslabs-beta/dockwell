@@ -3,42 +3,29 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const PrometheusDriver = require('prometheus-query').PrometheusDriver;
 const path = require('path');
-const { response } = require('express');
+// const { response } = require('express');
+
 const app = express();
 
-//METRICS QUERIES
-// CPU - container_cpu_usage_seconds_total
-// Memory - container_memory_usage_bytes
-//need to find a way to grab container ids from docker
+const {
+  cpuQuery,
+  memoryQuery,
+  getContainers,
+} = require('./controllers/promQueryController');
 const PORT = 3535;
-const queries = {
-  avg_cpu:
-    'avg by(job) (rate(process_cpu_seconds_total{job="prometheus"}[1m]))',
-  rate_cpu: 'rate(process_cpu_seconds_total{job="prometheus"}[1m])',
-  cpu: 'container_cpu_usage_seconds_total',
-  memory: 'container_memory_usage_bytes',
-};
 
 app.use(cookieParser()).use(express.json()).use(cors());
 
-//EXAMPLE PROM CLIENT
-
-const prom = new PrometheusDriver({
-  endpoint: 'http://localhost:9090',
-  baseURL: '/api/v1', // default value
+app.get('/api/getContainers', getContainers, (req, res) => {
+  res.status(200).json(res.locals.containers);
 });
 
-const q = queries['cpu'];
-prom
-  .instantQuery(q)
-  .then((y) => {
-    const series = y.result;
-    const finalObj = {};
-  })
-  .catch(console.error);
+app.get('/api/cpu', getContainers, cpuQuery, (req, res) => {
+  res.status(200).json(res.locals.data);
+});
 
-app.get('/api', promQueryController.getStuff, (req, res) => {
-  res.status(200).json(res.locals.response);
+app.get('/api/memory', getContainers, memoryQuery, (req, res) => {
+  res.status(200).json(res.locals.data);
 });
 
 if (process.env.NODE_ENV === 'production') {
