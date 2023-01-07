@@ -38,23 +38,7 @@ body {
   justify-content: space-between;
   height: 80%;
   padding: 15px 30px;
-
-  @media only screen and (max-width: 1075px) {
-    flex-direction: column;
-  }
-  .Environments {
-
-  }
-  .carousel {
-
-  }
-  .SystemMetrics {
-    
-  }
 }
-
-
-
 
 .Environments {
   // width: 15%;
@@ -78,7 +62,7 @@ body {
     p {
       margin: 0;
     }
-    
+
     .small {
       font-size: 0.85rem;
     }
@@ -90,8 +74,6 @@ body {
       font-size: 1.5rem;
       // margin-bottom: 0;
     }
-    
-
   }
 
   #buttons {
@@ -110,8 +92,8 @@ body {
       background-color: $green;
     }
 
-    .btn-danger{
-      background-color: $red
+    .btn-danger {
+      background-color: $red;
     }
   }
 }
@@ -142,8 +124,7 @@ body {
   @media only screen and (max-width: 1075px) {
     margin: 10px auto;
     height: 1000px;
-    // width: 80%; 
+    // width: 80%;
   }
   // .SystemMetrics {
-
 }
