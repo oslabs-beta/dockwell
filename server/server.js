@@ -37,26 +37,9 @@ prom
   })
   .catch(console.error);
 
-// app.get('/api', (req, res) => {
-//   const q = queries[req.params.q];
-//   prom
-//     .instantQuery(q)
-//     .then((y) => {
-//       const series = y.result;
-//       const x = [];
-//       series.forEach((serie) => {
-//         console.log('============================', serie);
-//         x.push(serie);
-//         // !cache[serie.metric.metric?.name] ? cache[serie.metric.metric?.name] : '';
-//         // console.log('Serie:', serie?.metric.toString());
-//         // console.log('Time:', serie?.value.time);
-//         // console.log('Value:', serie?.value.value);
-//       });
-//       console.log(x);
-//       res.json(x);
-//     })
-//     .catch(console.error);
-// });
+app.get('/api', promQueryController.getStuff, (req, res) => {
+  res.status(200).json(res.locals.response);
+});
 
 if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res, err) => {
