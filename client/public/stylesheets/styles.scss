@@ -128,3 +128,16 @@ body {
   }
   // .SystemMetrics {
 }
+
+.carousel-inner .active {
+  display: flex;
+  // grid-template-columns: 49% 49%;
+  flex-direction: column;
+  // overflow: scroll;
+  flex-wrap: wrap;
+  height: 550px;
+}
+
+.chart-container {
+  width: 200px;
+}

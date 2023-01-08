@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import CPU from '../components/metrics/Cpu.jsx';
+import { Data } from '../../utils/Data.js';
 
 function CarouselDisplay() {
-  const interval = 5000000000;
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+
+  const [chartData, setChartData] = useState({
+    labels: Data.map((data) => data.titles),
+    datasets: [
+      {
+        label: '% of CPU',
+        data: Data.map((data) => data.labels),
+        backgroundColor: ['rgb(159, 70, 70)', 'rgb(77, 153, 77)'],
+        borderColor: 'black',
+        borderWidth: 2,
+      },
+    ],
+  });
 
   return (
     <Carousel
@@ -16,43 +30,25 @@ function CarouselDisplay() {
       nextLabel={''}
       activeIndex={index}
       onSelect={handleSelect}
+      keyboard={true}
     >
-      <Carousel.Item interval={interval}>
-        <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=First slide&bg=373940"
-          alt="First slide"
-        />
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
+      <Carousel.Item>
+        <CPU chartData={chartData} />
+        <CPU chartData={chartData} />
+        <CPU chartData={chartData} />
+        <CPU chartData={chartData} />
       </Carousel.Item>
-      <Carousel.Item interval={interval}>
-        <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=Second slide&bg=282c34"
-          alt="Second slide"
-        />
-
-        <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
+      <Carousel.Item>
+        <CPU chartData={chartData} />
+        <CPU chartData={chartData} />
+        <CPU chartData={chartData} />
+        <CPU chartData={chartData} />
       </Carousel.Item>
-      <Carousel.Item interval={interval}>
-        <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=Third slide&bg=20232a"
-          alt="Third slide"
-        />
-
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
+      <Carousel.Item>
+        <CPU chartData={chartData} />
+        <CPU chartData={chartData} />
+        <CPU chartData={chartData} />
+        <CPU chartData={chartData} />
       </Carousel.Item>
     </Carousel>
   );
