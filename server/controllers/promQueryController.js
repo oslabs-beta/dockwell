@@ -83,9 +83,9 @@ promQueryController.getContainers = async (req, res, next) => {
     });
     const finalData = {};
     for (let metricObj of data) {
-      if (metricObj.Names !== 'prometheus' && metricObj.Names !== 'cadvisor') {
-        finalData[metricObj.ID] = metricObj;
-      }
+      // if (metricObj.Names !== 'prometheus' && metricObj.Names !== 'cadvisor') {
+      finalData[metricObj.ID] = metricObj;
+      // }
     }
 
     res.locals.containers = finalData;
