@@ -11,11 +11,16 @@ const {
   cpuQuery,
   memoryQuery,
   getContainers,
+  getTotals,
 } = require('./controllers/promQueryController');
-const { startContainer } = require('./controllers/containerController.js');
+const controlContainer = require('./controllers/containerController.js');
 const PORT = 3535;
 
 app.use(cookieParser()).use(express.json()).use(cors());
+
+app.get('/api/getTotals', getTotals, (req, res, next) => {
+  res.status(200).json('res.locals.totals');
+});
 
 app.get('/api/getContainers', getContainers, (req, res) => {
   res.status(200).json(res.locals.containers);
@@ -34,8 +39,8 @@ app.get('/api/getStats', getContainers, memoryQuery, cpuQuery, (req, res) => {
   res.status(200).json(res.locals.containers);
 });
 
-app.put('/api/start/:id', startContainer, (req, res) => {
-  res.status(200);
+app.get('/api/control/:task/:name', controlContainer, (req, res) => {
+  res.sendStatus(200);
 });
 
 if (process.env.NODE_ENV === 'production') {
