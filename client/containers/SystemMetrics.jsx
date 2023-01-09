@@ -6,6 +6,8 @@ import GaugeChart from 'react-gauge-chart';
 import { Data } from '../../utils/Data.js';
 
 const systemMetrics = ({ totals }) => {
+  const [cpuChart, setcpuChart] = useState([])
+  const [memoryChart, setmemoryChart] = useState([])
   const [chartData, setChartData] = useState({
     labels: Data.map((data) => data.titles),
     datasets: [
