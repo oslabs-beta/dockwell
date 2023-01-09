@@ -34,24 +34,15 @@ promQueryController.memoryQuery = (req, res, next) => {
     .instantQuery(q)
     .then((y) => {
       const series = y.result;
-      const output = {};
       for (let metricObj of series) {
-        //check if metricObj is in our containers list from get containers
         const short_id = metricObj.metric.labels.id.substr(8, 12);
-        if (res.locals.containers[short_id]) {
-          const containerObj = {
-            Name: res.locals.containers[short_id].Names,
-            ID: short_id,
-            State: res.locals.containers[short_id].State,
-            memory: {
+        res.locals.containers[short_id]
+          ? (res.locals.containers[short_id].memory = {
               time: [metricObj.value.time.toString().slice(16, 24)],
               value: [metricObj.value.value],
-            },
-          };
-          output[short_id] = containerObj;
-        }
+            })
+          : '';
       }
-      res.locals.data = output;
       return next();
     })
     .catch(console.error);
@@ -65,8 +56,8 @@ promQueryController.cpuQuery = (req, res, next) => {
       const series = y.result;
       for (let metricObj of series) {
         const short_id = metricObj.metric.labels.id.substr(8, 12);
-        res.locals.data[short_id]
-          ? (res.locals.data[short_id].cpu = {
+        res.locals.containers[short_id]
+          ? (res.locals.containers[short_id].cpu = {
               time: [metricObj.value.time.toString().slice(16, 24)],
               value: [metricObj.value.value],
             })
@@ -89,11 +80,7 @@ promQueryController.getContainers = async (req, res, next) => {
     });
     const finalData = {};
     for (let metricObj of data) {
-      if (
-        metricObj.Names !== 'prometheus' &&
-        metricObj.Names !== 'cadvisor' &&
-        metricObj.Names !== 'grafana'
-      ) {
+      if (metricObj.Names !== 'prometheus' && metricObj.Names !== 'cadvisor') {
         finalData[metricObj.ID] = metricObj;
       }
     }
