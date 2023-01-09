@@ -18,9 +18,9 @@ const PORT = 3535;
 
 app.use(cookieParser()).use(express.json()).use(cors());
 
-app.get('/api/getTotals', getTotals, (req, res, next) => {
-  res.status(200).json('res.locals.totals');
-});
+// app.get('/api/getTotals', getTotals, (req, res, next) => {
+//   res.status(200).json(res.locals.totals);
+// });
 
 app.get('/api/getContainers', getContainers, (req, res) => {
   res.status(200).json(res.locals.containers);
@@ -34,10 +34,17 @@ app.get('/api/getContainers', getContainers, (req, res) => {
 //   res.status(200).json(res.locals.data);
 // });
 
-app.get('/api/getStats', getContainers, memoryQuery, cpuQuery, (req, res) => {
-  console.log(res.locals.containers);
-  res.status(200).json(res.locals.containers);
-});
+app.get(
+  '/api/getStats',
+  getContainers,
+  memoryQuery,
+  cpuQuery,
+  getTotals,
+  (req, res) => {
+    // console.log(res.locals.containers);
+    res.status(200).json(res.locals.finalResult);
+  }
+);
 
 app.get('/api/control/:task/:name', controlContainer, (req, res) => {
   res.sendStatus(200);
