@@ -1,19 +1,21 @@
 import React from 'react';
 import ImagePreview from '../components/ImagePreview.jsx';
+import App from '../pages/App.jsx'
 
-// const ImagePreviewArray = [];
 
-const Environments = ({ userPreviews }) => {
-  //need to map list of images to create image previews
+const Environments = ({ allContainers }) => {
 
-  // const previewArray = userPreviews.map((userPreview, i) => <ImagePreview previewInfo={userPreview} key={'userPreview' + 1} />)
+  // console.log(allContainers)
+
+  const previewArray = allContainers.map((obj, i) => 
+    <ImagePreview 
+      containerInfo = {obj}
+      key={'container ' + i} />)
 
   return (
     <div className="Environments">
       <div className="EnvContainer">
-        {/* {previewArray} */}
-        <ImagePreview />
-        <ImagePreview />
+        {previewArray}
       </div>
     </div>
   );

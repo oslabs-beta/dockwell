@@ -5,40 +5,43 @@ import Environments from '../containers/Environments.jsx';
 import Carousel from '../containers/Carousel.jsx';
 
 const App = () => {
-  const [totals, setTotal] = useState({});
-  // const [memTotal, setMemTotals] = useState({});
-  const [containers, setContainers] = useState([]);
-  const [userPreviews, setUserPreviews] = useState([]);
+  const [totals, setTotals] = useState({});
+  //filters running containers
+  const [allContainers, setAllContainers] = useState([]);
+  const [activeContainers, setActiveContainers] = useState([]);
+  // const [userPreviews, setUserPreviews] = useState([]);
 
   useEffect(() => {
-    axios
+   setInterval(() => {axios
       .get('http://localhost:3535/api/getStats')
       .then((res) => {
-        console.log(res.data);
-        let totals = {}
-        let CPUtotal;
-        let memoryTotal;
+        const allContainers = []
+        const activeContainers = []
+        const totals  = res.data.totals
+        delete res.data.totals
+
         for (const key in res.data) {
-          console.log(res.data[key])
-        if (res.data[key].State === 'running') {
-          memoryTotal = res.data[key].memory.value
-          CPUtotal = res.data[key].cpu.value
+          allContainers.push(res.data[key])
+
+          if (res.data[key].State === 'running') {
+            activeContainers.push(res.data[key]);
+          } 
         }
-        totals.cpuTotal = CPUtotal
-        totals.memoryTotal = memoryTotal
-        }
-        console.log('totals :', totals)
-        setTotals(totals);
-        setContainers(res.data.containers);
+        setTotals(totals)
+        setAllContainers(allContainers);
+        setActiveContainers(activeContainers);
       })
       .catch((err) =>
         console.log('Initial fetch GET request to DB: ERROR: ', err)
-      );
+      );}, 1000)
   }, []);
 
   //could try splitting res up into three pieces add a third thats just the container names and preview info, then both sidebars could be finished easy and the main section is the only place well need to do that building out logic
 
-  //
+  // console.log('totals :', { totals });
+  // console.log('activeContainers :', { activeContainers });
+  // console.log('containers :', { containers });
+
 
   return (
     <div className="App">
@@ -48,11 +51,10 @@ const App = () => {
         <div className="links"></div>
       </header>
       <div className="main">
-        <Environments />
-        {/* <Environments userPreviews={userPreviews} /> */}
-        <Carousel />
-        {/* <SystemMetrics totals={totals}/> */}
-        <SystemMetrics />
+        <Environments allContainers={allContainers}  />
+        <Carousel activeContainers={activeContainers}/>
+        <SystemMetrics totals={totals}/>
+        
       </div>
     </div>
   );
