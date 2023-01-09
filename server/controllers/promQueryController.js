@@ -121,8 +121,8 @@ promQueryController.getTotals = async (req, res, next) => {
     for (let container of data) {
       let memStr = container.MemPercentage.replace('%', '');
       let cpuStr = container.CPUPercentage.replace('%', '');
-      totalsFinal.totalMem += Number(memStr);
-      totalsFinal.totalCpu += Number(cpuStr);
+      totalsFinal.totalMemPercentage += Number(memStr);
+      totalsFinal.totalCpuPercentage += Number(cpuStr);
     }
     const memLimit = data[0].MemUsage.split('/');
     totalsFinal.memLimit = memLimit[1];
