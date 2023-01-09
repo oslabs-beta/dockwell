@@ -7,6 +7,7 @@ import Carousel from '../containers/Carousel.jsx';
 const App = () => {
   // const [totals, setTotals] = useState({});
   // const [containers, setContainers] = useState([]);
+  // const [userPreviews, setUserPreviews] = useState([]);
 
   // useEffect(() => {
   //   axios
@@ -21,6 +22,10 @@ const App = () => {
   //     );
   // }, []);
 
+  //could try splitting res up into three pieces add a third thats just the container names and preview info, then both sidebars could be finished easy and the main section is the only place well need to do that building out logic
+
+  //
+
   return (
     <div className="App">
       <header className="header">
@@ -30,7 +35,9 @@ const App = () => {
       </header>
       <div className="main">
         <Environments />
-        <Carousel id="carousel" />
+        {/* <Environments userPreviews={userPreviews} /> */}
+        <Carousel />
+        {/* <SystemMetrics totals={totals}/> */}
         <SystemMetrics />
       </div>
     </div>

@@ -4,6 +4,7 @@ import CPU from '../components/metrics/Cpu.jsx';
 import { Data } from '../../utils/Data.js';
 
 function CarouselDisplay() {
+  const interval = 500000000000;
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -32,19 +33,19 @@ function CarouselDisplay() {
       onSelect={handleSelect}
       keyboard={true}
     >
-      <Carousel.Item>
+      <Carousel.Item interval={interval}>
         <CPU chartData={chartData} />
         <CPU chartData={chartData} />
         <CPU chartData={chartData} />
         <CPU chartData={chartData} />
       </Carousel.Item>
-      <Carousel.Item>
+      <Carousel.Item interval={interval}>
         <CPU chartData={chartData} />
         <CPU chartData={chartData} />
         <CPU chartData={chartData} />
         <CPU chartData={chartData} />
       </Carousel.Item>
-      <Carousel.Item>
+      <Carousel.Item interval={interval}>
         <CPU chartData={chartData} />
         <CPU chartData={chartData} />
         <CPU chartData={chartData} />
