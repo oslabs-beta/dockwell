@@ -13,7 +13,7 @@ const ImagePreview = () => {
 
   const { name, state, image, IPAddress, PublishedPorts, Created } =
     dummyPreview;
-  console.log(name);
+  // console.log(name);
   return (
     <div className="ImagePreview">
       <div className="information">
