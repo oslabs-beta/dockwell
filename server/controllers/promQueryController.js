@@ -28,46 +28,28 @@ const queries = {
 
 const promQueryController = {};
 
-promQueryController.cpuQuery = (req, res, next) => {
-  console.log('server cpu query');
-  const q = queries['cpu'];
-  prom
-    .instantQuery(q)
-    .then((y) => {
-      const series = y.result;
-      const output = [];
-      console.log(series);
-      for (let metricObj of series) {
-        console.log(metricObj);
-        res.locals.containers[metricObj.metric.labels.id.substr(8, 12)]
-          ? output.push(
-              metricObj,
-              res.locals.containers[metricObj.metric.labels.id.substr(8, 12)]
-            )
-          : '';
-      }
-      res.locals.data = output;
-      return next();
-    })
-    .catch(console.error);
-};
 promQueryController.memoryQuery = (req, res, next) => {
-  console.log('server memory query', res.locals.containers);
   const q = queries['memory'];
   prom
     .instantQuery(q)
     .then((y) => {
       const series = y.result;
-      const output = [];
-      console.log(series);
+      const output = {};
       for (let metricObj of series) {
-        console.log(metricObj);
-        res.locals.containers[metricObj.metric.labels.id.substr(8, 12)]
-          ? output.push(
-              metricObj,
-              res.locals.containers[metricObj.metric.labels.id.substr(8, 12)]
-            )
-          : '';
+        //check if metricObj is in our containers list from get containers
+        const short_id = metricObj.metric.labels.id.substr(8, 12);
+        if (res.locals.containers[short_id]) {
+          const containerObj = {
+            Name: res.locals.containers[short_id].Names,
+            ID: short_id,
+            State: res.locals.containers[short_id].State,
+            memory: {
+              time: [metricObj.value.time.toString().slice(16, 24)],
+              value: [metricObj.value.value],
+            },
+          };
+          output[short_id] = containerObj;
+        }
       }
       res.locals.data = output;
       return next();
@@ -75,9 +57,28 @@ promQueryController.memoryQuery = (req, res, next) => {
     .catch(console.error);
 };
 
+promQueryController.cpuQuery = (req, res, next) => {
+  const q = queries['cpu'];
+  prom
+    .instantQuery(q)
+    .then((y) => {
+      const series = y.result;
+      for (let metricObj of series) {
+        const short_id = metricObj.metric.labels.id.substr(8, 12);
+        res.locals.data[short_id]
+          ? (res.locals.data[short_id].cpu = {
+              time: [metricObj.value.time.toString().slice(16, 24)],
+              value: [metricObj.value.value],
+            })
+          : '';
+      }
+      return next();
+    })
+    .catch(console.error);
+};
+
 promQueryController.getContainers = async (req, res, next) => {
   try {
-    console.log('server testing...');
     const { stdout } = await execProm('docker ps --all --format "{{json .}}"');
     const data = cliParser(stdout).map((container) => {
       return {

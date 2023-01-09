@@ -15,15 +15,6 @@ services:
       - prometheus-data:/prometheus
     command:
       - --config.file=/tmp/prometheus/prometheus.yml
-  grafana:
-    image: grafana/grafana-oss:latest
-    container_name: grafana
-    ports:
-      - 3000:3000
-    volumes:
-      - grafana-data:/var/lib/grafana
-    restart: unless-stopped
-
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.45.0
     container_name: cadvisor
