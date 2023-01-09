@@ -5,7 +5,6 @@ const { promisify } = require('util');
 const { exec } = require('child_process');
 const execProm = promisify(exec);
 const cliParser = require('../serverUtils/dockerCliJS');
-const { data } = require('autoprefixer');
 const { Metric } = require('prometheus-query');
 
 // default options
@@ -76,6 +75,10 @@ promQueryController.getContainers = async (req, res, next) => {
         ID: container.ID,
         Names: container.Names,
         State: container.State,
+        Ports: container.Ports,
+        CreatedAt: container.CreatedAt,
+        Image: container.Image,
+        Status: container.Status,
       };
     });
     const finalData = {};
@@ -86,6 +89,30 @@ promQueryController.getContainers = async (req, res, next) => {
     }
 
     res.locals.containers = finalData;
+    return next();
+  } catch (err) {
+    return next({
+      log: `error ${err} occurred in stopContainer`,
+      message: { err: 'an error occured' },
+    });
+  }
+};
+
+promQueryController.getTotals = async (req, res, next) => {
+  try {
+    const { stdout } = await execProm(
+      'docker stats --no-stream --format "{{json .}}"'
+    );
+    const data = cliParser(stdout).map((container) => {
+      return {
+        ID: container.ID,
+        CPUPercentage: CPUPerc,
+      };
+    });
+    console.log(stdout);
+    // console.log('howdy');
+    // cliParser(stdout);
+
     return next();
   } catch (err) {
     return next({
