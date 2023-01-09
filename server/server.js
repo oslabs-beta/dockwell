@@ -12,6 +12,7 @@ const {
   memoryQuery,
   getContainers,
 } = require('./controllers/promQueryController');
+const { startContainer } = require('./controllers/containerController.js');
 const PORT = 3535;
 
 app.use(cookieParser()).use(express.json()).use(cors());
@@ -29,8 +30,12 @@ app.get('/api/getContainers', getContainers, (req, res) => {
 // });
 
 app.get('/api/getStats', getContainers, memoryQuery, cpuQuery, (req, res) => {
-  console.log(res.locals.data);
-  res.status(200).json(res.locals.data);
+  console.log(res.locals.containers);
+  res.status(200).json(res.locals.containers);
+});
+
+app.put('/api/start/:id', startContainer, (req, res) => {
+  res.status(200);
 });
 
 if (process.env.NODE_ENV === 'production') {
