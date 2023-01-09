@@ -5,7 +5,6 @@ const { promisify } = require('util');
 const { exec } = require('child_process');
 const execProm = promisify(exec);
 const cliParser = require('../serverUtils/dockerCliJS');
-const { data } = require('autoprefixer');
 const { Metric } = require('prometheus-query');
 
 // default options
@@ -76,16 +75,59 @@ promQueryController.getContainers = async (req, res, next) => {
         ID: container.ID,
         Names: container.Names,
         State: container.State,
+        Ports: container.Ports,
+        CreatedAt: container.CreatedAt,
+        Image: container.Image,
+        Status: container.Status,
       };
     });
     const finalData = {};
     for (let metricObj of data) {
-      if (metricObj.Names !== 'prometheus' && metricObj.Names !== 'cadvisor') {
-        finalData[metricObj.ID] = metricObj;
-      }
+      // if (metricObj.Names !== 'prometheus' && metricObj.Names !== 'cadvisor') {
+      finalData[metricObj.ID] = metricObj;
+      // }
     }
 
     res.locals.containers = finalData;
+    return next();
+  } catch (err) {
+    return next({
+      log: `error ${err} occurred in stopContainer`,
+      message: { err: 'an error occured' },
+    });
+  }
+};
+
+promQueryController.getTotals = async (req, res, next) => {
+  try {
+    const { stdout } = await execProm(
+      'docker stats --no-stream --format "{{json .}}"'
+    );
+    const data = cliParser(stdout).map((container) => {
+      return {
+        ID: container.ID,
+        Name: container.Name,
+        CPUPercentage: container.CPUPerc,
+        MemPercentage: container.MemPerc,
+        MemUsage: container.MemUsage,
+      };
+    });
+    console.log(stdout);
+    const totalsFinal = {
+      totalCpuPercentage: 0,
+      totalMemPercentage: 0,
+      memLimit: '0GiB',
+    };
+    for (let container of data) {
+      let memStr = container.MemPercentage.replace('%', '');
+      let cpuStr = container.CPUPercentage.replace('%', '');
+      totalsFinal.totalMemPercentage += Number(memStr);
+      totalsFinal.totalCpuPercentage += Number(cpuStr);
+    }
+    const memLimit = data[0].MemUsage.split('/');
+    totalsFinal.memLimit = memLimit[1];
+    res.locals.finalResult = { totals: totalsFinal, ...res.locals.containers };
+
     return next();
   } catch (err) {
     return next({

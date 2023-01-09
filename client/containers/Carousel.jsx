@@ -4,7 +4,7 @@ import CPU from '../components/metrics/Cpu.jsx';
 import { Data } from '../../utils/Data.js';
 
 function CarouselDisplay() {
-  const interval = 5000000000;
+  const interval = 500000000000;
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {

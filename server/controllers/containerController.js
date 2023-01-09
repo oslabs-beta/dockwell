@@ -15,10 +15,47 @@ const options = {
   echo: true, // echo command output to stdout/stderr
 };
 
-const containerController = {
-  startContainer: () => {
-    console.log('hi');
-  },
+//to run and start all you need is the name of the container
+
+const controlContainer = async (req, res, next) => {
+  try {
+    const name = req.params.name;
+    const task = req.params.task;
+    await execProm(`docker ${task} ${name}`);
+    return next();
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-module.exports = containerController;
+// const containerController = {
+//   startContainer: async (req, res, next) => {
+//     try {
+//       const name = req.params.name;
+//       await execProm(`docker run ${name}`);
+//       return next();
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   },
+//   pauseContainer: async (req, res, next) => {
+//     try {
+//       const name = req.params.name;
+//       await execProm(`docker pause ${name}`);
+//       return next();
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   },
+//   killContainer: async (req, res, next) => {
+//     try {
+//       const name = req.params.name;
+//       await execProm(`docker kill ${name}`);
+//       return next();
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   },
+// };
+
+module.exports = controlContainer;
