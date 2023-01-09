@@ -106,12 +106,27 @@ promQueryController.getTotals = async (req, res, next) => {
     const data = cliParser(stdout).map((container) => {
       return {
         ID: container.ID,
-        CPUPercentage: CPUPerc,
+        Name: container.Name,
+        CPUPercentage: container.CPUPerc,
+        MemPercentage: container.MemPerc,
+        MemUsage: container.MemUsage,
       };
     });
     console.log(stdout);
-    // console.log('howdy');
-    // cliParser(stdout);
+    const totalsFinal = {
+      totalCpuPercentage: 0,
+      totalMemPercentage: 0,
+      memLimit: '0GiB',
+    };
+    for (let container of data) {
+      let memStr = container.MemPercentage.replace('%', '');
+      let cpuStr = container.CPUPercentage.replace('%', '');
+      totalsFinal.totalMem += Number(memStr);
+      totalsFinal.totalCpu += Number(cpuStr);
+    }
+    const memLimit = data[0].MemUsage.split('/');
+    totalsFinal.memLimit = memLimit[1];
+    res.locals.finalResult = { totals: totalsFinal, ...res.locals.containers };
 
     return next();
   } catch (err) {
