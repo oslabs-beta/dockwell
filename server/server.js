@@ -20,11 +20,16 @@ app.get('/api/getContainers', getContainers, (req, res) => {
   res.status(200).json(res.locals.containers);
 });
 
-app.get('/api/cpu', getContainers, cpuQuery, (req, res) => {
-  res.status(200).json(res.locals.data);
-});
+// app.get('/api/cpu', getContainers, cpuQuery, (req, res) => {
+//   res.status(200).json(res.locals.data);
+// });
 
-app.get('/api/memory', getContainers, memoryQuery, (req, res) => {
+// app.get('/api/getTotals', (req, res) => {
+//   res.status(200).json(res.locals.data);
+// });
+
+app.get('/api/getStats', getContainers, memoryQuery, cpuQuery, (req, res) => {
+  console.log(res.locals.data);
   res.status(200).json(res.locals.data);
 });
 
