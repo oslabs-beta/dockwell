@@ -29,7 +29,7 @@ module.exports = {
     //   '/api': 'http://localhost:3000/api',
     // },
     compress: true,
-    port: 8080,
+    port: 7070,
   },
 
   module: {
@@ -50,8 +50,9 @@ module.exports = {
         use: ['source-map-loader'],
       },
       {
-        test: /\.(scss|sass)$/,
+        test: /\.s[ac]ss$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
+        exclude: [/node_modules/],
       },
       {
         test: /\.module\.css$/,
@@ -61,6 +62,14 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: () => [require('autoprefixer')],
+              },
             },
           },
         ],

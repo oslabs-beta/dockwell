@@ -1,0 +1,143 @@
+@import 'variables.scss';
+
+body {
+  margin: 0;
+  background-color: $darkerblue;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90vh;
+}
+
+// .header {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   height: 10%;
+//   margin-bottom: 10px;
+//   width: 100%;
+//   border-radius: 0 0 85% 85% / 30%;
+//   background: rgba(134, 163, 204);
+// }
+
+// .logo {
+//   height: 100%;
+//   width: 100%;
+//   background-image: url('./whalelogo.png');
+//   background-size: contain;
+//   background-repeat: no-repeat;
+//   mix-blend-mode: multiply;
+// }
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 80%;
+  padding: 15px 30px;
+}
+
+.Environments {
+  // width: 15%;
+  width: 400px;
+  min-width: 370px;
+  margin-right: 40px;
+  overflow-y: scroll;
+
+  .ImagePreview {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 150px;
+    margin: 0;
+    padding: 10px;
+    border-radius: 10px;
+    color: $beige;
+    background-color: $brown;
+    margin-bottom: 20px;
+
+    p {
+      margin: 0;
+    }
+
+    .small {
+      font-size: 0.85rem;
+    }
+    .space {
+      height: 15px;
+    }
+    .large {
+      color: darken($beige, 10%);
+      font-size: 1.5rem;
+      // margin-bottom: 0;
+    }
+  }
+
+  #buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 0;
+    width: 135px;
+
+    button {
+      border: 0;
+      color: $sage;
+    }
+
+    .btn-success {
+      background-color: $green;
+    }
+
+    .btn-danger {
+      background-color: $red;
+    }
+  }
+}
+
+.Carousel {
+  width: 50%;
+  margin: none;
+}
+
+.SystemMetrics {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.CPU-metric,
+.Memory-metric {
+  height: 40%;
+  width: 80%;
+  margin: 2px;
+  background-color: rgb(134, 163, 204);
+  margin: auto;
+}
+
+.Environments,
+.Carousel,
+.SystemMetrics {
+  @media only screen and (max-width: 1075px) {
+    margin: 10px auto;
+    height: 1000px;
+    // width: 80%;
+  }
+  // .SystemMetrics {
+}
+
+.carousel-inner .active {
+  display: flex;
+  // grid-template-columns: 49% 49%;
+  flex-direction: column;
+  // overflow: scroll;
+  flex-wrap: wrap;
+  height: 550px;
+}
+
+.chart-container {
+  width: 200px;
+}
