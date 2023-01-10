@@ -1,28 +1,18 @@
 import React, { useEffect, useState } from 'react';
 //this will be small previews of the users individual docker containers with buttons to start and stop each one
 
-const ImagePreview = () => {
-  const dummyPreview = {
-    name: 'docker-tutorial',
-    state: 'exited',
-    image: 'docker101tutorial',
-    IPAddress: '172.17.0.4',
-    PublishedPorts: '55000:9090',
-    Created: '2021-01-04 12:43:05',
-  };
+const ImagePreview = ({ containerInfo }) => {
+  const { Names, State, Ports, CreatedAt, Image, Status } = containerInfo;
 
-  const { name, state, image, IPAddress, PublishedPorts, Created } =
-    dummyPreview;
-  // console.log(name);
   return (
     <div className="ImagePreview">
       <div className="information">
-        <p className="labels small">{`Created at: ${Created}`}</p>
-        <p className="labels small">{`IP: ${IPAddress}`}</p>
-        <p className="labels small">{`Published Ports: ${PublishedPorts}`}</p>
+        <p className="labels small">{`Created at: ${CreatedAt}`}</p>
+        <p className="labels small">{`IP: 27.044.2391`}</p>
+        <p className="labels small">{`Published Ports: ${Ports}`}</p>
         <div className="space"></div>
-        <p className="labels large">{`${name}`}</p>
-        <p className="labels small">{`Image: ${image}`}</p>
+        <p className="labels large">{`${Names}`}</p>
+        <p className="labels small">{`Image: ${Image}`}</p>
       </div>
       <div id="buttons">
         <button
