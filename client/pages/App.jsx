@@ -6,31 +6,27 @@ import Carousel from '../containers/Carousel.jsx';
 
 let count = 0;
 const App = () => {
-  const [totals, setTotals] = useState({});
-<<<<<<< HEAD
   const [queryData, setQueryData] = useState({});
-=======
->>>>>>> 942a327a4dc8269e44aedfd1376d374f888cc23d
   //filters running containers
   const [allContainers, setAllContainers] = useState([]);
   const [activeContainers, setActiveContainers] = useState([]);
   // const [userPreviews, setUserPreviews] = useState([]);
 
   useEffect(() => {
-<<<<<<< HEAD
     const intervalID = setInterval(() => {
       axios
         .get('http://localhost:3535/api/getStats')
         .then((res) => {
           //check if queryData is empty
           if (count === 0) {
+            // queryData.ID===undefined
             // console.log(res.data);
             // console.log('res data the first time', res.data);
-            setQueryData({ ...res.data });
+            setQueryData(res.data);
 
             count++;
           } else {
-            console.log('in the else statement', queryData);
+            console.log('in the else statement', queryData.totals);
             // console.log(queryData, 'initial queryData');
             setQueryData((prev) => {
               const newQueryState = { ...prev };
@@ -41,7 +37,7 @@ const App = () => {
                 } else {
                   //for all the container keys, we drill into the memory and cpu properties of each container, and expand the time and value arrays.
 
-                  newQueryState[key]['memory']['time'] = [
+                  newQueryState[key].memory.time = [
                     ...prev[key].memory.time,
                     ...res.data[key].memory.time,
                   ];
@@ -63,64 +59,35 @@ const App = () => {
               return newQueryState;
             });
           }
-          clearInterval(intervalID);
-          const allContainers = [];
-          const activeContainers = [];
-          const totals = queryData.totals;
-          // delete res.data.totals;
-
-          for (const key in queryData) {
-            if (key !== 'totals') {
-              allContainers.push(queryData[key]);
-              if (queryData[key].State === 'running') {
-                activeContainers.push(queryData[key]);
-              }
-            }
-          }
-          setTotals(totals);
-          setAllContainers(allContainers);
-          setActiveContainers(activeContainers);
+          // clearInterval(intervalID);
         })
         .catch((err) =>
           console.log('Initial fetch GET request to DB: ERROR: ', err)
         );
-    }, 1000);
-  }, [queryData]);
-=======
-   setInterval(() => {axios
-      .get('http://localhost:3535/api/getStats')
-      .then((res) => {
-        const allContainers = []
-        const activeContainers = []
-        const totals  = res.data.totals
-        delete res.data.totals
-
-        for (const key in res.data) {
-          allContainers.push(res.data[key])
-
-          if (res.data[key].State === 'running') {
-            activeContainers.push(res.data[key]);
-          } 
-        }
-        setTotals(totals)
-        setAllContainers(allContainers);
-        setActiveContainers(activeContainers);
-      })
-      .catch((err) =>
-        console.log('Initial fetch GET request to DB: ERROR: ', err)
-      );}, 1000)
+    }, 3000);
   }, []);
->>>>>>> 942a327a4dc8269e44aedfd1376d374f888cc23d
 
   //could try splitting res up into three pieces add a third thats just the container names and preview info, then both sidebars could be finished easy and the main section is the only place well need to do that building out logic
 
   // console.log('totals :', { totals });
   // console.log('activeContainers :', { activeContainers });
   // console.log('containers :', { containers });
-<<<<<<< HEAD
-=======
 
->>>>>>> 942a327a4dc8269e44aedfd1376d374f888cc23d
+  useEffect(() => {
+    const allContainers = [];
+    const activeContainers = [];
+    console.log('UPDATED', queryData);
+    for (const key in queryData) {
+      if (key !== 'totals') {
+        allContainers.push(queryData[key]);
+        if (queryData[key].State === 'running') {
+          activeContainers.push(queryData[key]);
+        }
+      }
+    }
+    setAllContainers(allContainers);
+    setActiveContainers(activeContainers);
+  }, [queryData]);
 
   return (
     <div className="App">
@@ -130,16 +97,9 @@ const App = () => {
         <div className="links"></div>
       </header>
       <div className="main">
-<<<<<<< HEAD
         <Environments allContainers={allContainers} />
-        {/* <Carousel activeContainers={activeContainers} /> */}
-        <SystemMetrics totals={totals} />
-=======
-        <Environments allContainers={allContainers}  />
-        <Carousel activeContainers={activeContainers}/>
-        <SystemMetrics totals={totals}/>
-        
->>>>>>> 942a327a4dc8269e44aedfd1376d374f888cc23d
+        <Carousel activeContainers={activeContainers} />
+        <SystemMetrics totals={queryData.totals} />
       </div>
     </div>
   );
