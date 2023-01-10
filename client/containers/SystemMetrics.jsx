@@ -5,8 +5,6 @@ import Memory from '../components/metrics/Memory.jsx';
 // import { Data } from '../../utils/Data.js';
 
 const systemMetrics = ({ totals }) => {
-  
-
   // const [chartData, setChartData] = useState({
   //   labels: Data.map((data) => data.titles),
   //   datasets: [
@@ -24,8 +22,8 @@ const systemMetrics = ({ totals }) => {
 
   return (
     <div className="SystemMetrics">
-      <CPU totals={totals}/>
-      <Memory totals={totals}/>
+      <CPU totals={totals} />
+      {/* <Memory totals={totals}/> */}
     </div>
   );
 };
