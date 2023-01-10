@@ -13,7 +13,7 @@ const cpu = (props) => {
       nrOfLevels={20}
       colors={['#FFC371', '#FF5F6D']}
       arcWidth={0.3}
-      percent={totalCpuPerc}
+      percent={totalCpuPerc / 100}
     />
   );
 };
