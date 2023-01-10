@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import CPU from '../components/metrics/Cpu.jsx';
-import { Data } from '../../utils/Data.js';
+import Slide from '../components/Slide.jsx';
+// import { Data } from '../../utils/Data.js';
 
-function CarouselDisplay() {
-  const interval = 500000000000;
+function CarouselDisplay({activeContainers}) {
+  
+  //carousel vvvvvvvvvvvvvvvvvvvvvvvvvvv
+  const interval = 50000000;
   const [index, setIndex] = useState(0);
-
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+  //carousel ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  const [chartData, setChartData] = useState({
-    labels: Data.map((data) => data.titles),
-    datasets: [
-      {
-        label: '% of CPU',
-        data: Data.map((data) => data.labels),
-        backgroundColor: ['rgb(159, 70, 70)', 'rgb(77, 153, 77)'],
-        borderColor: 'black',
-        borderWidth: 2,
-      },
-    ],
-  });
+  console.log(activeContainers)
+
+
+  const carouselSlides = activeContainers.map((obj, i) => (
+    <Carousel.Item interval={interval} key={'container ' + i}>
+      <Slide slideInfo={obj}/>
+    </Carousel.Item>
+  ));
+
 
   return (
     <Carousel
@@ -33,24 +33,11 @@ function CarouselDisplay() {
       onSelect={handleSelect}
       keyboard={true}
     >
-      <Carousel.Item interval={interval}>
-        <CPU chartData={chartData} />
-        <CPU chartData={chartData} />
-        <CPU chartData={chartData} />
-        <CPU chartData={chartData} />
+      {carouselSlides}
+      {/* <Carousel.Item interval={interval}>
       </Carousel.Item>
-      <Carousel.Item interval={interval}>
-        <CPU chartData={chartData} />
-        <CPU chartData={chartData} />
-        <CPU chartData={chartData} />
-        <CPU chartData={chartData} />
-      </Carousel.Item>
-      <Carousel.Item interval={interval}>
-        <CPU chartData={chartData} />
-        <CPU chartData={chartData} />
-        <CPU chartData={chartData} />
-        <CPU chartData={chartData} />
-      </Carousel.Item>
+      <Carousel.Item interval={interval}></Carousel.Item>
+      <Carousel.Item interval={interval}></Carousel.Item> */}
     </Carousel>
   );
 }
