@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import Chart from 'chart.js/auto';
+import GaugeChart from 'react-gauge-chart';
 
-const cpu = ({ chartData }) => {
+const cpu = ({totals}) => {
+  // console.log('cpu', totals.totalCpuPercentage);
+
   return (
-    <div className="chart-container">
-      {/* <h2 style={{ textAlign: 'center' }}>Pie Chart</h2> */}
-      <Doughnut
-        data={chartData}
-        options={{
-          plugins: {
-            title: {
-              display: true,
-              text: 'CPU',
-            },
-          },
-        }}
-      />
-    </div>
+    <GaugeChart
+      id="gauge-chart3"
+      nrOfLevels={20}
+      colors={['#FFC371', '#FF5F6D']}
+      arcWidth={0.3}
+      percent={totals.totalCpuPercentage / 100}
+    />
   );
 };
 
