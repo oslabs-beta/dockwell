@@ -7,6 +7,7 @@ import Logs from '../containers/Logs.jsx';
 
 let count = 0;
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [queryData, setQueryData] = useState({});
   //filters running containers
   const [allContainers, setAllContainers] = useState([]);
@@ -19,19 +20,15 @@ const App = () => {
         .get('http://localhost:3535/api/getStats')
         .then((res) => {
           //check if queryData is empty
-          if (count === 0) {
-            // queryData.ID===undefined
-            // console.log(res.data);
-            // console.log('res data the first time', res.data);
+          if (count === 0) { 
             setQueryData(res.data);
-
             count++;
           } else {
-            console.log('in the else statement', queryData.totals);
-            // console.log(queryData, 'initial queryData');
+            console.log('in the else statement', queryData.totals); 
             setQueryData((prev) => {
               const newQueryState = { ...prev };
               for (let key in res.data) {
+                newQueryState[key].State = res.data[key].State
                 //for the totals key, since this is just a snap shot and not a time series data, we just replace the old values with the new value.
                 if (key === 'totals') {
                   newQueryState[key] = res.data[key];
@@ -55,6 +52,21 @@ const App = () => {
                   newQueryState[key].cpu.value = [
                     ...prev[key].cpu.value,
                     ...res.data[key].cpu.value,
+                    //...(prev[key].cpu.value[prev[key].cpu.value.length] - res.data[key].cpu.value[0])
+                  ];
+                  newQueryState[key].cpu.value = [
+                    ...prev[key].cpu.value,
+                    ...res.data[key].cpu.value,
+                    // ...[prev[key].cpu.valueC[prev[key].cpu.valueC.length - 1] -
+                    //   res.data[key].cpu.value[0]],
+                  ];
+                  newQueryState[key].memCache.value = [
+                    ...prev[key].memCache.value,
+                    ...res.data[key].memCache.value,
+                  ];
+                  newQueryState[key].memCache.value = [
+                    ...prev[key].memCache.value,
+                    ...res.data[key].memCache.value,
                   ];
                 }
               }
@@ -62,19 +74,13 @@ const App = () => {
               return newQueryState;
             });
           }
-          // clearInterval(intervalID);
         })
         .catch((err) =>
           console.log('Initial fetch GET request to DB: ERROR: ', err)
         );
+      // isLoading ? setIsLoading(false) : '';
     }, 3000);
-  }, []);
-
-  //could try splitting res up into three pieces add a third thats just the container names and preview info, then both sidebars could be finished easy and the main section is the only place well need to do that building out logic
-
-  // console.log('totals :', { totals });
-  // console.log('activeContainers :', { activeContainers });
-  // console.log('containers :', { containers });
+  }, []); 
 
   useEffect(() => {
     const allContainers = [];
@@ -90,6 +96,7 @@ const App = () => {
     }
     setAllContainers(allContainers);
     setActiveContainers(activeContainers);
+    // isLoading ? setIsLoading(false) : '';
   }, [queryData]);
 
   return (
@@ -98,19 +105,21 @@ const App = () => {
         <div className="logo"></div>
         <div className="links"></div>
       </header>
-      <div className="main">
-        <div className="left">
-          <div className="title">DOCKWELL</div>
-          <Logs activeContainers={activeContainers} />
+      {true && (
+        <div className="main">
+          <div className="left">
+            <div className="title">DOCKWELL</div>
+            <Logs activeContainers={activeContainers} />
+          </div>
+          <div className="middle">
+            <Carousel activeContainers={activeContainers} />
+            <SystemMetrics totals={queryData.totals} />
+          </div>
+          <div className="right">
+            <Environments allContainers={allContainers} />
+          </div>
         </div>
-        <div className="middle">
-          <Carousel activeContainers={activeContainers} />
-          <SystemMetrics totals={queryData.totals} />
-        </div>
-        <div className="right">
-          <Environments allContainers={allContainers} />
-        </div>
-      </div>
+      )}
     </div>
   );
 };

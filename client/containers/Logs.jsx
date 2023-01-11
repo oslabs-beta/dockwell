@@ -48,7 +48,7 @@ const Logs = (props) => {
           </label>
         </form>
       )}
-      {(logs ? true : false) && <p>{JSON.stringify(logs)}</p>}
+      {(logs ? true : false) && <p id='logbox'>{JSON.stringify(logs)}</p>}
       {(selectedContainer ? true : false) && (
         <input
           type="submit"

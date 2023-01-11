@@ -21,7 +21,14 @@ ChartJS.register(
   Legend
 );
 
-export default function ChartComponent({metric, slideInfo}) {
+export default function ChartComponent({ metric, slideInfo, dataLength }) {
+  if (slideInfo.value.length > 10) {
+    slideInfo.value = slideInfo.value.slice(
+      slideInfo.value.length - dataLength
+    );
+    slideInfo.time = slideInfo.time.slice(slideInfo.time.length - dataLength);
+  }
+  // console.log(slideInfo.value);
   const options = {
     // responsive: true,
     plugins: {
@@ -33,9 +40,15 @@ export default function ChartComponent({metric, slideInfo}) {
         text: `${metric}`,
       },
     },
+    scales: {
+      xAxis: {
+        ticks: {
+          maxTicksLimit: 10,
+        },
+      },
+    },
     // maintainAspectRatio: false,
   };
-  
 
   const data = {
     labels: slideInfo.time,

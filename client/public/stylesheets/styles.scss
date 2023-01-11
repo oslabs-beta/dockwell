@@ -72,8 +72,8 @@ body {
       width: min-content;
       padding: 1px 8px;
     }
-    .yellowBadge {
-      background-color: $yellow;
+    .greyBadge {
+      background-color: $paused;
       color: $primary;
       border-radius: 15px;
       width: min-content;
@@ -103,11 +103,18 @@ body {
   }
 }
 
+.left {
+  #logbox {
+    font-size: 8px;
+  }
+}
+
 .middle {
   h2 {
-    width: 100%;
+    // width: 100%;
     align-self: center;
   }
+  height: 100%;
 }
 
 .Carousel {
@@ -119,9 +126,10 @@ body {
   }
 }
 
-// .Carousel-item {
-//   display: grid;
-// }
+.Carousel-item {
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
 
 .SystemMetrics {
   display: grid;
