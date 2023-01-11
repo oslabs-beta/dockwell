@@ -23,9 +23,42 @@ const prom = new PrometheusDriver({
 const queries = {
   cpu: 'container_cpu_usage_seconds_total',
   memory: 'container_memory_usage_bytes',
+  blkioUsage: 'container_blkio_device_usage_total',
+  memCache: 'container_memory_cache',
 };
 
 const promQueryController = {};
+
+promQueryController.getContainers = async (req, res, next) => {
+  try {
+    const { stdout } = await execProm('docker ps --all --format "{{json .}}"');
+    const data = cliParser(stdout).map((container) => {
+      return {
+        ID: container.ID,
+        Names: container.Names,
+        State: container.State,
+        Ports: container.Ports,
+        CreatedAt: container.CreatedAt,
+        Image: container.Image,
+        Status: container.Status,
+      };
+    });
+    const finalData = {};
+    for (let metricObj of data) {
+      // if (metricObj.Names !== 'prometheus' && metricObj.Names !== 'cadvisor') {
+      finalData[metricObj.ID] = metricObj;
+      // }
+    }
+
+    res.locals.containers = finalData;
+    return next();
+  } catch (err) {
+    return next({
+      log: `error ${err} occurred in stopContainer`,
+      message: { err: 'an error occured' },
+    });
+  }
+};
 
 promQueryController.memoryQuery = (req, res, next) => {
   const q = queries['memory'];
@@ -67,35 +100,44 @@ promQueryController.cpuQuery = (req, res, next) => {
     .catch(console.error);
 };
 
-promQueryController.getContainers = async (req, res, next) => {
-  try {
-    const { stdout } = await execProm('docker ps --all --format "{{json .}}"');
-    const data = cliParser(stdout).map((container) => {
-      return {
-        ID: container.ID,
-        Names: container.Names,
-        State: container.State,
-        Ports: container.Ports,
-        CreatedAt: container.CreatedAt,
-        Image: container.Image,
-        Status: container.Status,
-      };
-    });
-    const finalData = {};
-    for (let metricObj of data) {
-      // if (metricObj.Names !== 'prometheus' && metricObj.Names !== 'cadvisor') {
-      finalData[metricObj.ID] = metricObj;
-      // }
-    }
+promQueryController.blkioUsage = (req, res, next) => {
+  const q = queries['blkioUsage'];
+  prom
+    .instantQuery(q)
+    .then((y) => {
+      const series = y.result;
+      for (let metricObj of series) {
+        const short_id = metricObj.metric.labels.id.substr(8, 12);
+        res.locals.containers[short_id]
+          ? (res.locals.containers[short_id].blkio = {
+              time: [metricObj.value.time.toString().slice(16, 24)],
+              value: [metricObj.value.value],
+            })
+          : '';
+      }
+      return next();
+    })
+    .catch(console.error);
+};
 
-    res.locals.containers = finalData;
-    return next();
-  } catch (err) {
-    return next({
-      log: `error ${err} occurred in stopContainer`,
-      message: { err: 'an error occured' },
-    });
-  }
+promQueryController.memCache = (req, res, next) => {
+  const q = queries['memCache'];
+  prom
+    .instantQuery(q)
+    .then((y) => {
+      const series = y.result;
+      for (let metricObj of series) {
+        const short_id = metricObj.metric.labels.id.substr(8, 12);
+        res.locals.containers[short_id]
+          ? (res.locals.containers[short_id].memCache = {
+              time: [metricObj.value.time.toString().slice(16, 24)],
+              value: [metricObj.value.value],
+            })
+          : '';
+      }
+      return next();
+    })
+    .catch(console.error);
 };
 
 promQueryController.getTotals = async (req, res, next) => {

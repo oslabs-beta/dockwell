@@ -21,7 +21,7 @@ ChartJS.register(
   Legend
 );
 
-export default function ChartComponent(props) {
+export default function ChartComponent({metric, slideInfo}) {
   const options = {
     // responsive: true,
     plugins: {
@@ -30,19 +30,20 @@ export default function ChartComponent(props) {
       },
       title: {
         display: true,
-        text: `${props.metric}`,
+        text: `${metric}`,
       },
     },
     // maintainAspectRatio: false,
   };
+  
 
   const data = {
-    labels: props.slideInfo.time,
+    labels: slideInfo.time,
     datasets: [
       {
         label: 'hello',
-        data: props.slideInfo.value,
-        borderColor: '#577399',
+        data: slideInfo.value,
+        borderColor: '#f1d3b3',
         backgroundColor: '#fe605555',
       },
     ],
