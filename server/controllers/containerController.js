@@ -1,61 +1,33 @@
 //imports
-const PrometheusDriver = require('prometheus-query').PrometheusDriver;
-
 const { promisify } = require('util');
 const { exec } = require('child_process');
 const execProm = promisify(exec);
 const cliParser = require('../serverUtils/dockerCliJS');
-const { data } = require('autoprefixer');
-const { Metric } = require('prometheus-query');
 
-// default options
-const options = {
-  machineName: null, // uses local docker
-  currentWorkingDirectory: null, // uses current working directory
-  echo: true, // echo command output to stdout/stderr
-};
+const controlContainer = {};
 
-//to run and start all you need is the name of the container
+// controlContainer.dockerTaskName2 = async (req, res, next) => {
+//   try {
+//     const name = req.params.name;
+//     const task = req.params.task;
+//     await execProm(`docker ${task} ${name}`);
+//     return next();
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
-const controlContainer = async (req, res, next) => {
+ controlContainer.dockerTaskName = async (req, res, next) => {
   try {
-    const name = req.params.name;
-    const task = req.params.task;
-    await execProm(`docker ${task} ${name}`);
+    const { name, task } = req.params;
+    let { stdout, stderr } = await execProm(`docker ${task} ${name}`);
+    stdout ? (stdout = cliParser(stdout)) : '';
+    stderr ? (stderr = cliParser(stderr)) : '';
+    res.locals.container = { stdout, stderr };
     return next();
   } catch (err) {
     console.log(err);
   }
 };
-
-// const containerController = {
-//   startContainer: async (req, res, next) => {
-//     try {
-//       const name = req.params.name;
-//       await execProm(`docker run ${name}`);
-//       return next();
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   },
-//   pauseContainer: async (req, res, next) => {
-//     try {
-//       const name = req.params.name;
-//       await execProm(`docker pause ${name}`);
-//       return next();
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   },
-//   killContainer: async (req, res, next) => {
-//     try {
-//       const name = req.params.name;
-//       await execProm(`docker kill ${name}`);
-//       return next();
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   },
-// };
 
 module.exports = controlContainer;

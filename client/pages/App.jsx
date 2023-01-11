@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import SystemMetrics from '../containers/SystemMetrics.jsx';
 import Environments from '../containers/Environments.jsx';
 import Carousel from '../containers/Carousel.jsx';
+import Logs from '../containers/Logs.jsx';
 
 let count = 0;
 const App = () => {
@@ -34,6 +35,8 @@ const App = () => {
                 //for the totals key, since this is just a snap shot and not a time series data, we just replace the old values with the new value.
                 if (key === 'totals') {
                   newQueryState[key] = res.data[key];
+                } else if (res.data[key].State !== 'running') {
+                  continue;
                 } else {
                   //for all the container keys, we drill into the memory and cpu properties of each container, and expand the time and value arrays.
 
@@ -93,13 +96,20 @@ const App = () => {
     <div className="App">
       <header className="header">
         <div className="logo"></div>
-        {/* <div className="title">DOCKWELL</div>  */}
         <div className="links"></div>
       </header>
       <div className="main">
-        <Environments allContainers={allContainers} />
-        <Carousel activeContainers={activeContainers} />
-        <SystemMetrics totals={queryData.totals} />
+        <div className="left">
+          <div className="title">DOCKWELL</div>
+          <Logs activeContainers={activeContainers} />
+        </div>
+        <div className="middle">
+          <Carousel activeContainers={activeContainers} />
+          <SystemMetrics totals={queryData.totals} />
+        </div>
+        <div className="right">
+          <Environments allContainers={allContainers} />
+        </div>
       </div>
     </div>
   );
