@@ -9,10 +9,14 @@ const cpu = (props) => {
 
   return (
     <GaugeChart
+      className="gauge"
       id="gauge-chart3"
-      nrOfLevels={20}
-      colors={['#FFC371', '#FF5F6D']}
-      arcWidth={0.3}
+      nrOfLevels={3}
+      colors={['#38b000', '#001427']}
+      textColor={'#f8f7ff'}
+      needleColor={'#c6def1'}
+      arcWidth={0.2}
+      cornerRadius={0}
       percent={totalCpuPerc / 100}
     />
   );

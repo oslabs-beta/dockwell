@@ -26,7 +26,7 @@ module.exports = {
       directory: path.join(__dirname, '/client'),
     },
     // proxy: {
-    //   '/api': 'http://localhost:3000/api',
+    //   '/api': 'http://localhost:3535/api',
     // },
     compress: true,
     port: 7070,

@@ -3,13 +3,26 @@ import React, { useEffect, useState } from 'react';
 
 const ImagePreview = ({containerInfo}) => {
   const {Names, State, Ports, CreatedAt, Image, Status} = containerInfo
+  let date = CreatedAt.substring(0, 19)
+  let port = Ports.substring(8,18)
+  let state = State[0].toUpperCase()+State.substring(1)
+  let badgeColor;
+  if (state === 'Running') {
+    badgeColor ="blueBadge"
+  } else if (state === 'Exited') {
+    badgeColor = "redBadge";
+  } else {
+    badgeColor = "yellowBadge";
 
+  }
   return (
     <div className="ImagePreview">
       <div className="information">
-        <p className="labels small">{`Created at: ${CreatedAt}`}</p>
-        <p className="labels small">{`IP: 27.044.2391`}</p>
-        <p className="labels small">{`Published Ports: ${Ports}`}</p>
+        <div className={badgeColor}>
+          <p className="labels small">{`${state}`}</p>
+        </div>
+        <p className="labels small">{`Created at: ${date}`}</p>
+        <p className="labels small">{`Published Ports: ${[port]}`}</p>
         <div className="space"></div>
         <p className="labels large">{`${Names}`}</p>
         <p className="labels small">{`Image: ${Image}`}</p>

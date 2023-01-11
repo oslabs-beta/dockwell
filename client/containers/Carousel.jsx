@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import CPU from '../components/metrics/Cpu.jsx';
-// import Slide from '../components/Slide.jsx';
 import Chart from '../components/Chart.jsx';
-// import { Data } from '../../utils/Data.js';
 
 function CarouselDisplay(props) {
   //carousel vvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -20,11 +18,18 @@ function CarouselDisplay(props) {
     <Carousel.Item interval={interval} key={'container ' + i}>
       <h2>{obj.Names}</h2>
       <Chart
+        className="lineChart"
         slideInfo={obj.memory}
         metric="Memory Usage (bytes)"
         name={obj.Names}
       />
-      <Chart slideInfo={obj.cpu} metric="CPU Usage" name={obj.Names} />
+      className='lineChart'
+      <Chart
+        className="lineChart"
+        slideInfo={obj.cpu}
+        metric="CPU Usage"
+        name={obj.Names}
+      />
     </Carousel.Item>
   ));
 

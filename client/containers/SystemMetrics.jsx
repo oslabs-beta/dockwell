@@ -4,8 +4,7 @@ import Memory from '../components/metrics/Memory.jsx';
 
 // import { Data } from '../../utils/Data.js';
 
-const systemMetrics = (props) => {
-  console.log(props, 'props');
+const systemMetrics = ({totals}) => {
   // const [chartData, setChartData] = useState({
   //   labels: Data.map((data) => data.titles),
   //   datasets: [
@@ -20,12 +19,14 @@ const systemMetrics = (props) => {
   // });
 
   //const {cpu, memory} = totals
-  const totalmetrics = props.totals ? props.totals : {};
+  const totalmetrics = totals ? totals : {};
 
   return (
     <div className="SystemMetrics">
       <CPU totals={totalmetrics} />
       <Memory totals={totalmetrics} />
+      <h1>4</h1>
+      <h1>3</h1>
     </div>
   );
 };
