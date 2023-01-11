@@ -7,7 +7,6 @@ import Logs from '../containers/Logs.jsx';
 
 let count = 0;
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [queryData, setQueryData] = useState({});
   //filters running containers
   const [allContainers, setAllContainers] = useState([]);
@@ -78,8 +77,8 @@ const App = () => {
         .catch((err) =>
           console.log('Initial fetch GET request to DB: ERROR: ', err)
         );
-      // isLoading ? setIsLoading(false) : '';
-    }, 3000);
+     
+    }, 1000);
   }, []); 
 
   useEffect(() => {
@@ -96,10 +95,8 @@ const App = () => {
     }
     setAllContainers(allContainers);
     setActiveContainers(activeContainers);
-    // isLoading ? setIsLoading(false) : '';
   }, [queryData]);
-
-  return (
+  return  (
     <div className="App">
       <header className="header">
         <div className="logo"></div>
@@ -109,7 +106,7 @@ const App = () => {
         <div className="main">
           <div className="left">
             <div className="title">DOCKWELL</div>
-            <Logs activeContainers={activeContainers} />
+            <Logs classname="logs-container" activeContainers={activeContainers} />
           </div>
           <div className="middle">
             <Carousel activeContainers={activeContainers} />

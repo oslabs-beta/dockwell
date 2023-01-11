@@ -7,7 +7,6 @@ function CarouselDisplay(props) {
   //carousel vvvvvvvvvvvvvvvvvvvvvvvvvvv
   const interval = 50000000;
   const [index, setIndex] = useState(0);
-  //const [isLoaded, setIsLoaded] = useState(false)
   const [dataLength, setDataLength] = useState(100);
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -53,48 +52,26 @@ function CarouselDisplay(props) {
     </Carousel.Item>
   ));
 
-  //if (carouselSlides[0] !== undefined) {setIsLoaded(true)}
  
   return (
-    <Carousel
-      controls={true}
-      prevLabel={''}
-      nextLabel={''}
-      activeIndex={index}
-      onSelect={handleSelect}
-      keyboard={true}
-    >
-      {carouselSlides}
-      {/* <Carousel.Item interval={interval}>
-      </Carousel.Item>
-      <Carousel.Item interval={interval}></Carousel.Item>
-      <Carousel.Item interval={interval}></Carousel.Item> */}
-    </Carousel>
-  );
+      <Carousel
+        controls={true}
+        prevLabel={''}
+        nextLabel={''}
+        activeIndex={index}
+        onSelect={handleSelect}
+        keyboard={true}
+      >
+        {carouselSlides}
+        {/* <Carousel.Item interval={interval}>
+        </Carousel.Item>
+        <Carousel.Item interval={interval}></Carousel.Item>
+        <Carousel.Item interval={interval}></Carousel.Item> */}
+      </Carousel>
+    );
+
 }
 
 export default CarouselDisplay;
 
 
-// return isLoaded ? (
-//   <Carousel
-//     controls={true}
-//     prevLabel={''}
-//     nextLabel={''}
-//     activeIndex={index}
-//     onSelect={handleSelect}
-//     keyboard={true}
-//   >
-//     {carouselSlides}
-//     {/* <Carousel.Item interval={interval}>
-//     </Carousel.Item>
-//     <Carousel.Item interval={interval}></Carousel.Item>
-//     <Carousel.Item interval={interval}></Carousel.Item> */}
-//   </Carousel>
-// ) : ( <ReactLoading
-// className="spinner"
-// type="spin"
-// color="blue"
-// height="5%"
-// width="5%"
-// />);

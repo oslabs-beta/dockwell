@@ -41,6 +41,8 @@ body {
     color: $secondary;
     background-color: $panels;
     margin-bottom: 20px;
+    // filter: blur(3px);
+
 
     p {
       margin: 0;
@@ -176,4 +178,19 @@ body {
 
 .chart-container {
   width: 200px;
+}
+
+.logs-list {
+  width: 360px;
+
+  height: 70vh;
+  background-color: #1b263b;
+  border: 2px solid #a3b7d0;
+  padding-right: 10px;
+  margin-right: 10px;
+  overflow-y: auto;
+}
+
+.logs-list-item {
+  border-bottom: 2px solid #778da8;
 }

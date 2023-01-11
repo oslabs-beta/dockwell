@@ -18,12 +18,24 @@ const Logs = (props) => {
       // })
       // }
       // console.log(temp)
-      setLogs(output);
+      if (typeof output.data.stdout === 'object') {
+        setLogs(output.data.stdout);
+      } else {
+        setLogs(output.data.stderr);
+      }
+
+      // setLogs(formattedLogs);
     } catch (err) {
       const output = err;
       setLogs(output);
     }
   }
+
+  let logsJSX = [<li>No LOGS</li>];
+  if (logs !== null) {
+    logsJSX = logs.map((log) => <li className="logs-list-item"> {log}</li>);
+  }
+  console.log('LOGS', logs);
 
   return (
     <>
@@ -48,7 +60,7 @@ const Logs = (props) => {
           </label>
         </form>
       )}
-      {(logs ? true : false) && <p id='logbox'>{JSON.stringify(logs)}</p>}
+      {(logs ? true : false) && <ul className="logs-list"> {logsJSX}</ul>}
       {(selectedContainer ? true : false) && (
         <input
           type="submit"
