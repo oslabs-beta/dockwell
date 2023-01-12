@@ -24,7 +24,7 @@ app.get('/api/getContainers', getContainers, (req, res) => {
   res.status(200).json(res.locals.containers);
 });
 
-app.get('/api/getFastFacts', getContainers, (req, res) => {
+app.get('/api/getFastStats', getContainers, (req, res) => {
   // console.log(res.locals.containers);
   res.status(200).json(res.locals.containers);
 });

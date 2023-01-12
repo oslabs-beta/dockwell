@@ -3,19 +3,14 @@ import axios from 'axios';
 
 //this will be small previews of the users individual docker containers with buttons to start and stop each one
 
-const ImagePreview = ({ containerInfo }) => {
-  const { Names, State, Ports, CreatedAt, Image, Status } = containerInfo;
+const ImagePreview = ({obj}) => {
+  let { Names, State, Ports, CreatedAt, Image, Status } = obj;
+
   let date = CreatedAt.substring(0, 19);
   let port = Ports.substring(8, 18);
-  let state = State[0].toUpperCase() + State.substring(1);
+  // let state = State[0].toUpperCase() + State.substring(1);
 
   let badgeColor;
-  // let buttonClass;
-  // let buttonText;
-  // let clickStatus;
-  //   const clickName = Name
-  //  states: running, paused, exited
-  //  commands: run, kill, pause, unpause
 
   const toggleClick = (cmd) => {
     State === 'paused' && cmd === 'start' ? (cmd = 'unpause') : '';
@@ -25,34 +20,20 @@ const ImagePreview = ({ containerInfo }) => {
         console.log(`${Names} was ${cmd}`);
       })
       .catch((err) => {
-        console.log('error');
+        console.error('error');
       });
   };
-
-  // useEffect(() => {
-  if (state === 'Running') {
-    badgeColor = 'blueBadge';
-    // buttonClass = 'btn btn-danger';
-    // buttonText = 'Unmount';
-    // clickStatus = 'kill';
-
-    // clickStatus = '[delete'; 'pause';]
-  } else if (state === 'Exited') {
-    badgeColor = 'redBadge';
-    // buttonClass = 'btn btn-success';
-    // buttonText = 'Mount';
-    // clickStatus = 'run';
-  } else if (state === 'Paused') {
-    // buttonClass = 'btn btn-warning';
-    badgeColor = 'greyBadge';
-    // buttonText = 'Unpause';
-    // clickStatus = 'unpause';
-  }
-  // }, []);
+  
+  if (State === 'Running') {
+    badgeColor = 'blueBadge';  
+  } else if (State === 'Exited') {
+    badgeColor = 'redBadge'; 
+  } else if (State === 'Paused') { 
+    badgeColor = 'greyBadge'; 
+  } 
 
   return (
-    <div className="ImagePreview">
-      {/* <Skeleton /> */}
+    <div className="ImagePreview"> 
 
       <div className="information">
         <div className={badgeColor}>
