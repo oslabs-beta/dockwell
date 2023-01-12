@@ -1,157 +1,191 @@
 @import 'variables.scss';
 
+// body {
+//   margin: 0;
+//   background-color: $background;
+// }
 body {
   margin: 0;
-  background-color: $background;
+  padding: 0;
+  width: 100%;
+  background: $background;
   color: $tertiary;
-}
-
-.title {
-  font-size: 50;
+  background-image: linear-gradient(
+      rgba(80, 80, 80, 0.7) 0.1em,
+      transparent 0.1em
+    ),
+    linear-gradient(90deg, rgba(80, 80, 80, 0.7) 0.1em, transparent 0.1em);
+  background-size: 1em 1em;
 }
 
 .App {
-  // display: flex;
-  // flex-direction: row;
-  // justify-content: space-between;
-  // height: 90vh;
-}
-
-.main {
-  display: grid;
-  grid-template-columns: 1.5fr 3fr 1fr;
-  margin: 15px auto;
-}
-
-.Environments {
-  // width: 15%;
-  width: 400px;
-  min-width: 370px;
-  margin-right: 40px;
-  overflow-y: scroll;
-
-  .ImagePreview {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 150px;
-    margin: 0;
-    padding: 10px;
-    border-radius: 10px;
-    color: $secondary;
-    background-color: $panels;
-    margin-bottom: 20px;
-    // filter: blur(3px);
-
-
-    p {
-      margin: 0;
-    }
-
-    .small {
-      font-size: 0.85rem;
-    }
-    .space {
-      height: 15px;
-    }
-    .large {
-      color: $yellow;
-      font-size: 1.5rem;
-      // margin-bottom: 0;
-    }
-
-    .blueBadge {
-      background-color: $blue;
-      color: whitesmoke;
-      border-radius: 15px;
-      width: min-content;
-      padding: 1px 8px;
-    }
-    .redBadge {
-      background-color: $lightred;
-      color: $primary;
-      border-radius: 15px;
-      width: min-content;
-      padding: 1px 8px;
-    }
-    .greyBadge {
-      background-color: $paused;
-      color: $primary;
-      border-radius: 15px;
-      width: min-content;
-      padding: 1px 8px;
-    }
-  }
-
-  #buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    margin: 0;
-    width: 100px;
-
-    button {
-      border: 0;
-      color: $primary;
-    }
-
-    .btn-success {
-      background-color: $green;
-    }
-
-    .btn-danger {
-      background-color: $red;
-    }
-  }
-}
-
-.left {
-  #logbox {
-    font-size: 8px;
-  }
-}
-
-.middle {
-  h2 {
-    // width: 100%;
-    align-self: center;
-  }
-  height: 100%;
-}
-
-.Carousel {
-  width: 100%;
-  margin: none;
-
-  .lineChart {
-    background-color: $panels;
-  }
-}
-
-.Carousel-item {
-  grid-template-columns: 1fr 1fr;
   height: 100vh;
-}
 
-.SystemMetrics {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  width: 100%;
-  height: 60%;
-  // display: flex;
-  // flex-direction: row;
-  .guage {
-    width: 25%;
+  .main {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px auto;
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      width: 30%;
+
+      .title {
+        font-size: 50;
+      }
+
+      .logs-list-item {
+        border-bottom: 2px solid #778da8;
+      }
+      #logbox {
+        font-size: 8px;
+      }
+
+      .logs-list {
+        width: 100%;
+
+        height: 70vh;
+        background-color: #1b263b;
+        border: 2px solid #a3b7d0;
+        padding-right: 10px;
+        margin-right: 10px;
+        overflow-y: auto;
+      }
+
+      form,
+      label,
+      select {
+        width: 100%;
+      }
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      .top {
+        display: flex;
+        .middle {
+          display: flex;
+          flex-direction: column;
+          .carousel {
+            overflow: scroll;
+            max-height: 500px;
+            .carousel-inner {
+              width: 100%;
+              margin: none;
+              .chart-container {
+                width: 200px;
+              }
+
+              .lineChart {
+                background-color: $panels;
+              }
+            }
+          }
+        }
+
+        .Environments {
+          // width: 15%;
+          width: 400px;
+          min-width: 370px;
+          margin-right: 40px;
+          overflow-y: scroll;
+
+          .ImagePreview {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: 150px;
+            margin: 0;
+            padding: 10px;
+            border-radius: 10px;
+            color: $secondary;
+            background-color: $panels;
+            margin-bottom: 20px;
+            // filter: blur(3px);
+
+            p {
+              margin: 0;
+            }
+
+            .small {
+              font-size: 0.85rem;
+            }
+            .space {
+              height: 15px;
+            }
+            .large {
+              color: $yellow;
+              font-size: 1.5rem;
+              // margin-bottom: 0;
+            }
+
+            .blueBadge {
+              background-color: $blue;
+              color: whitesmoke;
+              border-radius: 15px;
+              width: min-content;
+              padding: 1px 8px;
+            }
+            .redBadge {
+              background-color: $lightred;
+              color: $primary;
+              border-radius: 15px;
+              width: min-content;
+              padding: 1px 8px;
+            }
+            .greyBadge {
+              background-color: $paused;
+              color: $primary;
+              border-radius: 15px;
+              width: min-content;
+              padding: 1px 8px;
+            }
+          }
+
+          #buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            margin: 0;
+            width: 100px;
+
+            button {
+              border: 0;
+              color: $primary;
+            }
+
+            .btn-success {
+              background-color: $green;
+            }
+
+            .btn-danger {
+              background-color: $red;
+            }
+          }
+        }
+      }
+      .bottom {
+        .SystemMetrics {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          margin-top: 20px;
+
+          .CPU-metric,
+          .Memory-metric {
+            height: 40%;
+            width: 80%;
+            margin: 2px;
+            // background-color: rgb(134, 163, 204);
+            margin: auto;
+          }
+        }
+      }
+    }
   }
-}
-
-.CPU-metric,
-.Memory-metric {
-  height: 40%;
-  width: 80%;
-  margin: 2px;
-  // background-color: rgb(134, 163, 204);
-  margin: auto;
 }
 
 .Environments,
@@ -162,35 +196,4 @@ body {
     height: 1000px;
     // width: 80%;
   }
-  // .SystemMetrics {
-}
-
-.carousel-item .active {
-  // display: flex;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  background-color: $panels;
-  // flex-direction: column;
-  // overflow: scroll;
-  // flex-wrap: wrap;
-  height: 50vh;
-}
-
-.chart-container {
-  width: 200px;
-}
-
-.logs-list {
-  width: 360px;
-
-  height: 70vh;
-  background-color: #1b263b;
-  border: 2px solid #a3b7d0;
-  padding-right: 10px;
-  margin-right: 10px;
-  overflow-y: auto;
-}
-
-.logs-list-item {
-  border-bottom: 2px solid #778da8;
 }

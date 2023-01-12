@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ImagePreview from '../components/ImagePreview.jsx';
-import App from '../pages/App.jsx';
+import axios from 'axios';
 
-const Environments = ({ allContainers }) => {
-  // console.log(allContainers);
+const Environments = (props) => {
+  const [fastState, setFastState] = useState({});
 
-  const previewArray = allContainers.map((obj, i) => (
-    <ImagePreview containerInfo={obj} key={'container ' + i} />
+  const getFastStats = () => {
+    axios
+      .get(`http://localhost:3535/api/getFastStats`)
+      .then((data) => {
+        setFastState(data.data);
+      })
+      .catch((err) => {
+        console.error('error');
+      });
+    return getFastStats;
+  };
+
+  useEffect(() => {
+    setInterval(getFastStats(), 500);
+  }, []);
+
+  // console.error('keys', Object.values(fastState));
+
+  const previewArray = Object.values(fastState).map((obj, i) => (
+    <ImagePreview obj={obj} key={'container ' + i} />
   ));
 
   return (

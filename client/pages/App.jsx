@@ -22,7 +22,7 @@ const App = () => {
           setQueryData(res.data);
           count++;
         } else {
-          console.log('in the else statement', queryData.totals);
+          // console.log('in the else statement', queryData.totals);
           setQueryData((prev) => {
             const newQueryState = { ...prev };
             for (let key in res.data) {
@@ -47,24 +47,19 @@ const App = () => {
                   ...prev[key].cpu.time,
                   ...res.data[key].cpu.time,
                 ];
-                newQueryState[key].cpu.value = [
-                  ...prev[key].cpu.value,
-                  ...res.data[key].cpu.value,
+                //ccpu = cumulative cpu
+                newQueryState[key].ccpu.value = [
+                  ...prev[key].ccpu.value,
+                  ...res.data[key].ccpu.value,
                   //...(prev[key].cpu.value[prev[key].cpu.value.length] - res.data[key].cpu.value[0])
                 ];
                 newQueryState[key].cpu.value = [
                   ...prev[key].cpu.value,
-                  ...res.data[key].cpu.value,
-                  // ...[prev[key].cpu.valueC[prev[key].cpu.valueC.length - 1] -
-                  //   res.data[key].cpu.value[0]],
-                ];
-                newQueryState[key].memCache.value = [
-                  ...prev[key].memCache.value,
-                  ...res.data[key].memCache.value,
-                ];
-                newQueryState[key].memCache.value = [
-                  ...prev[key].memCache.value,
-                  ...res.data[key].memCache.value,
+                  // ...res.data[key].cpu.value,
+                  ...[
+                    prev[key].ccpu.value[prev[key].ccpu.value.length - 1] -
+                      res.data[key].ccpu.value[0],
+                  ],
                 ];
               }
             }
@@ -74,12 +69,12 @@ const App = () => {
         }
       })
       .catch((err) =>
-        console.log('Initial fetch GET request to DB: ERROR: ', err)
+        console.error('Initial fetch GET request to DB: ERROR: ', err)
       );
     return getStatsFunc;
   };
+
   useEffect(() => {
-    // getStatsFunc(); //call it the first time
     //tell it to repeat
     setInterval(getStatsFunc(), 1000);
   }, []);
@@ -87,7 +82,7 @@ const App = () => {
   useEffect(() => {
     const allContainers = [];
     const activeContainers = [];
-    console.log('UPDATED', queryData);
+    // console.log('UPDATED', queryData);
     for (const key in queryData) {
       if (key !== 'totals') {
         allContainers.push(queryData[key]);
@@ -99,13 +94,9 @@ const App = () => {
     setAllContainers(allContainers);
     setActiveContainers(activeContainers);
   }, [queryData]);
+
   return (
     <div className="App">
-      <header className="header">
-        <div className="logo"></div>
-        <div className="links"></div>
-      </header>
-      {true && (
         <div className="main">
           <div className="left">
             <div className="title">DOCKWELL</div>
@@ -114,15 +105,16 @@ const App = () => {
               activeContainers={activeContainers}
             />
           </div>
-          <div className="middle">
-            <Carousel activeContainers={activeContainers} />
-            <SystemMetrics totals={queryData.totals} />
-          </div>
           <div className="right">
-            <Environments allContainers={allContainers} />
+            <div className="top">
+              <Carousel activeContainers={activeContainers} />
+              <Environments />
+            </div>
+            <div className="bottom">
+              <SystemMetrics totals={queryData.totals} />
+            </div>
           </div>
         </div>
-      )}
     </div>
   );
 };
