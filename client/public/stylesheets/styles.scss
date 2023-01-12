@@ -44,6 +44,8 @@ body {
       .title {
         width: 100%;
         font-size: 50;
+        font-family: 'Kanit', sans-serif;
+
       }
 
       form {
@@ -93,12 +95,15 @@ body {
         justify-content: center;
         flex-direction: row;
         .carouselDiv {
+          h2 {
+            color: $primary;
+          }
           width: 60%;
           margin: 0 20px;
           overflow-y: scroll;
           height: 685px;
           background-color: $panels;
-          padding: 20px;
+          padding: 25px 50px;
           border-radius: 10px;
           .header {
             position: absolute;
@@ -110,6 +115,16 @@ body {
           }
           .lineChart {
             background-color: $panels;
+            height: 200px;
+          }
+          .carousel-control-prev-icon {
+            position: relative;
+            right: 76px;
+          } 
+          .carousel-control-next-icon {
+            position: relative;
+            left: 76px;
+
           }
         }
 
@@ -254,7 +269,7 @@ body {
           background-color: $panels;
           border-radius: 10px;
           position: absolute;
-          bottom: 10px;
+          bottom: 2px;
           right: 471px;
           .chartLabel {
             display: flex;
