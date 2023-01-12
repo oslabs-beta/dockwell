@@ -53,24 +53,15 @@ const App = () => {
                   ...prev[key].cpu.time,
                   ...res.data[key].cpu.time,
                 ];
-                //ccpu = cumulative cpu
-                newQueryState[key].ccpu.value = [
-                  ...prev[key].ccpu.value,
-                  ...res.data[key].ccpu.value,
-                  //...(prev[key].cpu.value[prev[key].cpu.value.length] - res.data[key].cpu.value[0])
-                ];
                 newQueryState[key].cpu.value = [
                   ...prev[key].cpu.value,
-                  // ...res.data[key].cpu.value,
-                  ...[
-                    prev[key].ccpu.value[prev[key].ccpu.value.length - 1] -
-                      res.data[key].ccpu.value[0],
-                  ],
+                  ...res.data[key].cpu.value,
                 ];
               }
             }
 
             setLoadingScreen(false);
+            console.log('State', newQueryState);
             return newQueryState;
           });
         }
@@ -105,10 +96,18 @@ const App = () => {
   return (
     <div className="App">
       {loadingScreen && (
-        <div className='loadGauge'>
-        <LiquidGauge 
-          percent={0} width={500} height={500} label={'LOADING METRICS'} />
-      </div>)}
+        <>
+          <div className="loadGauge">
+            <LiquidGauge
+              percent={0}
+              width={500}
+              height={500}
+              label={'LOADING METRICS...'}
+            />
+          </div>
+          {/* <p>LOADING METRICS</p> */}
+        </>
+      )}
       {!loadingScreen && (
         <div className="main">
           <div className="left">
@@ -120,11 +119,11 @@ const App = () => {
           </div>
           <div className="right">
             <div className="top">
-              <div className='CarouselDiv'>
-              <Carousel
-                className="carousel"
-                activeContainers={activeContainers}
-              />
+              <div className="CarouselDiv">
+                <Carousel
+                  className="carousel"
+                  activeContainers={activeContainers}
+                />
               </div>
               <Environments />
             </div>

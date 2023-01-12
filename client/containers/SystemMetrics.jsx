@@ -31,12 +31,20 @@ const systemMetrics = ({ totals, activeContainers }) => {
   const totalmetrics = totals ? totals : {};
 
   return (
-    <div className="SystemMetrics">
-      <CPU totals={totalmetrics} />
-      <Memory totals={totalmetrics} />
-      <CpuPer cpuData={cpuPieData} cpuLabels={cpuPieLabels} />
-      <MemPer memData={memPieData} memLabels={memPieLabels} />
-    </div>
+    <>
+      <div className="SystemMetrics">
+        <CPU className="liquidGauge" totals={totalmetrics} />
+        <Memory className="liquidGauge" totals={totalmetrics} />
+        <CpuPer cpuData={cpuPieData} cpuLabels={cpuPieLabels} />
+        <MemPer memData={memPieData} memLabels={memPieLabels} />
+      </div>
+      <div className="legend">
+        <div className="color1"><p>cadvisor</p></div>
+        <div className="color2"><p>divrometheus</p></div>
+        <div className="color3"><p>redis</p></div>
+        <div className="color4"><p>getting-started-docs-1</p></div>
+      </div>
+    </>
   );
 };
 

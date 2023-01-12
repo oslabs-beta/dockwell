@@ -10,20 +10,16 @@ const memory = (props) => {
 
   // console.log(totals)
   return (
-    // <GaugeChart
-    //   className="gauge"
-    //   id="gauge-chart4"
-    //   nrOfLevels={20}
-    //   colors={['#FFC371', '#FF5F6D']}
-    //   arcWidth={0.3}
-    //   percent={totalMemPerc / 100}
-    // />
-    <LiquidGuage
-      percent={100 - totalMemPerc}
-      width={100}
-      height={100}
-      label={'FREE MEMORY'}
-    />
+    <div className="chartLabal">
+      <label>% Memory Available</label>
+
+      <LiquidGuage
+        className="liquidGauge"
+        percent={100 - totalMemPerc}
+        width={150}
+        height={150}
+      />
+    </div>
   );
 };
 
