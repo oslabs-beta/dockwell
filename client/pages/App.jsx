@@ -4,6 +4,7 @@ import SystemMetrics from '../containers/SystemMetrics.jsx';
 import Environments from '../containers/Environments.jsx';
 import Carousel from '../containers/Carousel.jsx';
 import Logs from '../containers/Logs.jsx';
+import LiquidGauge from '../components/LiquidGauge.jsx';
 
 let count = 0;
 const App = () => {
@@ -12,6 +13,11 @@ const App = () => {
   const [allContainers, setAllContainers] = useState([]);
   const [activeContainers, setActiveContainers] = useState([]);
   // const [userPreviews, setUserPreviews] = useState([]);
+  const [loadingScreen, setLoadingScreen] = useState(true);
+
+  // setTimeout(() => {
+
+  // }, 2000);
 
   const getStatsFunc = () => {
     axios
@@ -64,6 +70,7 @@ const App = () => {
               }
             }
 
+            setLoadingScreen(false);
             return newQueryState;
           });
         }
@@ -97,6 +104,12 @@ const App = () => {
 
   return (
     <div className="App">
+      {loadingScreen && (
+        <div className='loadGauge'>
+        <LiquidGauge 
+          percent={0} width={500} height={500} label={'LOADING METRICS'} />
+      </div>)}
+      {!loadingScreen && (
         <div className="main">
           <div className="left">
             <div className="title">DOCKWELL</div>
@@ -107,14 +120,23 @@ const App = () => {
           </div>
           <div className="right">
             <div className="top">
-              <Carousel activeContainers={activeContainers} />
+              <div className='CarouselDiv'>
+              <Carousel
+                className="carousel"
+                activeContainers={activeContainers}
+              />
+              </div>
               <Environments />
             </div>
             <div className="bottom">
-              <SystemMetrics totals={queryData.totals} />
+              <SystemMetrics
+                totals={queryData.totals}
+                activeContainers={activeContainers}
+              />
             </div>
           </div>
         </div>
+      )}
     </div>
   );
 };
