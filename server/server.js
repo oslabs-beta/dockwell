@@ -38,7 +38,7 @@ app.get(
   blkioUsage,
   memCache,
   (req, res) => {
-    // console.log(res.locals.containers);
+    console.log(res.locals.containers);
     res.status(200).json(res.locals.finalResult);
   }
 );

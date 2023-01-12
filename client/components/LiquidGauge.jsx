@@ -35,12 +35,13 @@ const LiquidGauge = (props) => {
     },
   ];
   return (
-    <div>
+    <div className="liquidGuage">
       <LiquidFillGauge
         style={{ margin: '0 auto' }}
         width={props.width}
         height={props.height}
         value={gaugeVal}
+        riseAnimationTime={3000}
         textOffsetX={0}
         textOffsetY={0}
         riseAnimation
@@ -57,7 +58,8 @@ const LiquidGauge = (props) => {
         //   this.setState({ value: Math.random() * 100 });
         // }}
       />
-      <p>{props.label}</p>
+      <br></br>
+      <p className="loading-center">{props.label}</p>
     </div>
   );
 };

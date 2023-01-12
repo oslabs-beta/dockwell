@@ -24,11 +24,11 @@ const ImagePreview = ({obj}) => {
       });
   };
   
-  if (State === 'Running') {
+  if (State === 'running') {
     badgeColor = 'blueBadge';  
-  } else if (State === 'Exited') {
+  } else if (State === 'exited') {
     badgeColor = 'redBadge'; 
-  } else if (State === 'Paused') { 
+  } else if (State === 'paused') { 
     badgeColor = 'greyBadge'; 
   } 
 

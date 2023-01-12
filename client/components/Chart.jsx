@@ -32,9 +32,6 @@ export default function ChartComponent({ metric, slideInfo, dataLength }) {
   const options = {
     // responsive: true,
     plugins: {
-      legend: {
-        position: 'top',
-      },
       title: {
         display: true,
         text: `${metric}`,
@@ -54,10 +51,10 @@ export default function ChartComponent({ metric, slideInfo, dataLength }) {
     labels: slideInfo.time,
     datasets: [
       {
-        label: 'hello',
+        label: '',
         data: slideInfo.value,
-        borderColor: '#f1d3b3',
-        backgroundColor: '#fe605555',
+        borderColor: '#f8f2e7',
+        backgroundColor: '#f2e6d4',
       },
     ],
   };

@@ -7,6 +7,10 @@ const Logs = (props) => {
 
   async function getLogs(name) {
     try {
+      if (!name) {
+        setLogs(null);
+        return;
+      }
       let output = await axios.get(
         `http://localhost:3535/api/control/logs/${name}`
       );
@@ -42,22 +46,24 @@ const Logs = (props) => {
       {/* <h1>Logs</h1> */}
       {(props.activeContainers.length !== 0 ? true : false) && (
         <form onSubmit={(e) => e.preventDefault()}>
-          <label>
-            Select a container to view logs:
-            <br></br>
-            <select
-              value={null}
-              onChange={(e) => {
-                getLogs(e.target.value);
-                setSelectedContainer(e.target.value);
-              }}
-            >
-              <option value={null}></option>
-              {props.activeContainers?.map((x) => {
-                return <option value={x.Names}>{x.Names}</option>;
-              })}
-            </select>
-          </label>
+          <br></br>
+          <select
+            className="dropdown"
+            placeholder="Select a container to view logs:"
+            value={null}
+            onChange={(e) => {
+              getLogs(e.target.value);
+              setSelectedContainer(e.target.value);
+            }}
+          >
+            <option value="" disabled selected hidden>
+              Select a container to view logs:
+            </option>
+            <option value={null}></option>
+            {props.activeContainers?.map((x) => {
+              return <option value={x.Names}>{x.Names}</option>;
+            })}
+          </select>
         </form>
       )}
       {(logs ? true : false) && <ul className="logs-list"> {logsJSX}</ul>}
