@@ -47,7 +47,7 @@ const LiquidGauge = (props) => {
         riseAnimation
         waveAnimation
         waveFrequency={2}
-        waveAmplitude={2}
+        waveAmplitude={4}
         gradient
         gradientStops={gradientStops}
         circleStyle={{ fill: fillColor }}

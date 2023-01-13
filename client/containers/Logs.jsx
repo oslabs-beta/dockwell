@@ -39,7 +39,7 @@ const Logs = (props) => {
   if (logs !== null) {
     logsJSX = logs.map((log) => <li className="logs-list-item"> {log}</li>);
   }
-  console.log('LOGS', logs);
+  // console.log('LOGS', logs);
 
   return (
     <>

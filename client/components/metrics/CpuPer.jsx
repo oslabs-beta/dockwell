@@ -4,8 +4,8 @@ import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 export function CpuPer({ cpuData, cpuLabels }) {
-  console.log('cpuData: ', cpuData);
-  console.log('label: ', cpuLabels);
+  // console.log('cpuData: ', cpuData);
+  // console.log('label: ', cpuLabels);
 
   const data = {
     // labels: cpuLabels,
