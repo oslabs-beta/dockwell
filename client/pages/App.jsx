@@ -4,6 +4,7 @@ import SystemMetrics from '../containers/SystemMetrics.jsx';
 import Environments from '../containers/Environments.jsx';
 import Carousel from '../containers/Carousel.jsx';
 import Logs from '../containers/Logs.jsx';
+import LiquidGauge from '../components/LiquidGauge.jsx';
 
 let count = 0;
 const App = () => {
@@ -12,6 +13,11 @@ const App = () => {
   const [allContainers, setAllContainers] = useState([]);
   const [activeContainers, setActiveContainers] = useState([]);
   // const [userPreviews, setUserPreviews] = useState([]);
+  const [loadingScreen, setLoadingScreen] = useState(true);
+
+  // setTimeout(() => {
+
+  // }, 2000);
 
   const getStatsFunc = () => {
     axios
@@ -47,23 +53,15 @@ const App = () => {
                   ...prev[key].cpu.time,
                   ...res.data[key].cpu.time,
                 ];
-                //ccpu = cumulative cpu
-                newQueryState[key].ccpu.value = [
-                  ...prev[key].ccpu.value,
-                  ...res.data[key].ccpu.value,
-                  //...(prev[key].cpu.value[prev[key].cpu.value.length] - res.data[key].cpu.value[0])
-                ];
                 newQueryState[key].cpu.value = [
                   ...prev[key].cpu.value,
-                  // ...res.data[key].cpu.value,
-                  ...[
-                    prev[key].ccpu.value[prev[key].ccpu.value.length - 1] -
-                      res.data[key].ccpu.value[0],
-                  ],
+                  ...res.data[key].cpu.value,
                 ];
               }
             }
 
+            setLoadingScreen(false);
+            console.log('State', newQueryState);
             return newQueryState;
           });
         }
@@ -97,9 +95,24 @@ const App = () => {
 
   return (
     <div className="App">
+      {loadingScreen && (
+        <>
+          <div className="loadGauge">
+            <LiquidGauge
+              percent={0}
+              width={500}
+              height={500}
+              label={'LOADING METRICS...'}
+            />
+          </div>
+          {/* <p>LOADING METRICS</p> */}
+        </>
+      )}
+      {!loadingScreen && (
         <div className="main">
           <div className="left">
-            <div className="title">DOCKWELL</div>
+            <div className="title">Dockwell.</div>
+            <h2>A docker visualizer</h2>
             <Logs
               classname="logs-container"
               activeContainers={activeContainers}
@@ -107,14 +120,23 @@ const App = () => {
           </div>
           <div className="right">
             <div className="top">
-              <Carousel activeContainers={activeContainers} />
+              <div className="CarouselDiv">
+                <Carousel
+                  className="carousel"
+                  activeContainers={activeContainers}
+                />
+              </div>
               <Environments />
             </div>
             <div className="bottom">
-              <SystemMetrics totals={queryData.totals} />
+              <SystemMetrics
+                totals={queryData.totals}
+                activeContainers={activeContainers}
+              />
             </div>
           </div>
         </div>
+      )}
     </div>
   );
 };
