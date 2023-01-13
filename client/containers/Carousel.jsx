@@ -12,6 +12,8 @@ function CarouselDisplay(props) {
     setIndex(selectedIndex);
   };
 
+  // console.log('AC', activeContainers);
+
   return (
     <Carousel
       controls={true}
@@ -44,14 +46,12 @@ function CarouselDisplay(props) {
             dataLength={dataLength}
             activeContainer={obj.memory}
             metric="Memory Usage (bytes)"
-            name={obj.Names}
           />
           <Chart
             className="lineChart"
             dataLength={dataLength}
             activeContainer={obj.cpu}
             metric="CPU Usage"
-            name={obj.Names}
           />
         </Carousel.Item>
       ))}
