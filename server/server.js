@@ -12,27 +12,22 @@ const {
   memoryQuery,
   getContainers,
   getTotals,
+  blkioUsage,
+  memCache,
 } = require('./controllers/promQueryController');
 const controlContainer = require('./controllers/containerController.js');
 const PORT = 3535;
 
 app.use(cookieParser()).use(express.json()).use(cors());
 
-// app.get('/api/getTotals', getTotals, (req, res, next) => {
-//   res.status(200).json(res.locals.totals);
-// });
-
 app.get('/api/getContainers', getContainers, (req, res) => {
   res.status(200).json(res.locals.containers);
 });
 
-// app.get('/api/cpu', getContainers, cpuQuery, (req, res) => {
-//   res.status(200).json(res.locals.data);
-// });
-
-// app.get('/api/getTotals', (req, res) => {
-//   res.status(200).json(res.locals.data);
-// });
+app.get('/api/getFastStats', getContainers, (req, res) => {
+  // console.log(res.locals.containers);
+  res.status(200).json(res.locals.containers);
+});
 
 app.get(
   '/api/getStats',
@@ -40,15 +35,21 @@ app.get(
   memoryQuery,
   cpuQuery,
   getTotals,
+  blkioUsage,
+  memCache,
   (req, res) => {
-    // console.log(res.locals.containers);
+    console.log(res.locals.containers);
     res.status(200).json(res.locals.finalResult);
   }
 );
 
-app.get('/api/control/:task/:name', controlContainer, (req, res) => {
-  res.sendStatus(200);
-});
+app.get(
+  '/api/control/:task/:name',
+  controlContainer.dockerTaskName,
+  (req, res) => {
+    res.status(200).json(res.locals.container);
+  }
+);
 
 if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res, err) => {
