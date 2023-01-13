@@ -94,7 +94,7 @@ promQueryController.cpuQuery = (req, res, next) => {
               value: [metricObj.value.value],
             })
           : '';
-          res.locals.containers[short_id]
+        res.locals.containers[short_id]
           ? (res.locals.containers[short_id].ccpu = {
               time: [metricObj.value.time.toString().slice(16, 24)],
               value: [metricObj.value.value],
@@ -105,7 +105,6 @@ promQueryController.cpuQuery = (req, res, next) => {
     })
     .catch(console.error);
 };
- 
 
 promQueryController.blkioUsage = (req, res, next) => {
   const q = queries['blkioUsage'];
@@ -161,7 +160,7 @@ promQueryController.getTotals = async (req, res, next) => {
         MemUsage: container.MemUsage,
       };
     });
-    console.log(stdout);
+    // console.log(stdout);
     const totalsFinal = {
       totalCpuPercentage: 0,
       totalMemPercentage: 0,

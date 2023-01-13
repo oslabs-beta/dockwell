@@ -3,13 +3,13 @@ import GaugeChart from 'react-gauge-chart';
 import LiquidGuage from '../LiquidGauge.jsx';
 
 const cpu = (props) => {
-  console.log('cpu', props.totals);
+  // console.log('cpu', props.totals);
   const totalCpuPerc = props.totals.hasOwnProperty('totalCpuPercentage')
     ? props.totals.totalCpuPercentage
     : 0;
 
   return (
-    <div className='chartLabal'>
+    <div className="chartLabal">
       <label>% CPU Available</label>
       <LiquidGuage
         className="liquidGauge"

@@ -21,17 +21,24 @@ ChartJS.register(
   Legend
 );
 
-export default function ChartComponent({ metric, slideInfo, dataLength }) {
-  if (slideInfo.value.length > 10) {
-    slideInfo.value = slideInfo.value.slice(
-      slideInfo.value.length - dataLength
-    );
-    slideInfo.time = slideInfo.time.slice(slideInfo.time.length - dataLength);
+export default function ChartComponent({
+  metric,
+  activeContainer,
+  dataLength,
+}) {
+  let x, y;
+  if (activeContainer.value.length > dataLength) {
+    y = activeContainer.value.slice(activeContainer.value.length - dataLength);
+    x = activeContainer.time.slice(activeContainer.time.length - dataLength);
+  } else {
+    y = activeContainer.value;
+    x = activeContainer.time;
   }
-  // console.log(slideInfo.value);
   const options = {
-    // responsive: true,
     plugins: {
+      legend: {
+        display: false,
+      },
       title: {
         display: true,
         text: `${metric}`,
@@ -44,15 +51,14 @@ export default function ChartComponent({ metric, slideInfo, dataLength }) {
         },
       },
     },
-    // maintainAspectRatio: false,
   };
 
   const data = {
-    labels: slideInfo.time,
+    labels: x,
     datasets: [
       {
         label: '',
-        data: slideInfo.value,
+        data: y,
         borderColor: '#f8f2e7',
         backgroundColor: '#f2e6d4',
       },

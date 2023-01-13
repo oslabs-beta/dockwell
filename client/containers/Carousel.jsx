@@ -5,12 +5,14 @@ import Chart from '../components/Chart.jsx';
 
 function CarouselDisplay(props) {
   const [index, setIndex] = useState(0);
-  const [dataLength, setDataLength] = useState(10);
+  const [dataLength, setDataLength] = useState(25);
   const interval = 50000000;
 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
+
+  // console.log('AC', activeContainers);
 
   return (
     <Carousel
@@ -23,33 +25,33 @@ function CarouselDisplay(props) {
     >
       {props.activeContainers.map((obj, i) => (
         <Carousel.Item interval={interval} key={'container ' + i}>
-          <div className='header'>
-          <h2 style={{ display: 'inline', marginRight: '8px' }}>{obj.Names}</h2>
-          <select
-            onChange={(e) => {
-              e.preventDefault();
-              setDataLength(e.target.value);
-            }}
-          >
-            <option value={10}>10</option>
-            <option value={50}>50</option>
-            <option value={100}>100</option>
-            <option value={500}>500</option>
-          </select>
+          <div className="header">
+            <h2 style={{ display: 'inline', marginRight: '8px' }}>
+              {obj.Names}
+            </h2>
+            <select
+              onChange={(e) => {
+                e.preventDefault();
+                setDataLength(e.target.value);
+              }}
+            >
+              <option value={dataLength}>{dataLength}</option>
+              <option value={50}>50</option>
+              <option value={75}>75</option>
+              <option value={Infinity}>Infinity</option>
+            </select>
           </div>
           <Chart
             className="lineChart"
             dataLength={dataLength}
-            slideInfo={obj.memory}
+            activeContainer={obj.memory}
             metric="Memory Usage (bytes)"
-            name={obj.Names}
           />
           <Chart
             className="lineChart"
             dataLength={dataLength}
-            slideInfo={obj.cpu}
+            activeContainer={obj.cpu}
             metric="CPU Usage"
-            name={obj.Names}
           />
         </Carousel.Item>
       ))}
