@@ -111,7 +111,8 @@ const App = () => {
       {!loadingScreen && (
         <div className="main">
           <div className="left">
-            <div className="title">DOCKWELL</div>
+            <div className="title">Dockwell.</div>
+            <h2>A docker visualizer</h2>
             <Logs
               classname="logs-container"
               activeContainers={activeContainers}
