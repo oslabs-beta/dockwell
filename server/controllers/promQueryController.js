@@ -94,11 +94,18 @@ promQueryController.cpuQuery = (req, res, next) => {
               value: [metricObj.value.value],
             })
           : '';
+          res.locals.containers[short_id]
+          ? (res.locals.containers[short_id].ccpu = {
+              time: [metricObj.value.time.toString().slice(16, 24)],
+              value: [metricObj.value.value],
+            })
+          : '';
       }
       return next();
     })
     .catch(console.error);
 };
+ 
 
 promQueryController.blkioUsage = (req, res, next) => {
   const q = queries['blkioUsage'];

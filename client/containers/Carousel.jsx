@@ -2,36 +2,18 @@ import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import CPU from '../components/metrics/Cpu.jsx';
 import Chart from '../components/Chart.jsx';
+import ChartOverview from '../components/ChartOverview.jsx';
 
-function CarouselDisplay(props) {
-  //carousel vvvvvvvvvvvvvvvvvvvvvvvvvvv
-  const interval = 50000000;
+function CarouselDisplay({ activeContainers }) {
   const [index, setIndex] = useState(0);
-  const handleSelect = (selectedIndex, e) => {
+  const [dataLength, setDataLength] = useState(100);
+  const carouselInterval = 50000000;
+
+  const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
-  //carousel ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  console.log(props.activeContainers);
-
-  const carouselSlides = props.activeContainers.map((obj, i) => (
-    <Carousel.Item interval={interval} key={'container ' + i}>
-      <h2>{obj.Names}</h2>
-      <Chart
-        className="lineChart"
-        slideInfo={obj.memory}
-        metric="Memory Usage (bytes)"
-        name={obj.Names}
-      />
-      className='lineChart'
-      <Chart
-        className="lineChart"
-        slideInfo={obj.cpu}
-        metric="CPU Usage"
-        name={obj.Names}
-      />
-    </Carousel.Item>
-  ));
+  // console.log('AC', activeContainers);
 
   return (
     <Carousel
@@ -42,11 +24,61 @@ function CarouselDisplay(props) {
       onSelect={handleSelect}
       keyboard={true}
     >
-      {carouselSlides}
-      {/* <Carousel.Item interval={interval}>
+      <Carousel.Item interval={carouselInterval} key={'container overview'}>
+        <h2 style={{ display: 'inline', marginRight: '8px' }}>Overview</h2>
+        <select
+          onChange={(e) => {
+            e.preventDefault();
+            setDataLength(e.target.value);
+          }}
+        >
+          <option value={10}>10</option>
+          <option value={50}>50</option>
+          <option value={100}>100</option>
+          <option value={500}>500</option>
+        </select>
+        {/* <ChartOverview
+          className="lineChart"
+          dataLength={dataLength}
+          activeContainers={activeContainers}
+          metric="Memory Usage (bytes)"
+        /> */}
+        <ChartOverview
+          className="lineChart"
+          dataLength={dataLength}
+          activeContainers={activeContainers}
+          title="CPU Usage"
+          metric="cpu"
+        />
       </Carousel.Item>
-      <Carousel.Item interval={interval}></Carousel.Item>
-      <Carousel.Item interval={interval}></Carousel.Item> */}
+      {activeContainers.map((obj, i) => (
+        <Carousel.Item interval={carouselInterval} key={'container ' + i}>
+          <h2 style={{ display: 'inline', marginRight: '8px' }}>{obj.Names}</h2>
+          <select
+            onChange={(e) => {
+              e.preventDefault();
+              setDataLength(e.target.value);
+            }}
+          >
+            <option value={10}>10</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
+            <option value={500}>500</option>
+          </select>
+          <Chart
+            className="lineChart"
+            dataLength={dataLength}
+            slideInfo={obj.memory}
+            metric="Memory Usage (bytes)"
+          />
+          <Chart
+            className="lineChart"
+            dataLength={dataLength}
+            slideInfo={obj.cpu}
+            metric="CPU Usage"
+          />
+        </Carousel.Item>
+      ))}
     </Carousel>
   );
 }
