@@ -107,7 +107,9 @@ body {
           border-radius: 10px;
           .header {
             position: absolute;
-            width: 100%;
+            width: 80%;
+            z-index: 0;
+            cursor: pointer;
             select {
               margin: 2px;
               float: right;
