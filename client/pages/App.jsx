@@ -48,11 +48,11 @@ const App = () => {
                   ...res.data[key].cpu.time,
                 ];
                 //ccpu = cumulative cpu
-                newQueryState[key].ccpu.value = [
-                  ...prev[key].ccpu.value,
-                  ...res.data[key].ccpu.value,
-                  //...(prev[key].cpu.value[prev[key].cpu.value.length] - res.data[key].cpu.value[0])
-                ];
+                // newQueryState[key].ccpu.value = [
+                //   ...prev[key].ccpu.value,
+                //   ...res.data[key].ccpu.value,
+                //   //...(prev[key].cpu.value[prev[key].cpu.value.length] - res.data[key].cpu.value[0])
+                // ];
                 newQueryState[key].cpu.value = [
                   ...prev[key].cpu.value,
                   // ...res.data[key].cpu.value,
@@ -97,24 +97,24 @@ const App = () => {
 
   return (
     <div className="App">
-        <div className="main">
-          <div className="left">
-            <div className="title">DOCKWELL</div>
-            <Logs
-              classname="logs-container"
-              activeContainers={activeContainers}
-            />
+      <div className="main">
+        <div className="left">
+          <div className="title">DOCKWELL</div>
+          <Logs
+            classname="logs-container"
+            activeContainers={activeContainers}
+          />
+        </div>
+        <div className="right">
+          <div className="top">
+            <Carousel activeContainers={activeContainers} />
+            <Environments />
           </div>
-          <div className="right">
-            <div className="top">
-              <Carousel activeContainers={activeContainers} />
-              <Environments />
-            </div>
-            <div className="bottom">
-              <SystemMetrics totals={queryData.totals} />
-            </div>
+          <div className="bottom">
+            <SystemMetrics totals={queryData.totals} />
           </div>
         </div>
+      </div>
     </div>
   );
 };
