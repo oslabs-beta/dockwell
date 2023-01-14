@@ -36,9 +36,11 @@ export function CpuPer({ cpuData, cpuLabels }) {
   };
 
   return (
-    <div className="chartLabal">
+    <div className="metric">
       <label>CPU Usage</label>
-      <Pie className="piechart" data={data} />
+      <div className="piechart">
+        <Pie data={data} />
+      </div>
     </div>
   );
 }

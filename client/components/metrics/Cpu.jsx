@@ -9,7 +9,7 @@ const cpu = (props) => {
     : 0;
 
   return (
-    <div className="chartLabal">
+    <div className="metric">
       <label>% CPU Available</label>
       <LiquidGuage
         className="liquidGauge"
