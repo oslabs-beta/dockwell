@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //this will be small previews of the users individual docker containers with buttons to start and stop each one
 
-const ImagePreview = ({obj}) => {
+const ImagePreview = ({ obj }) => {
   let { Names, State, Ports, CreatedAt, Image, Status } = obj;
 
   let date = CreatedAt.substring(0, 19);
@@ -23,18 +23,17 @@ const ImagePreview = ({obj}) => {
         console.error('error');
       });
   };
-  
+
   if (State === 'running') {
-    badgeColor = 'blueBadge';  
+    badgeColor = 'blueBadge';
   } else if (State === 'exited') {
-    badgeColor = 'redBadge'; 
-  } else if (State === 'paused') { 
-    badgeColor = 'greyBadge'; 
-  } 
+    badgeColor = 'redBadge';
+  } else if (State === 'paused') {
+    badgeColor = 'greyBadge';
+  }
 
   return (
-    <div className="ImagePreview"> 
-
+    <div className="ImagePreview">
       <div className="information">
         <div className={badgeColor}>
           <p className="labels small">{`${State}`}</p>
