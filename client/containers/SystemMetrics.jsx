@@ -36,7 +36,7 @@ const systemMetrics = ({ totals, activeContainers }) => {
         <Memory className="liquidGauge" totals={totalmetrics} />
         <CpuPer cpuData={cpuPieData} cpuLabels={cpuPieLabels} />
         <MemPer memData={memPieData} memLabels={memPieLabels} />
-        <Legend className="legend" names={legend} />
+        <Legend names={legend} cpuData={cpuPieData} memData={memPieData} />
       </div>
     </>
   );

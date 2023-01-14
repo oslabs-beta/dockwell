@@ -11,7 +11,7 @@
   }
 }
 body {
-  margin: 0 0 0 30px;
+  // margin: 0 0 0 30px;
   padding: 0;
   background: $background;
   color: $tertiary;
@@ -22,15 +22,24 @@ body {
     linear-gradient(90deg, rgba(45, 45, 45, 0.7) 0.1em, transparent 0.1em);
   background-size: 1em 1em;
 }
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
 
 .App {
-  height: 100vh;
-
+  height: 95vh;
+  padding: 15px;
   .main {
     display: flex;
     height: 100%;
     justify-content: space-between;
-    margin: 15px auto;
+    // margin: 15px;
 
     .left {
       display: flex;
@@ -39,6 +48,7 @@ body {
       height: 100%;
       width: 20%;
       margin-right: 30px;
+      margin-left: 20px;
       .title {
         width: 100%;
         font-size: 50;
@@ -89,7 +99,9 @@ body {
       .top {
         display: flex;
         height: 75%;
-        width: 100%;
+        // width: 100%;
+        margin-right: 20px;
+        margin-top: 20px;
         justify-content: center;
         flex-direction: row;
 
@@ -102,6 +114,7 @@ body {
 
           background-color: $panels;
           padding: 10px 20px;
+          margin: 0 20px;
           border-radius: 10px;
           .header {
             width: 80%;
@@ -126,7 +139,8 @@ body {
         }
 
         .environments {
-          padding: 0 5px;
+          // padding: 0 0px;
+          // margin: 0 20;
           overflow: scroll;
           height: 100%;
 
@@ -134,9 +148,9 @@ body {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            width: 100%;
+            // width: 100%;
             height: fit-content;
-            margin: 0;
+            // margin-right: 20px;
             padding: 10px;
             border-radius: 10px;
             color: $secondary;
@@ -210,7 +224,9 @@ body {
         margin-top: 10px;
         .SystemMetrics {
           height: 100%;
+          margin: 10px 20px 30px 20px;
           display: flex;
+          overflow: hidden;
           align-items: baseline;
           justify-content: space-evenly;
           background-color: $panels;
@@ -220,17 +236,66 @@ body {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background-color: peru;
+            // background-color: peru;
             overflow: scroll;
+            // margin:
+
+            label {
+              margin: 0 auto;
+              padding: 10px 0;
+              font-size: 1.5rem;
+              color: $primary;
+            }
+
             .piechart {
               height: 100%;
               height: 150px !important;
               width: 150px !important;
-              background-color: black;
+              // background-color: black;
             }
             .liquidGuage {
               height: 100%;
-              background-color: black;
+              // background-color: black;
+            }
+          }
+          .legend {
+            .legendItem1,
+            .legendItem2,
+            .legendItem3,
+            .legendItem4,
+            .legendItem5,
+            .legendItem6 {
+              color: $primary;
+              border-radius: 15px;
+              margin: 2px auto;
+              padding: 3px 15px;
+            }
+            /* height: 63%; */
+            font-size: 0.8rem;
+            // width: 377px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            // display: flex;
+            // flex-direction: column;
+            // justify-content: space-evenly;
+            .legendItem1 {
+              background-color: #ff6384;
+            }
+            .legendItem2 {
+              background-color: #36a2eb;
+            }
+            .legendItem3 {
+              background-color: #ffce56;
+            }
+            .legendItem4 {
+              background-color: rgba(75, 192, 192, 0.7);
+            }
+            .legendItem5 {
+              background-color: rgba(153, 102, 255, 0.7);
+            }
+            .legendItem6 {
+              background-color: rgba(255, 159, 64, 0.7);
             }
           }
         }
@@ -248,3 +313,7 @@ body {
 //     // width: 80%;
 //   }
 // }
+
+.carousel-item-styles {
+  width: 36vw;
+}
