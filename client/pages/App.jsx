@@ -12,59 +12,72 @@ const App = () => {
   //filters running containers
   const [allContainers, setAllContainers] = useState([]);
   const [activeContainers, setActiveContainers] = useState([]);
-  // const [userPreviews, setUserPreviews] = useState([]);
   const [loadingScreen, setLoadingScreen] = useState(true);
-
-  // setTimeout(() => {
-
-  // }, 2000);
 
   const getStatsFunc = () => {
     axios
       .get('http://localhost:3535/api/getStats')
       .then((res) => {
         //check if queryData is empty
-        if (count === 0) {
-          setQueryData(res.data);
-          count++;
-        } else {
-          // console.log('in the else statement', queryData.totals);
-          setQueryData((prev) => {
-            const newQueryState = { ...prev };
-            for (let key in res.data) {
-              newQueryState[key].State = res.data[key].State;
+        // if (count === 0) {
+        //   setQueryData(res.data);
+        //   count++;
+        // } else {
+        setQueryData((prev) => {
+          const newQueryState = { ...prev };
+          for (let key in res.data) {
+            if (!(key in newQueryState)) {
+              newQueryState[key] = res.data[key];
+            } else if (
+              key !== 'totals' &&
+              (newQueryState[key].State === 'running' ||
+                newQueryState[key].State === 'paused')
+            ) {
+              // newQueryState[key].State = res.data[key].State;
               //for the totals key, since this is just a snap shot and not a time series data, we just replace the old values with the new value.
-              if (key === 'totals') {
-                newQueryState[key] = res.data[key];
-              } else if (res.data[key].State !== 'running') {
-                continue;
-              } else {
-                //for all the container keys, we drill into the memory and cpu properties of each container, and expand the time and value arrays.
-
-                newQueryState[key].memory.time = [
-                  ...prev[key].memory.time,
-                  ...res.data[key].memory.time,
-                ];
-                newQueryState[key].memory.value = [
-                  ...prev[key].memory.value,
-                  ...res.data[key].memory.value,
-                ];
-                newQueryState[key].cpu.time = [
-                  ...prev[key].cpu.time,
-                  ...res.data[key].cpu.time,
-                ];
-                newQueryState[key].cpu.value = [
-                  ...prev[key].cpu.value,
-                  ...res.data[key].cpu.value,
-                ];
-              }
+              // if (key === 'totals') {
+              //   newQueryState[key] = res.data[key];
+              // } else if (res.data[key].State !== 'running') {
+              //   newQueryState[key] = res.data[key];
+              //   continue;
+              // } else {
+              //for all the container keys, we drill into the memory and cpu properties of each container, and expand the time and value arrays.
+              // if (
+              //   res.data[key].hasOwnProperty('memory') &&
+              //   res.data[key].hasOwnProperty('cpu')
+              // ) {
+              //update the keys whose values *might* change
+              newQueryState[key].State = res.data[key].State;
+              newQueryState[key].Status = res.data[key].Status;
+              newQueryState[key].Ports = res.data[key].Ports;
+              newQueryState[key].memory.time = [
+                ...prev[key].memory.time,
+                ...res.data[key].memory.time,
+              ];
+              newQueryState[key].memory.value = [
+                ...prev[key].memory.value,
+                ...res.data[key].memory.value,
+              ];
+              newQueryState[key].cpu.time = [
+                ...prev[key].cpu.time,
+                ...res.data[key].cpu.time,
+              ];
+              newQueryState[key].cpu.value = [
+                ...prev[key].cpu.value,
+                ...res.data[key].cpu.value,
+              ];
+              // }
+            } else {
+              //update all keys' values (these shouldn't have metrics)
+              newQueryState[key] = res.data[key];
             }
+          }
 
-            setLoadingScreen(false);
-            console.log('State', newQueryState);
-            return newQueryState;
-          });
-        }
+          setLoadingScreen(false);
+          console.log('New State', newQueryState);
+          return newQueryState;
+        });
+        // }
       })
       .catch((err) =>
         console.error('Initial fetch GET request to DB: ERROR: ', err)
