@@ -126,13 +126,17 @@ const App = () => {
                   activeContainers={activeContainers}
                 />
               </div>
-              <Environments />
+              <div className="environments">
+                <Environments />
+              </div>
             </div>
             <div className="bottom">
-              <SystemMetrics
-                totals={queryData.totals}
-                activeContainers={activeContainers}
-              />
+              <div className="systemMetWrapper">
+                <SystemMetrics
+                  totals={queryData.totals}
+                  activeContainers={activeContainers}
+                />
+              </div>
             </div>
           </div>
         </div>
