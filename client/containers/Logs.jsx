@@ -14,21 +14,11 @@ const Logs = (props) => {
       let output = await axios.get(
         `http://localhost:3535/api/control/logs/${name}`
       );
-      // let temp = ''
-      // for(let x of Object.keys(output.data)){
-      //   temp += output.data[x].forEach(x=>{
-      //   temp+=x
-      //   temp+='<br></br>'
-      // })
-      // }
-      // console.log(temp)
       if (typeof output.data.stdout === 'object') {
         setLogs(output.data.stdout);
       } else {
         setLogs(output.data.stderr);
       }
-
-      // setLogs(formattedLogs);
     } catch (err) {
       const output = err;
       setLogs(output);
@@ -39,25 +29,23 @@ const Logs = (props) => {
   if (logs !== null) {
     logsJSX = logs.map((log) => <li className="logs-list-item"> {log}</li>);
   }
-  // console.log('LOGS', logs);
 
   return (
     <>
-      {/* <h1>Logs</h1> */}
       {(props.activeContainers.length !== 0 ? true : false) && (
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form>
           <br></br>
           <select
             className="dropdown"
-            placeholder="Select a container to view logs:"
-            value={null}
+            placeholder="Select to view logs:"
+            defaultValue={null}
             onChange={(e) => {
               getLogs(e.target.value);
               setSelectedContainer(e.target.value);
             }}
           >
-            <option value="" disabled selected hidden>
-              Select a container to view logs:
+            <option value="" disabled selected>
+              Select to view logs:
             </option>
             <option value={null}></option>
             {props.activeContainers?.map((x) => {

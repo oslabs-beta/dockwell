@@ -71,7 +71,7 @@ promQueryController.memoryQuery = (req, res, next) => {
         res.locals.containers[short_id]
           ? (res.locals.containers[short_id].memory = {
               time: [metricObj.value.time.toString().slice(16, 24)],
-              value: [metricObj.value.value],
+              value: [(metricObj.value.value / 1000000).toFixed(3)],
             })
           : '';
       }
