@@ -12,6 +12,7 @@
 }
 body {
   // margin: 0 0 0 30px;
+  // margin: 0 0 0 30px;
   padding: 0;
   background: $background;
   color: $tertiary;
@@ -35,10 +36,13 @@ html {
 .App {
   height: 95vh;
   padding: 15px;
+  height: 95vh;
+  padding: 15px;
   .main {
     display: flex;
     height: 100%;
     justify-content: space-between;
+    // margin: 15px;
     // margin: 15px;
 
     .left {
@@ -48,6 +52,7 @@ html {
       height: 100%;
       width: 20%;
       margin-right: 30px;
+      margin-left: 20px;
       margin-left: 20px;
       .title {
         width: 100%;
@@ -115,6 +120,7 @@ html {
           background-color: $panels;
           padding: 10px 20px;
           margin: 0 20px;
+          margin: 0 20px;
           border-radius: 10px;
           .header {
             width: 80%;
@@ -141,6 +147,8 @@ html {
         .environments {
           // padding: 0 0px;
           // margin: 0 20;
+          // padding: 0 0px;
+          // margin: 0 20;
           overflow: scroll;
           height: 100%;
 
@@ -149,7 +157,9 @@ html {
             flex-direction: row;
             justify-content: space-between;
             // width: 100%;
+            // width: 100%;
             height: fit-content;
+            // margin-right: 20px;
             // margin-right: 20px;
             padding: 10px;
             border-radius: 10px;
@@ -312,3 +322,7 @@ html {
 //     // width: 80%;
 //   }
 // }
+
+.carousel-item-styles {
+  width: 36vw;
+}

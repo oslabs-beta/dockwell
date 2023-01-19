@@ -18,7 +18,7 @@ export function CpuPer({ memData, memLabels }) {
     // labels: memLabels,
     datasets: [
       {
-        label: '# of Votes',
+        label: 'MB Used',
         data: memData,
         backgroundColor: [
           'rgba(255, 99, 132, .7)',

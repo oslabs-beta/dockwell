@@ -7,10 +7,9 @@ const Legend = ({ names, cpuData, memData }) => {
   for (let i = 0; i < names.length; i++) {
     names[i] = names[i].charAt(0).toUpperCase() + names[i].slice(1);
     totalCpu += cpuData[i];
-    totalMem += memData[i];
+    totalMem += Number(memData[i]);
     // names[i] = names[i].toUppercase();
   }
-
   for (let i = 0; i < names.length; i++) {
     namesArray.push(
       <div className={`legendItem${i + 1}`}>
@@ -27,15 +26,7 @@ const Legend = ({ names, cpuData, memData }) => {
     );
   }
 
-  console.log('totalCPU', totalCpu);
-  console.log('totalMem', totalMem);
-
-  return (
-    <div className="legendWrapper">
-      <div className="label">Pie Chart Metrics by Container</div>
-      <div className="legend">{namesArray}</div>
-    </div>
-  );
+  return <div className="legend">{namesArray}</div>;
 };
 
 export default Legend;

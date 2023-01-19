@@ -20,61 +20,85 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+const colors = [
+  'rgba(255, 99, 132, .7)',
+  'rgba(54, 162, 235, .7)',
+  'rgba(255, 206, 86, .7)',
+  'rgba(75, 192, 192, .7)',
+  'rgba(153, 102, 255, .7)',
+  'rgba(255, 159, 64, .7)',
+];
 
 export default function ChartCompound({
   metric,
   allActiveContainers,
   dataLength,
+  metricName,
 }) {
-  let x, y;
-  if (activeContainer.value.length > dataLength) {
-    y = activeContainer.value.slice(activeContainer.value.length - dataLength);
-    x = activeContainer.time.slice(activeContainer.time.length - dataLength);
-  } else {
-    y = activeContainer.value;
-    x = activeContainer.time;
-  }
   const options = {
     plugins: {
-      legend: {
-        display: false,
-      },
+      // legend: {
+      //   display: false,
+      // },
       title: {
         display: true,
-        text: `${metric}`,
+        text: `${metricName}`,
       },
     },
     scales: {
-      xAxis: {
+      // xAxes: {
+      //   ticks: {
+      //     // maxTicksLimit: 10,
+      //     // display: false,
+      //     color: 'white',
+      //   },
+      // },
+      yAxes: {
         ticks: {
-          maxTicksLimit: 10,
+          // display: false,
+          color: 'white',
         },
       },
     },
   };
+
   const allXAxis = allActiveContainers.map((container) => {
-    return container[metric]['time'];
+    let x;
+    if (container[metric].value.length > dataLength) {
+      x = container[metric].time.slice(
+        container[metric].time.length - dataLength
+      );
+    } else {
+      x = container[metric].time;
+    }
+    return x;
   });
 
-  const allYAxis = allActiveContainers.map((container) => {
+  const allYAxis = allActiveContainers.map((container, i) => {
+    let y;
+    if (container[metric].value.length > dataLength) {
+      y = container[metric].value.slice(
+        container[metric].value.length - dataLength
+      );
+    } else {
+      y = container[metric].value;
+    }
+
+    const randColor =
+      '#' + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, '0');
     return {
-      label: '',
-      data: container[metric]['value'],
-      borderColor: '#f8f2e7',
-      backgroundColor: '#f2e6d4',
+      label: container.Names,
+      data: y,
+      borderColor: colors[i],
+      backgroundColor: colors[i],
+      // borderColor: randColor,
+      // backgroundColor: randColor,
     };
   });
 
   const data = {
     labels: allXAxis[0],
-    datasets: [
-      {
-        label: '',
-        data: y,
-        borderColor: '#f8f2e7',
-        backgroundColor: '#f2e6d4',
-      },
-    ],
+    datasets: allYAxis,
   };
 
   return <Line options={options} data={data} />;

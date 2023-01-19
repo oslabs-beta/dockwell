@@ -54,7 +54,7 @@ const App = () => {
           }
 
           setLoadingScreen(false);
-          console.log('New State', newQueryState);
+          // console.log('New State', newQueryState);
           return newQueryState;
         });
         // }

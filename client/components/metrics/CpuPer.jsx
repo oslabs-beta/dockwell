@@ -12,7 +12,7 @@ export function CpuPer({ cpuData, cpuLabels }) {
 
     datasets: [
       {
-        label: '# of Votes',
+        label: 'CPU Usage (s)',
         data: cpuData,
         backgroundColor: [
           'rgba(255, 99, 132, .8)',
