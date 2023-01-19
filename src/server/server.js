@@ -50,13 +50,9 @@ app.get(
 
 if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res, err) => {
-    res.sendFile(path.resolve(__dirname, '../index.html'));
+    res.sendFile(path.resolve(__dirname, '../client/index.html'));
   });
-}
-
-app.use('*', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../index.html'));
-});
+} 
 
 app.use((err, _req, res) => {
   const defaultErr = {

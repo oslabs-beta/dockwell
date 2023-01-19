@@ -32,16 +32,16 @@ const systemMetrics = ({ totals, activeContainers }) => {
   return (
     <>
       <div className="SystemMetrics">
-        <div className="cpu">
-          <CPU className="liquidGauge" totals={totalmetrics} />
-          <CpuPer cpuData={cpuPieData} cpuLabels={cpuPieLabels} />
+        <div className="mem">
+          <Memory className="liquidGauge" totals={totalmetrics} />
+          <MemPer memData={memPieData} memLabels={memPieLabels} />
         </div>
         <div className="legend">
           <Legend names={legend} cpuData={cpuPieData} memData={memPieData} />
         </div>
-        <div className="mem">
-          <Memory className="liquidGauge" totals={totalmetrics} />
-          <MemPer memData={memPieData} memLabels={memPieLabels} />
+        <div className="cpu">
+          <CPU className="liquidGauge" totals={totalmetrics} />
+          <CpuPer cpuData={cpuPieData} cpuLabels={cpuPieLabels} />
         </div>
       </div>
     </>
