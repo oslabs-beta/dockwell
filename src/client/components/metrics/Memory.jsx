@@ -11,9 +11,9 @@ const memory = (props) => {
   // console.log(totals)
   return (
     <div className="metric">
-      <label>% Memory Available</label>
+      <label>Memory Usage</label>
       <div className="liquidGauge">
-        <LiquidGuage percent={100 - totalMemPerc} width={150} height={150} />
+        <LiquidGuage percent={totalMemPerc} width={150} height={150} />
       </div>
     </div>
   );

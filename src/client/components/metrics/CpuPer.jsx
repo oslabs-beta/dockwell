@@ -3,30 +3,24 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-export function CpuPer({ memData, memLabels }) {
-  // console.log('memData: ', memData)
-  // console.log('label: ', memLabels);
+export function CpuPer({ cpuData, cpuLabels }) {
+  // console.log('cpuData: ', cpuData);
+  // console.log('label: ', cpuLabels);
+
   const data = {
-    options: {
-      plugins: {
-        datalabels: {
-          display: true,
-          align: 'left',
-        },
-      },
-    },
-    // labels: memLabels,
+    // labels: cpuLabels,
+
     datasets: [
       {
-        label: 'MB Used',
-        data: memData,
+        label: 'CPU Usage (s)',
+        data: cpuData,
         backgroundColor: [
-          'rgba(255, 99, 132, .7)',
-          'rgba(54, 162, 235, .7)',
-          'rgba(255, 206, 86, .7)',
-          'rgba(75, 192, 192, .7)',
-          'rgba(153, 102, 255, .7)',
-          'rgba(255, 159, 64, .7)',
+          'rgba(255, 99, 132, .8)',
+          'rgba(54, 162, 235, .8)',
+          'rgba(255, 206, 86, .8)',
+          'rgba(75, 192, 192, .8)',
+          'rgba(153, 102, 255, .8)',
+          'rgba(255, 159, 64, .8)',
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
@@ -43,7 +37,7 @@ export function CpuPer({ memData, memLabels }) {
 
   return (
     <div className="metric">
-      <label>Memory Usage</label>
+      <label className="pieLabel">CPU Breakdown</label>
       <div className="piechart">
         <Pie data={data} />
       </div>

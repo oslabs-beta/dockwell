@@ -124,12 +124,10 @@ const App = () => {
               </div>
             </div>
             <div className="bottom">
-              <div className="systemMetWrapper">
-                <SystemMetrics
-                  totals={queryData.totals}
-                  activeContainers={activeContainers}
-                />
-              </div>
+              <SystemMetrics
+                totals={queryData.totals}
+                activeContainers={activeContainers}
+              />
             </div>
           </div>
         </div>
