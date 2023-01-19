@@ -44,13 +44,19 @@ export default function ChartComponent({
         text: `${metric}`,
       },
     },
-    scales: {
-      xAxis: {
-        ticks: {
-          maxTicksLimit: 10,
-        },
-      },
-    },
+    // scales: {
+    //   xAxis: {
+    //     ticks: {
+    //       maxTicksLimit: 10,
+    //       color: 'white',
+    //     },
+    //   },
+    //   yAxis: {
+    //     ticks: {
+    //       color: 'white',
+    //     },
+    //   },
+    // },
   };
 
   const data = {
@@ -60,7 +66,7 @@ export default function ChartComponent({
         label: '',
         data: y,
         borderColor: '#f8f2e7',
-        backgroundColor: '#f2e6d4',
+        backgroundColor: '#ffffff',
       },
     ],
   };
