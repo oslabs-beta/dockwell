@@ -42,9 +42,11 @@ export function CpuPer({ memData, memLabels }) {
   };
 
   return (
-    <div className="chartLabal">
+    <div className="metric">
       <label>Memory Usage</label>
-      <Pie className="piechart" data={data} />
+      <div className="piechart">
+        <Pie data={data} />
+      </div>
     </div>
   );
 }

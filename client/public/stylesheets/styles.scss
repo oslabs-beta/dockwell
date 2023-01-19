@@ -1,22 +1,17 @@
 @import 'variables.scss';
 
-// body {
-//   margin: 0;
-//   background-color: $background;
-// }
 .loadGauge {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  // background-color: $panels;
   .loading-center {
     width: 100%;
     text-align: center;
   }
 }
 body {
-  margin: 0 0 0 40px;
+  margin: 0 0 0 30px;
   padding: 0;
   background: $background;
   color: $tertiary;
@@ -33,6 +28,7 @@ body {
 
   .main {
     display: flex;
+    height: 100%;
     justify-content: space-between;
     margin: 15px auto;
 
@@ -40,12 +36,13 @@ body {
       display: flex;
       flex-direction: column;
       align-items: center;
+      height: 100%;
       width: 20%;
+      margin-right: 30px;
       .title {
         width: 100%;
         font-size: 50;
         font-family: 'Kanit', sans-serif;
-
       }
 
       form {
@@ -53,7 +50,6 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin: 0in 0 20px;
         select {
           width: 100%;
           padding: 1rem;
@@ -67,7 +63,6 @@ body {
         background-color: #1b263b;
         border: 2px solid #778da8;
         padding-right: 10px;
-        // margin-left: 10px;
         height: 60vh;
         width: 100%;
         overflow: scroll;
@@ -89,60 +84,57 @@ body {
     .right {
       display: flex;
       flex-direction: column;
+      height: 100%;
       width: 80%;
       .top {
         display: flex;
+        height: 75%;
+        width: 100%;
         justify-content: center;
         flex-direction: row;
+
         .carouselDiv {
           h2 {
             color: $primary;
           }
-          width: 60%;
-          margin: 0 20px;
-          overflow-y: scroll;
-          height: 685px;
+          height: 100%;
+          width: 70%;
+
           background-color: $panels;
-          padding: 25px 50px;
+          padding: 10px 20px;
           border-radius: 10px;
           .header {
-            position: absolute;
             width: 80%;
-            z-index: 0;
             cursor: pointer;
             select {
               margin: 2px;
               float: right;
             }
           }
-          .lineChart {
-            background-color: $panels;
-            height: 200px;
-          }
-          .carousel-control-prev-icon {
-            position: relative;
-            right: 76px;
-          } 
-          .carousel-control-next-icon {
-            position: relative;
-            left: 76px;
-
+          .carousel {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            .top {
+              display: flex;
+            }
+            .bottom {
+              display: flex;
+            }
           }
         }
 
-        .Environments {
-          // width: 15%;
-          width: 355px;
-          // min-width: 370px;
-          margin: 0 20px;
-          overflow-y: scroll;
-          height: 685px;
+        .environments {
+          padding: 0 5px;
+          overflow: scroll;
+          height: 100%;
 
           .ImagePreview {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            // height: 150px;
+            width: 100%;
             height: fit-content;
             margin: 0;
             padding: 10px;
@@ -150,7 +142,6 @@ body {
             color: $secondary;
             background-color: $panels;
             margin-bottom: 20px;
-            // filter: blur(3px);
             p {
               margin: 0;
             }
@@ -165,7 +156,6 @@ body {
               color: $yellow;
               font-size: 1.3rem;
               white-space: nowrap;
-              // margin-bottom: 0;
             }
 
             .blueBadge,
@@ -195,7 +185,7 @@ body {
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
-            margin: 0;
+
             width: 100px;
 
             button {
@@ -214,88 +204,34 @@ body {
         }
       }
       .bottom {
-        display: flex;
-
-        justify-content: center;
-        align-content: center;
-
-        .legend {
-          background-color: $panels;
-          border-radius: 10px;
-          height: 160px;
-          width: 250px;
-          padding: 10px;
-          display: flex;
-          flex-direction: column;
-          position: absolute;
-          bottom: 62px;
-      right: 131px;
-
-          .color1,
-          .color3,
-          .color2,
-          .color4 {
-            color: $primary;
-            width: 200px;
-            height: 30px;
-            border-radius: 15px;
-            margin: 2px auto;
-            padding: 3px 15px;
-
-            p {
-              display: flex;
-            }
-          }
-
-          .color1 {
-            background-color: rgba(255, 99, 132, 0.8);
-          }
-          .color2 {
-            background-color: rgba(54, 162, 235, 0.8);
-          }
-          .color3 {
-            background-color: rgba(255, 206, 86, 0.8);
-          }
-          .color4 {
-            background-color: rgba(75, 192, 192, 0.8);
-          }
-        }
-
+        height: 25%;
+        width: 100%;
+        margin-bottom: 5px;
+        margin-top: 10px;
         .SystemMetrics {
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr;
-          margin: 30px auto 10px auto;
-          padding: 20px 10px 0 10px;
-          width: 800px;
-          // margin-left: 33px;
+          height: 100%;
+          display: flex;
+          align-items: baseline;
+          justify-content: space-evenly;
           background-color: $panels;
           border-radius: 10px;
-          position: absolute;
-          bottom: 2px;
-          right: 471px;
-          .chartLabel {
+
+          .metric {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: right;
-
-            label {
-              position: relative;
-              left: 0;
+            background-color: peru;
+            overflow: scroll;
+            .piechart {
+              height: 100%;
+              height: 150px !important;
+              width: 150px !important;
+              background-color: black;
             }
-          }
-
-          .piechart {
-            // background-color: green;
-
-            height: 150px !important;
-            width: 150px !important;
-            // margin: 2px;
-            // background-color: rgb(134, 163, 204);
-            // margin: 2px auto;
-          }
-          .liquidGauge {
-            height: 150px;
+            .liquidGuage {
+              height: 100%;
+              background-color: black;
+            }
           }
         }
       }

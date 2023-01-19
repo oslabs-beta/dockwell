@@ -18,11 +18,6 @@ const App = () => {
     axios
       .get('http://localhost:3535/api/getStats')
       .then((res) => {
-        //check if queryData is empty
-        // if (count === 0) {
-        //   setQueryData(res.data);
-        //   count++;
-        // } else {
         setQueryData((prev) => {
           const newQueryState = { ...prev };
           for (let key in res.data) {
@@ -33,20 +28,6 @@ const App = () => {
               (newQueryState[key].State === 'running' ||
                 newQueryState[key].State === 'paused')
             ) {
-              // newQueryState[key].State = res.data[key].State;
-              //for the totals key, since this is just a snap shot and not a time series data, we just replace the old values with the new value.
-              // if (key === 'totals') {
-              //   newQueryState[key] = res.data[key];
-              // } else if (res.data[key].State !== 'running') {
-              //   newQueryState[key] = res.data[key];
-              //   continue;
-              // } else {
-              //for all the container keys, we drill into the memory and cpu properties of each container, and expand the time and value arrays.
-              // if (
-              //   res.data[key].hasOwnProperty('memory') &&
-              //   res.data[key].hasOwnProperty('cpu')
-              // ) {
-              //update the keys whose values *might* change
               newQueryState[key].State = res.data[key].State;
               newQueryState[key].Status = res.data[key].Status;
               newQueryState[key].Ports = res.data[key].Ports;
@@ -66,7 +47,6 @@ const App = () => {
                 ...prev[key].cpu.value,
                 ...res.data[key].cpu.value,
               ];
-              // }
             } else {
               //update all keys' values (these shouldn't have metrics)
               newQueryState[key] = res.data[key];
@@ -139,13 +119,17 @@ const App = () => {
                   activeContainers={activeContainers}
                 />
               </div>
-              <Environments />
+              <div className="environments">
+                <Environments />
+              </div>
             </div>
             <div className="bottom">
-              <SystemMetrics
-                totals={queryData.totals}
-                activeContainers={activeContainers}
-              />
+              <div className="systemMetWrapper">
+                <SystemMetrics
+                  totals={queryData.totals}
+                  activeContainers={activeContainers}
+                />
+              </div>
             </div>
           </div>
         </div>
