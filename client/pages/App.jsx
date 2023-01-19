@@ -144,7 +144,7 @@ const App = () => {
               </div>
             </div>
             <div className="bottom">
-              <div className="systemMetWrapper">
+              <div className="systemMemWrapper">
                 <SystemMetrics
                   totals={queryData.totals}
                   activeContainers={activeContainers}

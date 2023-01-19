@@ -49,7 +49,7 @@ const Logs = (props) => {
           <br></br>
           <select
             className="dropdown"
-            placeholder="Select a container to view logs:"
+            placeholder="View container logs:"
             value={null}
             onChange={(e) => {
               getLogs(e.target.value);
@@ -57,7 +57,7 @@ const Logs = (props) => {
             }}
           >
             <option value="" disabled selected hidden>
-              Select a container to view logs:
+              View container logs:
             </option>
             <option value={null}></option>
             {props.activeContainers?.map((x) => {

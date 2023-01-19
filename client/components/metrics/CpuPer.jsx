@@ -37,7 +37,7 @@ export function CpuPer({ cpuData, cpuLabels }) {
 
   return (
     <div className="metric">
-      <label>CPU Usage</label>
+      <label className="pieLabel">CPU Usage</label>
       <div className="piechart">
         <Pie data={data} />
       </div>
