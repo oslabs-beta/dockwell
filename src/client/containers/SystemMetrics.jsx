@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import cpu from '../components/metrics/Cpu.jsx';
-import CPU from '../components/metrics/Cpu.jsx';
-import Memory from '../components/metrics/Memory.jsx';
-import CpuPer from '../components/metrics/CpuPer.jsx';
-import MemPer from '../components/metrics/MemPer.jsx';
-import Legend from '../components/Legend.jsx';
+// import cpu from '../components/metrics/Cpu.jsx';
+import CPU from '../components/metrics/Cpu';
+import Memory from '../components/metrics/Memory';
+import CpuPer from '../components/metrics/CpuPer';
+import MemPer from '../components/metrics/MemPer';
+import Legend from '../components/Legend';
 
 const systemMetrics = ({ totals, activeContainers }) => {
   const memPieData = [];
