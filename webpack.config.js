@@ -4,26 +4,23 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  // context: path.resolve(__dirname, 'client'),
   mode: process.env.NODE_ENV,
-  entry: './client/index.js',
+  entry: './src/client/index.js',
   output: {
     path: path.join(__dirname, '/build'),
     publicPath: '/',
     filename: 'bundle.js',
-    // path: __dirname + '/src',
   },
-  // browser: ['Chrome'],
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './src/client/index.html',
       filename: './index.html',
     }),
   ],
 
   devServer: {
     static: {
-      directory: path.join(__dirname, '/client'),
+      directory: path.join(__dirname, '/src/client'),
     },
     // proxy: {
     //   '/api': 'http://localhost:3535/api',
@@ -31,7 +28,6 @@ module.exports = {
     compress: true,
     port: 7070,
   },
-
   module: {
     rules: [
       {
@@ -43,6 +39,11 @@ module.exports = {
             presets: ['@babel/preset-react', '@babel/preset-env'],
           },
         },
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: ['ts-loader'],
       },
       {
         test: /\.js$/,
@@ -75,5 +76,8 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.jsx', '.js', '.ts', '.tsx'],
   },
 };
