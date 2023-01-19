@@ -232,79 +232,77 @@ html {
         width: 100%;
         margin-bottom: 5px;
         margin-top: 10px;
-        .systemMemWrapper {
+        .systemMetrics {
+          display: flex;
+          justify-content: space-evenly;
           height: 100%;
-          overflow: hidden;
-          margin: 0 20px;
-          .systemMetrics {
-            display: grid;
-            height: 100%;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            background-color: $panels;
-            border-radius: 10px;
-            .metric {
-              display: flex;
-              flex-direction: column;
-              justify-content: flex-start;
+          background-color: $panels;
+          border-radius: 10px;
+          .cpu,
+          .mem {
+            display: flex;
+          }
 
-              label {
-                margin: 5px 8px;
-                color: $primary;
-              }
+          .metric {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
 
-              .pieLabel {
-                margin: 5px 8px 2px 8px;
-              }
-              .piechart {
-                height: 70% !important;
-                width: 70% !important;
-                // background-color: black;
-                canvas {
-                  align-self: flex-start;
-                }
-              }
-            }
-            .legendWrapper {
+            label {
+              margin: 5px 8px;
               color: $primary;
             }
-            .legend {
-              .legendItem1,
-              .legendItem2,
-              .legendItem3,
-              .legendItem4,
-              .legendItem5,
-              .legendItem6 {
-                color: $primary;
-                border-radius: 15px;
-                margin: 6px 2px;
-                padding: 3px 15px;
-                height: 100%;
+
+            .pieLabel {
+              margin: 5px 8px 2px 8px;
+            }
+            .piechart {
+              height: 70% !important;
+              width: 70% !important;
+              // background-color: black;
+              canvas {
+                align-self: flex-start;
               }
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              grid-template-rows: 1fr 1fr;
+            }
+          }
+
+          .legendInner {
+            .legendItem1,
+            .legendItem2,
+            .legendItem3,
+            .legendItem4,
+            .legendItem5,
+            .legendItem6 {
+              color: $primary;
+              border-radius: 15px;
+              margin: 4px 2px 0px 2px;
+              padding: 3px 15px;
               height: max-content;
-              width: max-content;
-              font-size: 0.8vw;
-              margin: 5px 8px;
-              .legendItem1 {
-                background-color: #ff6384;
-              }
-              .legendItem2 {
-                background-color: #36a2eb;
-              }
-              .legendItem3 {
-                background-color: #ffce56;
-              }
-              .legendItem4 {
-                background-color: rgba(75, 192, 192, 0.7);
-              }
-              .legendItem5 {
-                background-color: rgba(153, 102, 255, 0.7);
-              }
-              .legendItem6 {
-                background-color: rgba(255, 159, 64, 0.7);
-              }
+              text-align: center;
+            }
+            display: flex;
+            flex-direction: column;
+            font-size: 0.8vw;
+            margin: 5px 8px;
+            overflow: scroll;
+
+            .legendItem1 {
+              background-color: #ff6384;
+            }
+            .legendItem2 {
+              background-color: #36a2eb;
+            }
+            .legendItem3 {
+              background-color: #ffce56;
+            }
+            .legendItem4 {
+              background-color: rgba(75, 192, 192, 0.7);
+            }
+            .legendItem5 {
+              background-color: rgba(153, 102, 255, 0.7);
+            }
+            .legendItem6 {
+              background-color: rgba(255, 159, 64, 0.7);
             }
           }
         }

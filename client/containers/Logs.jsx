@@ -44,8 +44,8 @@ const Logs = (props) => {
               setSelectedContainer(e.target.value);
             }}
           >
-            <option value="" disabled selected hidden>
-              Select a container to view logs:
+            <option value="" disabled selected>
+              Select to view logs:
             </option>
             <option value={null}></option>
             {props.activeContainers?.map((x) => {
