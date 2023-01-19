@@ -21,9 +21,9 @@ ChartJS.register(
   Legend
 );
 
-export default function ChartComponent({
+export default function ChartCompound({
   metric,
-  activeContainer,
+  allActiveContainers,
   dataLength,
 }) {
   let x, y;
@@ -52,9 +52,21 @@ export default function ChartComponent({
       },
     },
   };
+  const allXAxis = allActiveContainers.map((container) => {
+    return container[metric]['time'];
+  });
+
+  const allYAxis = allActiveContainers.map((container) => {
+    return {
+      label: '',
+      data: container[metric]['value'],
+      borderColor: '#f8f2e7',
+      backgroundColor: '#f2e6d4',
+    };
+  });
 
   const data = {
-    labels: x,
+    labels: allXAxis[0],
     datasets: [
       {
         label: '',
