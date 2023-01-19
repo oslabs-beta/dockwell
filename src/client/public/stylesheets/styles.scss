@@ -12,6 +12,7 @@
 }
 body {
   // margin: 0 0 0 30px;
+  // margin: 0 0 0 30px;
   padding: 0;
   background: $background;
   color: $tertiary;
@@ -35,10 +36,13 @@ html {
 .App {
   height: 95vh;
   padding: 15px;
+  height: 95vh;
+  padding: 15px;
   .main {
     display: flex;
     height: 100%;
     justify-content: space-between;
+    // margin: 15px;
     // margin: 15px;
 
     .left {
@@ -48,6 +52,7 @@ html {
       height: 100%;
       width: 20%;
       margin-right: 30px;
+      margin-left: 20px;
       margin-left: 20px;
       .title {
         width: 100%;
@@ -98,7 +103,7 @@ html {
       width: 80%;
       .top {
         display: flex;
-        height: 75%;
+        height: 66%;
         // width: 100%;
         margin-right: 20px;
         margin-top: 20px;
@@ -114,6 +119,7 @@ html {
 
           background-color: $panels;
           padding: 10px 20px;
+          margin: 0 20px;
           margin: 0 20px;
           border-radius: 10px;
           .header {
@@ -141,6 +147,8 @@ html {
         .environments {
           // padding: 0 0px;
           // margin: 0 20;
+          // padding: 0 0px;
+          // margin: 0 20;
           overflow: scroll;
           height: 100%;
 
@@ -149,7 +157,9 @@ html {
             flex-direction: row;
             justify-content: space-between;
             // width: 100%;
+            // width: 100%;
             height: fit-content;
+            // margin-right: 20px;
             // margin-right: 20px;
             padding: 10px;
             border-radius: 10px;
@@ -218,47 +228,45 @@ html {
         }
       }
       .bottom {
-        height: 25%;
+        height: 30%;
         width: 100%;
         margin-bottom: 5px;
         margin-top: 10px;
-        .SystemMetrics {
-          height: 100%;
-          margin: 10px 20px 30px 20px;
+        .systemMetrics {
           display: flex;
-          overflow: hidden;
-          align-items: baseline;
           justify-content: space-evenly;
+          height: 100%;
           background-color: $panels;
           border-radius: 10px;
+          .cpu,
+          .mem {
+            display: flex;
+          }
 
           .metric {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            // background-color: peru;
-            overflow: scroll;
-            // margin:
+            justify-content: flex-start;
 
             label {
-              margin: 0 auto;
-              padding: 10px 0;
-              font-size: 1.5rem;
+              margin: 5px 8px;
               color: $primary;
             }
 
-            .piechart {
-              height: 100%;
-              height: 150px !important;
-              width: 150px !important;
-              // background-color: black;
+            .pieLabel {
+              margin: 5px 8px 2px 8px;
             }
-            .liquidGuage {
-              height: 100%;
+            .piechart {
+              height: 70% !important;
+              width: 70% !important;
               // background-color: black;
+              canvas {
+                align-self: flex-start;
+              }
             }
           }
-          .legend {
+
+          .legendInner {
             .legendItem1,
             .legendItem2,
             .legendItem3,
@@ -267,18 +275,17 @@ html {
             .legendItem6 {
               color: $primary;
               border-radius: 15px;
-              margin: 2px auto;
+              margin: 4px 2px 0px 2px;
               padding: 3px 15px;
+              height: max-content;
+              text-align: center;
             }
-            /* height: 63%; */
-            font-size: 0.8rem;
-            // width: 377px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            // display: flex;
-            // flex-direction: column;
-            // justify-content: space-evenly;
+            display: flex;
+            flex-direction: column;
+            font-size: 0.8vw;
+            margin: 5px 8px;
+            overflow: scroll;
+
             .legendItem1 {
               background-color: #ff6384;
             }
