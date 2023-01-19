@@ -2,6 +2,8 @@ version: '3'
 volumes:
   prometheus-data:
     driver: local
+  grafana-data:
+    driver: local
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -30,3 +32,11 @@ services:
     container_name: redis
     ports:
       - 6379:6379
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
