@@ -54,10 +54,8 @@ const App = () => {
           }
 
           setLoadingScreen(false);
-          // console.log('New State', newQueryState);
           return newQueryState;
         });
-        // }
       })
       .catch((err) =>
         console.error('Initial fetch GET request to DB: ERROR: ', err)
@@ -73,7 +71,6 @@ const App = () => {
   useEffect(() => {
     const allContainers = [];
     const activeContainers = [];
-    // console.log('UPDATED', queryData);
     for (const key in queryData) {
       if (key !== 'totals') {
         allContainers.push(queryData[key]);
@@ -98,7 +95,6 @@ const App = () => {
               label={'LOADING METRICS...'}
             />
           </div>
-          {/* <p>LOADING METRICS</p> */}
         </>
       )}
       {!loadingScreen && (
