@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Legend = ({ names }) => {
+const Legend = ({ names }: { names: String[] }) => {
   const namesArray = [];
   for (let i = 0; i < names.length; i++) {
     names[i] = names[i].charAt(0).toUpperCase() + names[i].slice(1);
