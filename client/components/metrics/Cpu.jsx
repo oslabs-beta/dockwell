@@ -10,10 +10,10 @@ const cpu = (props) => {
 
   return (
     <div className="metric">
-      <label>% CPU Available</label>
+      <label>CPU Usage</label>
       <LiquidGuage
         className="liquidGauge"
-        percent={100 - totalCpuPerc}
+        percent={totalCpuPerc}
         width={150}
         height={150}
       />
