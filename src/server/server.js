@@ -3,7 +3,6 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const PrometheusDriver = require('prometheus-query').PrometheusDriver;
 const path = require('path');
-// const { response } = require('express');
 
 const app = express();
 
@@ -12,17 +11,13 @@ const {
   memoryQuery,
   getContainers,
   getTotals,
-  blkioUsage,
-  memCache,
+  memFailuresQuery,
+  healthFailureQuery,
 } = require('./controllers/promQueryController');
 const controlContainer = require('./controllers/containerController.js');
 const PORT = 3535;
 
 app.use(cookieParser()).use(express.json()).use(cors());
-
-app.get('/api/getContainers', getContainers, (req, res) => {
-  res.status(200).json(res.locals.containers);
-});
 
 app.get('/api/getFastStats', getContainers, (req, res) => {
   // console.log(res.locals.containers);
@@ -34,9 +29,11 @@ app.get(
   getContainers,
   memoryQuery,
   cpuQuery,
+  memFailuresQuery,
+
   getTotals,
-  blkioUsage,
-  memCache,
+  healthFailureQuery,
+
   (req, res) => {
     // console.log(res.locals.containers);
     res.status(200).json(res.locals.finalResult);
