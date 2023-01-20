@@ -7,7 +7,7 @@ const Environments = (props) => {
 
   const getFastStats = () => {
     axios
-      .get(`http://localhost:3535/api/getFastStats`)
+      .get(`/api/getFastStats`)
       .then((data) => {
         setFastState(data.data);
       })

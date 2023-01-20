@@ -48,17 +48,9 @@ app.get(
   }
 );
 
-if (process.env.NODE_ENV === 'production') {
-  app.get('/', (req, res, err) => {
-    res.sendFile(path.resolve(__dirname, '../index.html'));
-  });
-}
+app.use('/', express.static(path.join(__dirname, '../../build')));
 
-app.use('*', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../index.html'));
-});
-
-app.use((err, _req, res) => {
+app.use((err, _req, res, next) => {
   const defaultErr = {
     log: 'Caught Unknown middleware error.',
     status: 500,

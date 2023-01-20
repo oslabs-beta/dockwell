@@ -47,7 +47,11 @@ function CarouselDisplay(props) {
       onSelect={handleSelect}
       keyboard={true}
     >
-      <Carousel.Item className="carousel-item-styles">
+      <Carousel.Item
+        interval={interval}
+        key={'container '}
+        className="carousel-item-styles"
+      >
         <div className="header">
           <h2 style={{ display: 'inline', marginRight: '8px' }}>Overview</h2>
           {dropDown}
