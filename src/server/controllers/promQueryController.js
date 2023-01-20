@@ -21,17 +21,22 @@ const prom = new PrometheusDriver({
 });
 
 const queries = {
-  cpu: 'container_cpu_usage_seconds_total',
+  cpu: 'rate(container_cpu_usage_seconds_total[1m])',
   memory: 'container_memory_usage_bytes',
-  blkioUsage: 'container_blkio_device_usage_total',
-  memCache: 'container_memory_cache',
+  memFailures: 'container_memory_failures_total',
+  healthFailures: 'engine_daemon_health_checks_failed_total',
+  transmitErrs: 'container_network_transmit_errors_total',
+  receiveErrs: 'container_network_receive_errors_total',
 };
 
 const promQueryController = {};
 
+//to grab all the containers and their status in docker and formating that into an object of objects, where each object has the info on each container from the docker cli command docker ps
 promQueryController.getContainers = async (req, res, next) => {
   try {
+    //executes command in user's terminal
     const { stdout } = await execProm('docker ps --all --format "{{json .}}"');
+    //parse incoming data
     const data = cliParser(stdout).map((container) => {
       return {
         ID: container.ID,
@@ -43,11 +48,12 @@ promQueryController.getContainers = async (req, res, next) => {
         Status: container.Status,
       };
     });
+    //goes through the array from the map above, and creates an object where each key is a container ID, and the value is the object created in the step above.
     const finalData = {};
     for (let metricObj of data) {
-      // if (metricObj.Names !== 'prometheus' && metricObj.Names !== 'cadvisor') {
-      finalData[metricObj.ID] = metricObj;
-      // }
+      if (metricObj.Names !== 'prometheus' && metricObj.Names !== 'cadvisor') {
+        finalData[metricObj.ID] = metricObj;
+      }
     }
 
     res.locals.containers = finalData;
@@ -60,86 +66,62 @@ promQueryController.getContainers = async (req, res, next) => {
   }
 };
 
-promQueryController.memoryQuery = (req, res, next) => {
-  const q = queries['memory'];
-  prom
-    .instantQuery(q)
-    .then((y) => {
-      const series = y.result;
-      for (let metricObj of series) {
-        const short_id = metricObj.metric.labels.id.substr(8, 12);
-        res.locals.containers[short_id]
-          ? (res.locals.containers[short_id].memory = {
-              time: [metricObj.value.time.toString().slice(16, 24)],
-              value: [(metricObj.value.value / 1000000).toFixed(3)],
-            })
-          : '';
-      }
-      return next();
-    })
-    .catch(console.error);
-};
-
 promQueryController.cpuQuery = (req, res, next) => {
   const q = queries['cpu'];
+  const { containers } = res.locals;
   prom
     .instantQuery(q)
-    .then((y) => {
-      const series = y.result;
+    .then((data) => {
+      const series = data.result;
       for (let metricObj of series) {
         const short_id = metricObj.metric.labels.id.substr(8, 12);
-        res.locals.containers[short_id]
-          ? (res.locals.containers[short_id].cpu = {
-              time: [metricObj.value.time.toString().slice(16, 24)],
-              value: [metricObj.value.value],
-            })
-          : '';
-        res.locals.containers[short_id]
-          ? (res.locals.containers[short_id].ccpu = {
-              time: [metricObj.value.time.toString().slice(16, 24)],
-              value: [metricObj.value.value],
-            })
-          : '';
+        containers[short_id] &&
+          (containers[short_id].cpu = {
+            time: [metricObj.value.time.toString().slice(16, 24)],
+            value: [metricObj.value.value],
+          });
       }
       return next();
     })
     .catch(console.error);
 };
 
-promQueryController.blkioUsage = (req, res, next) => {
-  const q = queries['blkioUsage'];
+promQueryController.memoryQuery = (req, res, next) => {
+  const q = queries['memory'];
+  const { containers } = res.locals;
   prom
     .instantQuery(q)
     .then((y) => {
       const series = y.result;
       for (let metricObj of series) {
         const short_id = metricObj.metric.labels.id.substr(8, 12);
-        res.locals.containers[short_id]
-          ? (res.locals.containers[short_id].blkio = {
-              time: [metricObj.value.time.toString().slice(16, 24)],
-              value: [metricObj.value.value],
-            })
-          : '';
+        containers[short_id] &&
+          (containers[short_id].memory = {
+            time: [metricObj.value.time.toString().slice(16, 24)],
+            value: [(metricObj.value.value / 1000000).toFixed(3)],
+          });
       }
       return next();
     })
     .catch(console.error);
 };
 
-promQueryController.memCache = (req, res, next) => {
-  const q = queries['memCache'];
+promQueryController.memFailuresQuery = (req, res, next) => {
+  const q = queries['memFailures'];
+  const { containers } = res.locals;
+
   prom
     .instantQuery(q)
-    .then((y) => {
-      const series = y.result;
+    .then((data) => {
+      const series = data.result;
       for (let metricObj of series) {
+        // console.log(metricObj);
         const short_id = metricObj.metric.labels.id.substr(8, 12);
-        res.locals.containers[short_id]
-          ? (res.locals.containers[short_id].memCache = {
-              time: [metricObj.value.time.toString().slice(16, 24)],
-              value: [metricObj.value.value],
-            })
-          : '';
+        //if substring is a key in getcontainers object
+        containers[short_id] &&
+          (containers[short_id].memFailures = {
+            value: [metricObj.value.value],
+          });
       }
       return next();
     })
@@ -185,8 +167,17 @@ promQueryController.getTotals = async (req, res, next) => {
   }
 };
 
-module.exports = promQueryController;
+promQueryController.healthFailureQuery = async (req, res, next) => {
+  const q = queries['healthFailures'];
+  const { finalResult } = res.locals;
+  prom
+    .instantQuery(q)
+    .then((data) => {
+      // console.log(data.result[0].value.value);
+      finalResult.totals.dockerHealthFailures = data.result[0].value.value;
+      return next();
+    })
+    .catch(console.error);
+};
 
-//TODO
-// on app launch - we run the docker cli command, parse, get an array of all the relevant containers
-//on request, we make the metrics PROMQL request, get back a huge object, filter it by the important container ids, and then build out the object we re gonna send as a response.
+module.exports = promQueryController;
