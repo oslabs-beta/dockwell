@@ -11,9 +11,7 @@ const Logs = (props) => {
         setLogs(null);
         return;
       }
-      let output = await axios.get(
-        `http://localhost:3535/api/control/logs/${name}`
-      );
+      let output = await axios.get(`/api/control/logs/${name}`);
       if (typeof output.data.stdout === 'object') {
         setLogs(output.data.stdout);
       } else {
