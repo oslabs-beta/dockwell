@@ -25,11 +25,10 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
   dev:
-    image: docnition/dockwell-dev
-    container_name: dockwell-dev-hot
+    image: dockwellhub/dwh-prod
+    container_name: dockwell
     ports:
       - 3535:3535
     volumes:
       - .:/usr/src
       - node_modules:/usr/src/node_modules
-    command: 'npm run dev:hot'
