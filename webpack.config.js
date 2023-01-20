@@ -22,9 +22,9 @@ module.exports = {
     static: {
       directory: path.join(__dirname, '/src/client'),
     },
-    // proxy: {
-    //   '/api': 'http://localhost:3535/api',
-    // },
+    proxy: {
+      '/': 'http://localhost:3535/',
+    },
     compress: true,
     port: 7070,
   },

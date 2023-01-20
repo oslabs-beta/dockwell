@@ -3,9 +3,9 @@
   "version": "2.1.0",
   "description": "",
   "main": "webpack.config.js",
-  "scripts": {
-    "build": "cross-env NODE_ENV=production webpack", 
-    "start": "cross-env NODE_ENV=production nodemon ./src/server/server.js", 
+  "scripts": { 
+    "build": "cross-env NODE_ENV=production webpack",
+    "start": "cross-env NODE_ENV=production nodemon ./src/server/server.js",
     "dev:hot": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open \" \"nodemon ./src/server/server.js\"",
     "docker-dev:hot": "docker-compose -f docker-compose-dev-hot.yml up",
     "test": "NODE_ENV=test jest --verbose --updateSnapshot --coverage"
