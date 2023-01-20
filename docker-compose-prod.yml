@@ -26,7 +26,7 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
   dev:
     image: docnition/dockwell-dev
-    container_name: dockwell-dev-hot
+    container_name: dockwell-prod-hot
     ports:
       - 3535:3535
     volumes:
