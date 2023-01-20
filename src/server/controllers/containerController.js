@@ -6,18 +6,7 @@ const cliParser = require('../serverUtils/dockerCliJS');
 
 const controlContainer = {};
 
-// controlContainer.dockerTaskName2 = async (req, res, next) => {
-//   try {
-//     const name = req.params.name;
-//     const task = req.params.task;
-//     await execProm(`docker ${task} ${name}`);
-//     return next();
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
- controlContainer.dockerTaskName = async (req, res, next) => {
+controlContainer.dockerTaskName = async (req, res, next) => {
   try {
     const { name, task } = req.params;
     let { stdout, stderr } = await execProm(`docker ${task} ${name}`);
