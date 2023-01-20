@@ -16,7 +16,7 @@ const App = () => {
 
   const getStatsFunc = () => {
     axios
-      .get('http://localhost:3535/api/getStats')
+      .get('/api/getStats')
       .then((res) => {
         setQueryData((prev) => {
           const newQueryState = { ...prev };
