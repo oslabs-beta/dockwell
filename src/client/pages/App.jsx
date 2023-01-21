@@ -6,7 +6,7 @@ import Carousel from '../containers/Carousel.jsx';
 import Logs from '../containers/Logs.jsx';
 import LiquidGauge from '../components/LiquidGauge.jsx';
 
-let count = 0;
+// let count = 0;
 const App = () => {
   const [queryData, setQueryData] = useState({});
   //filters running containers
