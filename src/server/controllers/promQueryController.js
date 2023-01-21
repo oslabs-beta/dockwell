@@ -13,10 +13,14 @@ const options = {
   currentWorkingDirectory: null, // uses current working directory
   echo: true, // echo command output to stdout/stderr
 };
-
+// host.docker.internal <-- is localhost of the machine when referenced inside of a container
 //query driver config
+
+// const endpoint = 'http://localhost:9090';
+const endpoint = 'http://host.docker.internal:9090';
+
 const prom = new PrometheusDriver({
-  endpoint: 'http://localhost:9090',
+  endpoint: endpoint,
   baseURL: '/api/v1', // default value
 });
 
@@ -41,7 +45,7 @@ promQueryController.getContainers = async (req, res, next) => {
       return {
         ID: container.ID,
         Names: container.Names,
-        State: container.State,
+        State: 'running',
         Ports: container.Ports,
         CreatedAt: container.CreatedAt,
         Image: container.Image,

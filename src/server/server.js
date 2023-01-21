@@ -19,8 +19,13 @@ const PORT = 3535;
 
 app.use(cookieParser()).use(express.json()).use(cors());
 
+app.get('/api/getContainers', getContainers, (req, res) => {
+  // console.log('containers', res.locals.containers);
+  res.status(200).json(res.locals.containers);
+});
+
 app.get('/api/getFastStats', getContainers, (req, res) => {
-  // console.log(res.locals.containers);
+  // console.log('fast', res.locals.containers);
   res.status(200).json(res.locals.containers);
 });
 
@@ -30,12 +35,10 @@ app.get(
   memoryQuery,
   cpuQuery,
   memFailuresQuery,
-
   getTotals,
   healthFailureQuery,
-
   (req, res) => {
-    // console.log(res.locals.containers);
+    // console.log('stats', res.locals.containers);
     res.status(200).json(res.locals.finalResult);
   }
 );
