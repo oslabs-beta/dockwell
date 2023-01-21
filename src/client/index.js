@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 // uncomment so that webpack can bundle styles
-import styles from './public/stylesheets/styles2.scss';
+import styles from './public/stylesheets/styles.scss';
 
 render(
   <BrowserRouter>

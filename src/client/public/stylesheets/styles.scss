@@ -5,322 +5,298 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+
   .loading-center {
     width: 100%;
     text-align: center;
   }
-}
-body {
-  // margin: 0 0 0 30px;
-  // margin: 0 0 0 30px;
-  padding: 0;
-  background: $background;
-  color: $tertiary;
-  background-image: linear-gradient(
-      rgba(45, 45, 45, 0.7) 0.1em,
-      transparent 0.1em
-    ),
-    linear-gradient(90deg, rgba(45, 45, 45, 0.7) 0.1em, transparent 0.1em);
-  background-size: 1em 1em;
-}
-body,
-html {
-  margin: 0;
-  padding: 0;
 }
 
 * {
   box-sizing: border-box;
 }
 
-.App {
-  height: 95vh;
-  padding: 15px;
-  height: 95vh;
-  padding: 15px;
-  .main {
-    display: flex;
-    height: 100%;
-    justify-content: space-between;
-    // margin: 15px;
-    // margin: 15px;
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
 
-    .left {
+body {
+  background: $background;
+  color: $tertiary;
+  background-image: linear-gradient(rgba(45, 45, 45, 0.7) 0.1em,
+      transparent 0.1em),
+    linear-gradient(90deg, rgba(45, 45, 45, 0.7) 0.1em, transparent 0.1em);
+  background-size: 1em 1em;
+  padding: 20px;
+}
+
+.App {
+  .main {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+    padding: 30px;
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // height: 90vh;
+
+  .title {
+    width: 100%;
+    font-size: 50;
+    font-family: 'Kanit', sans-serif;
+    height: 30%
+  }
+
+  .SystemMetrics {
+
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px 30px 0;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+
+    .mem,
+    .cpu {
+      background-color: $panels;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      height: 100%;
-      width: 20%;
-      margin-right: 30px;
-      margin-left: 20px;
-      margin-left: 20px;
-      .title {
-        width: 100%;
-        font-size: 50;
-        font-family: 'Kanit', sans-serif;
+      height: 230px;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+
+      label {
+        margin: 0 auto 10px auto;
+        font-size: 1.2rem;
+        color: $tertiary
       }
 
-      form {
-        width: 100%;
+      .circles {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        select {
-          width: 100%;
-          padding: 1rem;
-          cursor: pointer;
-          border-radius: 5px;
-          background-color: #ddd;
-          list-style: none;
+        justify-content: space-evenly;
+
+        .liquidGauge {
+          margin-top: 10px;
         }
-      }
-      .logs-list {
-        background-color: #1b263b;
-        border: 2px solid #778da8;
-        padding-right: 10px;
-        height: 60vh;
-        width: 100%;
-        overflow: scroll;
-        .logs-list-item {
-          border-bottom: 2px solid #778da8;
-          padding: 10px;
-        }
-      }
-      input {
-        width: 100%;
-        padding: 1rem;
-        cursor: pointer;
-        border-radius: 5px;
-        background-color: #ddd;
-        list-style: none;
       }
     }
 
-    .right {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      width: 80%;
-      .top {
-        display: flex;
-        height: 66%;
-        // width: 100%;
-        margin-right: 20px;
-        margin-top: 20px;
-        justify-content: center;
-        flex-direction: row;
+    .legendInner {
+      background-color: $panels;
+      padding: 15px;
+      border-radius: 10px;
+      // display: flex;
+      // flex-direction: column;
+      font-size: 1.2rem;
+      // margin: 5px 8px;
+      overflow: scroll;
 
-        .carouselDiv {
-          h2 {
-            color: $primary;
-          }
-          height: 100%;
-          width: 70%;
-
-          background-color: $panels;
-          padding: 10px 20px;
-          margin: 0 20px;
-          margin: 0 20px;
-          border-radius: 10px;
-          .header {
-            width: 80%;
-            cursor: pointer;
-            select {
-              margin: 2px;
-              float: right;
-            }
-          }
-          .carousel {
-            height: 100%;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            .top {
-              display: flex;
-            }
-            .bottom {
-              display: flex;
-            }
-          }
-        }
-
-        .environments {
-          // padding: 0 0px;
-          // margin: 0 20;
-          // padding: 0 0px;
-          // margin: 0 20;
-          overflow: scroll;
-          height: 100%;
-
-          .ImagePreview {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            // width: 100%;
-            // width: 100%;
-            height: fit-content;
-            // margin-right: 20px;
-            // margin-right: 20px;
-            padding: 10px;
-            border-radius: 10px;
-            color: $secondary;
-            background-color: $panels;
-            margin-bottom: 20px;
-            p {
-              margin: 0;
-            }
-
-            .small {
-              font-size: 0.85rem;
-            }
-            .space {
-              height: 15px;
-            }
-            .large {
-              color: $yellow;
-              font-size: 1.3rem;
-              white-space: nowrap;
-            }
-
-            .blueBadge,
-            .redBadge,
-            .greyBadge {
-              border-radius: 15px;
-              width: min-content;
-              padding: 1px 8px;
-              margin-bottom: 2px;
-            }
-
-            .blueBadge {
-              background-color: $blue;
-              color: $primary;
-            }
-            .redBadge {
-              background-color: $lightred;
-              color: $primary;
-            }
-            .greyBadge {
-              background-color: $paused;
-              color: $primary;
-            }
-          }
-
-          #buttons {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-
-            width: 100px;
-
-            button {
-              border: 0;
-              color: $primary;
-            }
-
-            .btn-success {
-              background-color: $green;
-            }
-
-            .btn-danger {
-              background-color: $red;
-            }
-          }
-        }
+      .legendItem1,
+      .legendItem2,
+      .legendItem3,
+      .legendItem4,
+      .legendItem5,
+      .legendItem6 {
+        color: $secondary;
+        border-radius: 15px;
+        margin: 4px 2px 0px 2px;
+        padding: 3px 10px;
+        height: max-content;
+        text-align: center;
       }
-      .bottom {
-        height: 30%;
-        width: 100%;
-        margin-bottom: 5px;
-        margin-top: 10px;
-        .systemMetrics {
-          display: flex;
-          justify-content: space-evenly;
-          height: 100%;
-          background-color: $panels;
-          border-radius: 10px;
-          .cpu,
-          .mem {
-            display: flex;
-          }
 
-          .metric {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
 
-            label {
-              margin: 5px 8px;
-              color: $primary;
-            }
+      .legendItem1 {
+        background-color: #ff6384;
+      }
 
-            .pieLabel {
-              margin: 5px 8px 2px 8px;
-            }
-            .piechart {
-              height: 70% !important;
-              width: 70% !important;
-              // background-color: black;
-              canvas {
-                align-self: flex-start;
-              }
-            }
-          }
+      .legendItem2 {
+        background-color: #36a2eb;
+      }
 
-          .legendInner {
-            .legendItem1,
-            .legendItem2,
-            .legendItem3,
-            .legendItem4,
-            .legendItem5,
-            .legendItem6 {
-              color: $primary;
-              border-radius: 15px;
-              margin: 4px 2px 0px 2px;
-              padding: 3px 15px;
-              height: max-content;
-              text-align: center;
-            }
-            display: flex;
-            flex-direction: column;
-            font-size: 0.8vw;
-            margin: 5px 8px;
-            overflow: scroll;
+      .legendItem3 {
+        background-color: #ffcf56c4;
+      }
 
-            .legendItem1 {
-              background-color: #ff6384;
-            }
-            .legendItem2 {
-              background-color: #36a2eb;
-            }
-            .legendItem3 {
-              background-color: #ffce56;
-            }
-            .legendItem4 {
-              background-color: rgba(75, 192, 192, 0.7);
-            }
-            .legendItem5 {
-              background-color: rgba(153, 102, 255, 0.7);
-            }
-            .legendItem6 {
-              background-color: rgba(255, 159, 64, 0.7);
-            }
-          }
-        }
+      .legendItem4 {
+        background-color: rgba(75, 192, 192, 0.7);
+      }
+
+      .legendItem5 {
+        background-color: rgba(153, 102, 255, 0.7);
+      }
+
+      .legendItem6 {
+        background-color: rgba(255, 159, 64, 0.7);
       }
     }
   }
 }
 
-// .Environments,
-// .Carousel,
-// .SystemMetrics {
-//   @media only screen and (max-width: 1075px) {
-//     margin: 10px auto;
-//     height: 1000px;
-//     // width: 80%;
-//   }
-// }
+.middle {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
 
-.carousel-item-styles {
-  width: 36vw;
+  .carouselDiv {
+    background-color: $panels;
+    padding: 10px 30px;
+    margin: 0 15px;
+    border-radius: 10px;
+    height: 100%;
+
+    .header {
+      width: 80%;
+      cursor: pointer;
+
+      select {
+        margin: 2px;
+        float: right;
+      }
+    }
+  }
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px 0;
+  margin: 0 10px;
+  height: 100%;
+
+  .Environments {
+    overflow: scroll;
+
+    .ImagePreview {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: fit-content;
+      padding: 10px;
+      border-radius: 10px;
+      color: $secondary;
+      background-color: $panels;
+      margin-bottom: 20px;
+
+      p {
+        margin: 0;
+      }
+
+      .small {
+        font-size: 0.85rem;
+      }
+
+      .space {
+        height: 15px;
+      }
+
+      .large {
+        color: $yellow;
+        font-size: 1.3rem;
+        white-space: nowrap;
+      }
+
+      .blueBadge,
+      .redBadge,
+      .greyBadge {
+        border-radius: 15px;
+        width: min-content;
+        padding: 1px 8px;
+        margin-bottom: 2px;
+      }
+
+      .blueBadge {
+        background-color: $blue;
+        color: $primary;
+      }
+
+      .redBadge {
+        background-color: $lightred;
+        color: $primary;
+      }
+
+      .greyBadge {
+        background-color: $paused;
+        color: $primary;
+      }
+
+      #buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        width: 100px;
+
+        button {
+          border: 0;
+          color: $primary;
+        }
+
+        .btn-success {
+          background-color: $green;
+        }
+
+        .btn-danger {
+          background-color: $red;
+        }
+      }
+    }
+  }
+
+  .logs {
+
+    background-color: $panels;
+    padding: 0 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+
+    form {
+      margin-top: none;
+    }
+
+    .dropdown {
+      margin: 0 auto;
+    }
+
+    input,
+    .dropdown {
+      display: flex;
+      justify-content: center;
+
+      width: 80%;
+      padding: .2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      background-color: #ddd;
+      list-style: none;
+    }
+
+    .logs-list {
+      background-color: #1b263b;
+      border: 2px solid #778da8;
+      padding-right: 10px;
+      height: 20vh;
+      // width: 100%;
+      overflow: scroll;
+
+      .logs-list-item {
+        border-bottom: 2px solid #778da8;
+        padding: 10px;
+      }
+    }
+  }
 }
