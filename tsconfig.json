@@ -1,29 +1,29 @@
-// {
-//   "compilerOptions": {
-//     "jsx": "react",
-//     "module": "commonjs",
-//     "noImplicitAny": true,
-//     "esModuleInterop": true,
-//     "target": "es5",
-//     "sourceMap": true
-//   },
-//   "exclude": ["node_modules"],
-//   "include": ["src/**/*"]
-// }
-
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es5",
     "jsx": "react",
-    "allowJs": true,
-    // "strict": true,
-    "moduleResolution": "node",
+    "module": "commonjs",
+    "noImplicitAny": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "target": "es5",
+    "sourceMap": true
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*", "index.d.ts"]
+  "include": ["src/**/*"]
 }
+
+// {
+//   "compilerOptions": {
+//     "sourceMap": true,
+//     "noImplicitAny": true,
+//     "module": "commonjs",
+//     "target": "es5",
+//     "jsx": "react",
+//     "allowJs": true,
+//     // "strict": true,
+//     "moduleResolution": "node",
+//     "esModuleInterop": true,
+//     "skipLibCheck": true
+//   },
+//   "exclude": ["node_modules"],
+//   "include": ["src/**/*", "index.d.ts"]
+// }
