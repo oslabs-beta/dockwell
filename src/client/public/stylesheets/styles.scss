@@ -158,6 +158,23 @@ body {
     border-radius: 10px;
     height: 100%;
 
+
+    button {
+      width: 50px;
+      height: 5px;
+      margin: 0 10px;
+      border: none;
+
+    }
+
+    .carousel-indicators {
+      position: absolute;
+      top: 800px;
+      button.active {
+        background-color: rgb(63, 63, 63);
+      }
+    }
+
     .header {
       width: 80%;
       cursor: pointer;
@@ -268,7 +285,7 @@ body {
     flex-direction: column;
     border-radius: 10px;
 
-    
+
     input,
     select {
       margin: 0 auto;
