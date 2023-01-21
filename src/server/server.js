@@ -14,7 +14,7 @@ const {
   memFailuresQuery,
   healthFailureQuery,
 } = require('./controllers/promQueryController');
-const controlContainer = require('./controllers/containerController.js');
+const controlContainer = require('./controllers/containerController');
 const PORT = 3535;
 
 app.use(cookieParser()).use(express.json()).use(cors());

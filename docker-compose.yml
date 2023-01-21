@@ -2,7 +2,8 @@ version: '3'
 volumes:
   prometheus-data:
     driver: local
-  node_modules: {}
+  grafana-data:
+    driver: local
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -10,10 +11,10 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - /tmp/prometheus:/tmp/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
     command:
-      - --config.file=/tmp/prometheus/prometheus.yml
+      - --config.file=/etc/prometheus/prometheus.yml
     depends_on:
       - cadvisor
   cadvisor:
@@ -26,14 +27,18 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-  dockwell:
-    image: dockwellhub/dwh-prod:latest
-    container_name: dockwell
-    ports:
-      - 3535:3535
-    volumes:
-      - .:/usr/src
-      - node_modules:/usr/src/node_modules
-      - var/run/docker.sock:/var/run/docker.sock
     depends_on:
-      - prometheus
+      - redis
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - 6379:6379
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
