@@ -1,12 +1,29 @@
+// {
+//   "compilerOptions": {
+//     "jsx": "react",
+//     "module": "commonjs",
+//     "noImplicitAny": true,
+//     "esModuleInterop": true,
+//     "target": "es5",
+//     "sourceMap": true
+//   },
+//   "exclude": ["node_modules"],
+//   "include": ["src/**/*"]
+// }
+
 {
   "compilerOptions": {
-    "jsx": "react",
-    "module": "commonjs",
+    "sourceMap": true,
     "noImplicitAny": true,
-    "esModuleInterop": true,
+    "module": "commonjs",
     "target": "es5",
-    "sourceMap": true
+    "jsx": "react",
+    "allowJs": true,
+    // "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "index.d.ts"]
 }

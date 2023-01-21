@@ -11,10 +11,10 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - /tmp/prometheus:/tmp/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
     command:
-      - --config.file=/tmp/prometheus/prometheus.yml
+      - --config.file=/etc/prometheus/prometheus.yml
     depends_on:
       - cadvisor
   cadvisor:
