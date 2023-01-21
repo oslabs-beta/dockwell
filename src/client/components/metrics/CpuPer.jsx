@@ -36,11 +36,12 @@ export function CpuPer({ cpuData, cpuLabels }) {
   };
 
   return (
-    <div className="metric">
-      <label className="pieLabel">CPU Breakdown</label>
-      <div className="piechart">
-        <Pie data={data} />
-      </div>
+    <div className="piechart">
+      <Pie
+        data={data}
+        width={'160px'}
+        options={{ maintainAspectRatio: true }}
+      />
     </div>
   );
 }

@@ -100,30 +100,30 @@ const App = () => {
       {!loadingScreen && (
         <div className="main">
           <div className="left">
-            <div className="title">Dockwell.</div>
-            <h2>A docker visualizer</h2>
+            <div className="title">
+              <h1>Dockwell.</h1>
+              <h2>A docker visualizer</h2>
+            </div>
+            <SystemMetrics
+              totals={queryData.totals}
+              activeContainers={activeContainers}
+            />
+          </div>
+          <div className="middle">
+            <div className="CarouselDiv">
+              <Carousel
+                className="carousel"
+                activeContainers={activeContainers}
+              />
+            </div>
+          </div>
+          <div className="right">
+              <Environments />
+            <div className='logs'>
             <Logs
               classname="logs-container"
               activeContainers={activeContainers}
             />
-          </div>
-          <div className="right">
-            <div className="top">
-              <div className="CarouselDiv">
-                <Carousel
-                  className="carousel"
-                  activeContainers={activeContainers}
-                />
-              </div>
-              <div className="environments">
-                <Environments />
-              </div>
-            </div>
-            <div className="bottom">
-              <SystemMetrics
-                totals={queryData.totals}
-                activeContainers={activeContainers}
-              />
             </div>
           </div>
         </div>

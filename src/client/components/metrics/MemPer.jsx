@@ -42,11 +42,12 @@ export function CpuPer({ memData, memLabels }) {
   };
 
   return (
-    <div className="metric">
-      <label className="pieLabel">Memory Breakdown</label>
-      <div className="piechart">
-        <Pie data={data} />
-      </div>
+    <div className="piechart">
+      <Pie
+        data={data}
+        width={'160px'}
+        options={{ maintainAspectRatio: true }}
+      />
     </div>
   );
 }
