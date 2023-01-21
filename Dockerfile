@@ -1,13 +1,15 @@
-# FROM node:16.13
-FROM node:alpine
+FROM node:16.13 
 WORKDIR /usr/src 
 COPY . /usr/src
 RUN npm install
+RUN apt-get update
+RUN apt-get install -y docker.io 
+# RUN apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin 
 RUN npm run build
 EXPOSE 3535
-ENTRYPOINT node ./src/server/server.js
-# RUN [“chmod”, “+x”, "/node/execure.sh”]
+ENTRYPOINT node ./src/server/server.js 
 
+# docker image rm dockwellhub/dwh-prod
 # docker build -t dockwellhub/dwh-prod .
 # docker push dockwellhub/dwh-prod
 
@@ -17,4 +19,4 @@ ENTRYPOINT node ./src/server/server.js
 #    --push \
 #    .
 
-# docker run -p 3535:3535 dockwellhub/dwh-prod 
+# docker run -v /var/run/docker.sock:/var/run/docker.sock -p 3535:3535 dockwellhub/dwh-prod:latest
