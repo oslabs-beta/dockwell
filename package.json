@@ -21,6 +21,7 @@
     "axios": "^1.2.1",
     "babel": "^6.23.0",
     "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.3",
     "browserify": "^17.0.0",
     "cookie-parser": "^1.4.1",
     "d3-color": "^3.1.0",

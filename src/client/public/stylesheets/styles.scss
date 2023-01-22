@@ -52,25 +52,41 @@ body {
     width: 100%;
     font-size: 50;
     font-family: 'Kanit', sans-serif;
-    height: 30%;
-    
+    height: 170.78;
+
+    .links {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      position: absolute;
+      top: 15px;
+      right: 40px;
+
+      a {
+        color: $tertiary;
+        font-size: 1.5rem;
+      }
+
+      svg {
+        margin: auto 0;
+        color: $tertiary;
+      }
+    }
+
 
     h1 {
       font-size: 50px;
       position: relative;
-      bottom: 30px;
+      bottom: 20px;
     }
+
     h2 {
       position: relative;
       bottom: 30px;
       left: 30px;
     }
-    
-    a {
-      width: 35%;
-      position: relative;
-      bottom: 20px;
-    }
+
+
   }
 
   .SystemMetrics {
@@ -111,7 +127,7 @@ body {
 
     .legendInner {
       background-color: $panels;
-      height: 180px;
+      min-height: 190px;
       padding: 15px;
       border-radius: 10px;
       font-size: 1.2rem;
@@ -173,19 +189,44 @@ body {
     margin: 0 15px;
     border-radius: 10px;
     height: 100%;
+    max-height: 802.398;
 
+    .carousel-control-next-icon {
+      position: relative;
+      left: 66px;
+      top: 24px;
+    }
+
+    .carousel-control-prev-icon {
+      position: relative;
+      right: 66px;
+      top: 24px;
+    }
 
     button {
       width: 50px;
       height: 5px;
       margin: 0 10px;
       border: none;
+    }
 
+    h2 {
+      position: relative;
+      top: 10px
+    }
+
+    select {
+      width: 120px;
+      margin: 0 auto;
+      padding: .2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      background-color: #ddd;
     }
 
     .carousel-indicators {
       position: absolute;
-      top: 800px;
+      top: 810px;
 
       button.active {
         background-color: $carouselActive;
@@ -207,14 +248,14 @@ body {
 .right {
   display: flex;
   flex-direction: column;
-  
+
   padding: 30px 0;
-  margin: 0 10px;
+  // margin: 0 10px;
   height: 100%;
 
   .Environments {
     overflow: scroll;
-    height: 60vh;
+    height: 50vh;
     margin-bottom: 15px;
 
     .ImagePreview {
@@ -304,6 +345,8 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
+    max-width: 407.5px;
+    max-height: 304px;
 
 
     input,
@@ -320,14 +363,14 @@ body {
     }
 
     .logs-list {
-      background-color: #1b263b;
-      border: 2px solid #778da8;
+      background-color: $logbackground;
+      border: 2px solid $logborder;
       padding-right: 10px;
       height: 200px;
       overflow: scroll;
 
       .logs-list-item {
-        border-bottom: 2px solid #778da8;
+        border-bottom: 2px solid $logborder;
         padding: 10px;
       }
     }
