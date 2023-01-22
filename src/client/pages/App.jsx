@@ -106,8 +106,8 @@ const App = () => {
               <div className="links">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
+                  width="24"
+                  height="24"
                   fill="currentColor"
                   class="bi bi-house"
                   viewBox="0 0 16 16"
@@ -119,8 +119,8 @@ const App = () => {
                 </a>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
+                  width="24"
+                  height="24"
                   fill="currentColor"
                   class="bi bi-github"
                   viewBox="0 0 16 16"
