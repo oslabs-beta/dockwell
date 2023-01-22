@@ -103,6 +103,16 @@ const App = () => {
             <div className="title">
               <h1>Dockwell.</h1>
               <h2>A docker visualizer</h2>
+              <a href="https://dockwell.tech/" className="btn btn-link">
+                About
+              </a>
+              <a
+                href="https://github.com/oslabs-beta/dockwell"
+                className="btn btn-link"
+              >
+                GitHub
+              </a>
+             
             </div>
             <SystemMetrics
               totals={queryData.totals}
@@ -118,12 +128,12 @@ const App = () => {
             </div>
           </div>
           <div className="right">
-              <Environments />
-            <div className='logs'>
-            <Logs
-              classname="logs-container"
-              activeContainers={activeContainers}
-            />
+            <Environments />
+            <div className="logs">
+              <Logs
+                classname="logs-container"
+                activeContainers={activeContainers}
+              />
             </div>
           </div>
         </div>
