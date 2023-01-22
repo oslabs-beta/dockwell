@@ -125,51 +125,96 @@ body {
       }
     }
 
-    .legendInner {
-      background-color: $panels;
-      min-height: 190px;
-      padding: 15px;
-      border-radius: 10px;
-      font-size: 1.2rem;
-      overflow: scroll;
+    .bottom {
+      display: flex;
 
-      .legendItem1,
-      .legendItem2,
-      .legendItem3,
-      .legendItem4,
-      .legendItem5,
-      .legendItem6 {
-        color: $secondary;
-        border-radius: 15px;
-        margin: 4px 2px 0px 2px;
-        padding: 3px 10px;
-        height: max-content;
-        text-align: center;
+      .errors {
+        display: flex;
+        flex-direction: column;
+
+        .totalMemFail,
+        .healthfail {
+          background-color: $panels;
+          height: 87.5px;
+          width: 135px;
+          margin: 0 15 15 0;
+          border-radius: 10px;
+          padding: 2.5px;
+          display: flex;
+
+          a {
+            font-size: 70px;
+            position: relative;
+            bottom: 12.5px;
+            right: 10px;
+          }
+          p {
+            // transform: rotate(270deg);
+            width: 100px;
+            margin: 0 auto;
+            position: relative;
+            top: 17.5px;
+            left: 5px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: 0;
+            
+            
+
+           
+          }
+          // display: 
+        }
+
       }
 
+      .legendInner {
+        background-color: $panels;
+        height: 190px;
+        width: 285px;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        overflow: scroll;
 
-      .legendItem1 {
-        background-color: $legend1;
-      }
+        .legendItem1,
+        .legendItem2,
+        .legendItem3,
+        .legendItem4,
+        .legendItem5,
+        .legendItem6 {
+          color: $secondary;
+          border-radius: 15px;
+          margin: 4px 2px 0px 2px;
+          padding: 3px 10px;
+          height: max-content;
+          text-align: center;
+        }
 
-      .legendItem2 {
-        background-color: $legend2;
-      }
 
-      .legendItem3 {
-        background-color: $legend3;
-      }
+        .legendItem1 {
+          background-color: $legend1
+        }
 
-      .legendItem4 {
-        background-color: $legend4;
-      }
+        .legendItem2 {
+          background-color: $legend2;
+        }
 
-      .legendItem5 {
-        background-color: $legend5;
-      }
+        .legendItem3 {
+          background-color: $legend3;
+        }
 
-      .legendItem6 {
-        background-color: $legend6;
+        .legendItem4 {
+          background-color: $legend4;
+        }
+
+        .legendItem5 {
+          background-color: $legend5;
+        }
+
+        .legendItem6 {
+          background-color: $legend6;
+        }
       }
     }
   }

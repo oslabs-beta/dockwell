@@ -11,6 +11,7 @@ const systemMetrics = ({ totals, activeContainers }) => {
   const memPieLabels = [];
   const cpuPieData = [];
   const cpuPieLabels = [];
+  const memFail = []
   const legend = [];
   for (let i = 0; i < activeContainers.length; i++) {
     memPieLabels.push(activeContainers[i].Names);
@@ -20,15 +21,15 @@ const systemMetrics = ({ totals, activeContainers }) => {
     let cpuArr = activeContainers[i].cpu.value;
     memPieData.push(memArr[memArr.length - 1]);
     cpuPieData.push(cpuArr[cpuArr.length - 1]);
+    memFail.push(activeContainers[i].memFailures.value[0])
   }
-  // console.log('memPieData', memPieData);
-  // console.log('memPieLabels', memPieLabels);
-  // console.log('cpuPieData', cpuPieData);
-  // console.log('cpuPieLabels', cpuPieLabels);
-
-  //const {cpu, memory} = totals
   const totalmetrics = totals ? totals : {};
+  const healthFail = totalmetrics.dockerHealthFailures
+  const totalMemFail = memFail.reduce((a, b) => {
+    return a + b;
+  }, 0);
 
+  
   return (
     <>
       <div className="SystemMetrics">
@@ -46,8 +47,21 @@ const systemMetrics = ({ totals, activeContainers }) => {
             <CpuPer cpuData={cpuPieData} cpuLabels={cpuPieLabels} />
           </div>
         </div>
-        <div className="legend">
-          <Legend names={legend} cpuData={cpuPieData} memData={memPieData} />
+        <div className="bottom">
+          <div className="errors">
+            <div className="healthfail">
+              <p>Health Failures: </p>
+              <a>{healthFail}</a>
+            </div>
+
+            <div className="totalMemFail">
+              <p>Memory Failures: </p>
+              <a>{totalMemFail}</a>
+            </div>
+          </div>
+          <div className="legend">
+            <Legend names={legend} cpuData={cpuPieData} memData={memPieData} />
+          </div>
         </div>
       </div>
     </>
