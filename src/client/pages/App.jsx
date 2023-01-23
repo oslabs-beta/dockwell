@@ -28,7 +28,9 @@ const App = () => {
               newQueryState[key].State === 'running' && //||
               //   newQueryState[key].State === 'paused')
               newQueryState[key].cpu &&
-              newQueryState[key].memory
+              newQueryState[key].memory &&
+              res.data[key].cpu &&
+              res.data[key].memory
             ) {
               newQueryState[key].State = res.data[key].State;
               newQueryState[key].Status = res.data[key].Status;

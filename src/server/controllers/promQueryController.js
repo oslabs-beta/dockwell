@@ -56,7 +56,12 @@ promQueryController.getContainers = async (req, res, next) => {
     //goes through the array from the map above, and creates an object where each key is a container ID, and the value is the object created in the step above.
     const finalData = {};
     for (let metricObj of data) {
-      if (metricObj.Names !== 'prometheus' && metricObj.Names !== 'cadvisor') {
+      if (
+        metricObj.Names !== 'prometheus' &&
+        metricObj.Names !== 'cadvisor' &&
+        metricObj.Names !== 'dockwell-dev' &&
+        metricObj.Names !== 'dockwell'
+      ) {
         finalData[metricObj.ID] = metricObj;
       }
     }

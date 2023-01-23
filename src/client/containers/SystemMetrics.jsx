@@ -29,6 +29,10 @@ const systemMetrics = ({ totals, activeContainers }) => {
     return a + b;
   }, 0);
 
+  const healthColor = healthFail === 0 ? 'green' : 'red';
+  const memColor = totalMemFail === 0 ? 'green' : 'red';
+
+
   
   return (
     <>
@@ -51,12 +55,12 @@ const systemMetrics = ({ totals, activeContainers }) => {
           <div className="errors">
             <div className="healthfail">
               <p>Health Failures: </p>
-              <a>{healthFail}</a>
+              <i className={healthColor}>{healthFail}</i>
             </div>
 
             <div className="totalMemFail">
               <p>Memory Failures: </p>
-              <a>{totalMemFail}</a>
+              <i className={memColor}>{totalMemFail}</i>
             </div>
           </div>
           <div className="legend">

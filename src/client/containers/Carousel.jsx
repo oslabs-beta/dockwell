@@ -29,11 +29,10 @@ function CarouselDisplay(props) {
         <option value="" disabled selected>
           Data points
         </option>
-        <option value={1}>1</option>
         <option value={25}>25</option>
         <option value={50}>50</option>
         <option value={75}>75</option>
-        <option value={Infinity}>Infinity</option>
+        <option value={Infinity}>Max</option>
       </select>
     </>
   );
