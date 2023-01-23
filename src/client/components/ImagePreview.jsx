@@ -15,7 +15,7 @@ const ImagePreview = ({ obj }) => {
   const toggleClick = (cmd) => {
     State === 'paused' && cmd === 'start' ? (cmd = 'unpause') : '';
     axios
-      .get(`http://localhost:3535/api/control/${cmd}/${Names}`)
+      .get(`/api/control/${cmd}/${Names}`)
       .then((data) => {
         console.log(`${Names} was ${cmd}`);
       })
