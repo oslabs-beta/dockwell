@@ -30,9 +30,12 @@ body {
     linear-gradient(90deg, rgba(45, 45, 45, 0.7) 0.1em, transparent 0.1em);
   background-size: 1em 1em;
   padding: 20px;
+
+
 }
 
 .App {
+  
   .main {
     height: 100%;
     display: grid;
@@ -46,47 +49,12 @@ body {
   flex-direction: column;
   align-items: center;
   // height: 90vh;
-  padding-bottom: 30px;
 
   .title {
     width: 100%;
     font-size: 50;
     font-family: 'Kanit', sans-serif;
-    height: 170.78;
-
-    .links {
-      display: flex;
-      justify-content: center;
-      align-items: baseline;
-      position: absolute;
-      top: 15px;
-      right: 40px;
-
-      a {
-        color: $tertiary;
-        font-size: 1.5rem;
-      }
-
-      svg {
-        margin: auto 0;
-        color: $tertiary;
-      }
-    }
-
-
-    h1 {
-      font-size: 50px;
-      position: relative;
-      bottom: 20px;
-    }
-
-    h2 {
-      position: relative;
-      bottom: 30px;
-      left: 30px;
-    }
-
-
+    height: 30%
   }
 
   .SystemMetrics {
@@ -125,96 +93,53 @@ body {
       }
     }
 
-    .bottom {
-      display: flex;
+    .legendInner {
+      background-color: $panels;
+      padding: 15px;
+      border-radius: 10px;
+      // display: flex;
+      // flex-direction: column;
+      font-size: 1.2rem;
+      // margin: 5px 8px;
+      overflow: scroll;
 
-      .errors {
-        display: flex;
-        flex-direction: column;
-
-        .totalMemFail,
-        .healthfail {
-          background-color: $panels;
-          height: 87.5px;
-          width: 135px;
-          margin: 0 15 15 0;
-          border-radius: 10px;
-          padding: 2.5px;
-          display: flex;
-
-          a {
-            font-size: 70px;
-            position: relative;
-            bottom: 12.5px;
-            right: 10px;
-          }
-          p {
-            // transform: rotate(270deg);
-            width: 100px;
-            margin: 0 auto;
-            position: relative;
-            top: 17.5px;
-            left: 5px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: 0;
-            
-            
-
-           
-          }
-          // display: 
-        }
-
+      .legendItem1,
+      .legendItem2,
+      .legendItem3,
+      .legendItem4,
+      .legendItem5,
+      .legendItem6 {
+        color: $secondary;
+        border-radius: 15px;
+        margin: 4px 2px 0px 2px;
+        padding: 3px 10px;
+        height: max-content;
+        text-align: center;
       }
 
-      .legendInner {
-        background-color: $panels;
-        height: 190px;
-        width: 285px;
-        padding: 15px;
-        border-radius: 10px;
-        font-size: 1.2rem;
-        overflow: scroll;
 
-        .legendItem1,
-        .legendItem2,
-        .legendItem3,
-        .legendItem4,
-        .legendItem5,
-        .legendItem6 {
-          color: $secondary;
-          border-radius: 15px;
-          margin: 4px 2px 0px 2px;
-          padding: 3px 10px;
-          height: max-content;
-          text-align: center;
-        }
+      .legendItem1 {
+        background-color: #ff6384;
+      }
 
+      .legendItem2 {
+        background-color: #36a2eb;
+      }
 
-        .legendItem1 {
-          background-color: $legend1
-        }
+      .legendItem3 {
+        background-color: #ffcf56c4;
+      }
 
-        .legendItem2 {
-          background-color: $legend2;
-        }
+      .legendItem4 {
+        background-color: rgba(75, 192, 192, 0.7);
+      }
 
-        .legendItem3 {
-          background-color: $legend3;
-        }
+      .legendItem5 {
+        background-color: rgba(153, 102, 255, 0.7);
+      }
 
-        .legendItem4 {
-          background-color: $legend4;
-        }
-
-        .legendItem5 {
-          background-color: $legend5;
-        }
-
-        .legendItem6 {
-          background-color: $legend6;
-        }
+      .legendItem6 {
+        background-color: rgba(255, 159, 64, 0.7);
       }
     }
   }
@@ -234,49 +159,6 @@ body {
     margin: 0 15px;
     border-radius: 10px;
     height: 100%;
-    max-height: 802.398;
-
-    .carousel-control-next-icon {
-      position: relative;
-      left: 66px;
-      top: 24px;
-    }
-
-    .carousel-control-prev-icon {
-      position: relative;
-      right: 66px;
-      top: 24px;
-    }
-
-    button {
-      width: 50px;
-      height: 5px;
-      margin: 0 10px;
-      border: none;
-    }
-
-    h2 {
-      position: relative;
-      top: 10px
-    }
-
-    select {
-      width: 120px;
-      margin: 0 auto;
-      padding: .2rem;
-      cursor: pointer;
-      border-radius: 5px;
-      background-color: #ddd;
-    }
-
-    .carousel-indicators {
-      position: absolute;
-      top: 810px;
-
-      button.active {
-        background-color: $carouselActive;
-      }
-    }
 
     .header {
       width: 80%;
@@ -295,13 +177,12 @@ body {
   flex-direction: column;
 
   padding: 30px 0;
-  // margin: 0 10px;
+  margin: 0 10px;
   height: 100%;
 
   .Environments {
     overflow: scroll;
-    height: 50vh;
-    margin-bottom: 15px;
+    height: 50%;
 
     .ImagePreview {
       display: flex;
@@ -375,31 +256,31 @@ body {
         .btn-danger {
           background-color: $red;
         }
-
-        .btn-warning {
-          background-color: $yellow;
-        }
       }
     }
   }
 
   .logs {
+
     background-color: $panels;
-    // max-height: 40vh;
     padding: 0 10px 10px 10px;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    max-width: 407.5px;
-    max-height: 304px;
 
+    // form {
+    //   margin-top: none;
+    // }
+    .dropdown {
+      margin: 0 auto;
+    }
 
     input,
-    select {
-      margin: 0 auto;
+    .dropdown {
       display: flex;
       justify-content: center;
-      width: 60%;
+
+      width: 80%;
       padding: .2rem;
       cursor: pointer;
       border-radius: 5px;
@@ -408,16 +289,18 @@ body {
     }
 
     .logs-list {
-      background-color: $logbackground;
-      border: 2px solid $logborder;
+      background-color: #1b263b;
+      border: 2px solid #778da8;
       padding-right: 10px;
-      height: 200px;
+      height: 20vh;
+      // width: 100%;
       overflow: scroll;
 
       .logs-list-item {
-        border-bottom: 2px solid $logborder;
+        border-bottom: 2px solid #778da8;
         padding: 10px;
       }
     }
   }
 }
+

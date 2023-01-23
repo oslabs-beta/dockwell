@@ -21,12 +21,12 @@ ChartJS.register(
   Legend
 );
 const colors = [
-  'rgba(255, 99, 132, .7)',
-  'rgba(54, 162, 235, .7)',
-  'rgba(255, 206, 86, .7)',
-  'rgba(75, 192, 192, .7)',
-  'rgba(153, 102, 255, .7)',
-  'rgba(255, 159, 64, .7)',
+  'rgba(102, 103, 171, .7)',
+  'rgba(139, 194, 140, .7)',
+  'rgba(234, 103, 89, .7)',
+  'rgba(248, 143, 88, .7)',
+  'rgba(243, 198, 95, .7)',
+  'rgba(241, 138, 173, .7)',
 ];
 
 export default function ChartCompound({
