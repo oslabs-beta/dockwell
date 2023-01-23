@@ -100,10 +100,11 @@ STEP 2: DOCKER COMPOSE UP
 
 ---
 
-- Kyle Saunders[LinkedIn] | [Github]
-- Sami Messai[LinkedIn] | [Github]
-- Aalok Shah[LinkedIn] | [Github]
-- Josh Paynter[LinkedIn] | [Github]
+- Kyle Saunders [LinkedIn](https://www.linkedin.com/in/kylersaunders/) | [Github](https://github.com/kylersaunders)
+- Sami Messai [LinkedIn](https://www.linkedin.com/in/sami-messai-682873ab/) | [Github](https://github.com/samessai14)
+- Aalok Shah [LinkedIn](https://www.linkedin.com/in/kolashah/) | [Github](https://github.com/kolashah)
+- Josh Paynter [LinkedIn](https://www.linkedin.com/in/josh-paynter-192a9b234/) | [Github](https://github.com/jip1029)
+
 
 [↥Back to top](#table-of-contents)
 
