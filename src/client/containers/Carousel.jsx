@@ -19,7 +19,7 @@ function CarouselDisplay(props) {
     <>
       <select
         className="dropdown"
-        placeholder="Show x most recent points:"
+        placeholder="Data Points:"
         defaultValue={null}
         onChange={(e) => {
           e.preventDefault();
@@ -27,7 +27,7 @@ function CarouselDisplay(props) {
         }}
       >
         <option value="" disabled selected>
-          Show x most recent points:
+          Data points
         </option>
         <option value={1}>1</option>
         <option value={25}>25</option>
