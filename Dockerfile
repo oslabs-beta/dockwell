@@ -19,4 +19,4 @@ ENTRYPOINT node ./src/server/server.js
 #    --push \
 #    .
 
-# docker run -v /var/run/docker.sock:/var/run/docker.sock -p 3535:3535 dockwellhub/dwh-prod:latest
+# docker run -v /var/run/docker.sock:/var/run/docker.sock --name=dockwell -p 3535:3535 dockwellhub/dwh-prod:latest
