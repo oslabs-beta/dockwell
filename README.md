@@ -14,6 +14,8 @@ With the needs of developers in mind, Dockwell uses Prometheus and cAdvisor to s
 
 Dockwell is an open source project and we would love to hear your feedback!
 
+
+
 ## Table of Contents
 
 Application usage/documentation
@@ -21,9 +23,10 @@ Application usage/documentation
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 
-Installation guides
+Installation guides for Developers
 
 - [Installation](#installation)
+
 
 Contributers and other info
 
@@ -68,7 +71,6 @@ Contributers and other info
 
 ---
 
-- prolly something like download from docker hub and docker compose up..... i frigging hope
 
 [↥Back to top](#table-of-contents)
 
@@ -76,10 +78,10 @@ Contributers and other info
 
 ---
 
-- Kyle Saunders[LinkedIn] | [Github]
-- Sami Messai[LinkedIn] | [Github]
-- Aalok Shah[LinkedIn] | [Github]
-- Josh Paynter[LinkedIn] | [Github]
+- Kyle Saunders [LinkedIn](https://www.linkedin.com/in/kylersaunders/) | [Github](https://github.com/kylersaunders)
+- Sami Messai [LinkedIn](https://www.linkedin.com/in/sami-messai-682873ab/) | [Github](https://github.com/samessai14)
+- Aalok Shah [LinkedIn](https://www.linkedin.com/in/kolashah/) | [Github](https://github.com/kolashah)
+- Josh Paynter [LinkedIn](https://www.linkedin.com/in/josh-paynter-192a9b234/) | [Github](https://github.com/jip1029)
 
 [↥Back to top](#table-of-contents)
 
@@ -100,9 +102,7 @@ Contributers and other info
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white)
 
 [↥Back to top](#table-of-contents)
-## How to Contribute
 
----
 
 Contributions are always welcome!
 Do whatever u want idgaf really! i know im fresh
