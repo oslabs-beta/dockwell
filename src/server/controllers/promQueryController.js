@@ -6,6 +6,7 @@ const { exec } = require('child_process');
 const execProm = promisify(exec);
 const cliParser = require('../serverUtils/dockerCliJS');
 const { Metric } = require('prometheus-query');
+const { container } = require('webpack');
 
 // default options
 const options = {
@@ -45,7 +46,7 @@ promQueryController.getContainers = async (req, res, next) => {
       return {
         ID: container.ID,
         Names: container.Names,
-        State: 'running',
+        // State: 'running',
         Ports: container.Ports,
         CreatedAt: container.CreatedAt,
         Image: container.Image,
@@ -65,6 +66,27 @@ promQueryController.getContainers = async (req, res, next) => {
   } catch (err) {
     return next({
       log: `error ${err} occurred in stopContainer`,
+      message: { err: 'an error occured' },
+    });
+  }
+};
+
+promQueryController.getContainerState = async (req, res, next) => {
+  try {
+    for (let container in res.locals.containers) {
+      console.log(res.locals.containers[container]);
+      const { stdout } = await execProm(
+        `docker inspect ${res.locals.containers[container].Names} --format "{{json .}}"`
+      );
+      const data = cliParser(stdout);
+      console.log(data);
+      const containerState = data[0].State.Status;
+      res.locals.containers[container].State = containerState;
+    }
+    return next();
+  } catch (err) {
+    return next({
+      log: `error ${err} occurred in getContainerState`,
       message: { err: 'an error occured' },
     });
   }
