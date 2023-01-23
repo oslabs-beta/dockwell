@@ -14,6 +14,7 @@ With the needs of developers in mind, Dockwell uses Prometheus and cAdvisor to s
 
 Dockwell is an open source project and we would love to hear your feedback!
 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/105250729/214136456-38e208cf-4deb-4f24-a676-654c9e0d4091.gif)
 
 
 ## Table of Contents
@@ -62,9 +63,7 @@ Contributers and other info
 - The host computer running Dockwell must have:
 
   - A Docker  [Account](https://www.docker.com/ 'Download Docker')
-  
-  - Hopefully at least a few containers (idk?)
-
+  - 
   [↥Back to top](#table-of-contents)
 
 ## Installation:
@@ -105,6 +104,6 @@ Contributers and other info
 
 
 Contributions are always welcome!
-Do whatever u want idgaf really! i know im fresh
+To contribute please fork the repository and then create a pull request.
 
 [↥Back to top](#table-of-contents)
