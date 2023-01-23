@@ -14,6 +14,9 @@ With the needs of developers in mind, Dockwell uses Prometheus and cAdvisor to s
 
 Dockwell is an open source project and we would love to hear your feedback!
 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/105250729/214136456-38e208cf-4deb-4f24-a676-654c9e0d4091.gif)
+
+
 ## Table of Contents
 
 Application usage/documentation
@@ -21,15 +24,17 @@ Application usage/documentation
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 
-Installation guides
+Installation Guides
 
-- [Installation](#installation)
+- [Installation](#Installation-for-Users)
+- [How to Contribute](#how-to-contribute)
+
 
 Contributers and other info
 
 - [Contributers](#contributers)
 - [Made With](#made-with)
-- [How to Contribute](#how-to-contribute)
+
 
 ## Features:
 
@@ -59,27 +64,25 @@ Contributers and other info
 - The host computer running Dockwell must have:
 
   - A Docker  [Account](https://www.docker.com/ 'Download Docker')
-  
-  - Hopefully at least a few containers (idk?)
-
-  [↥Back to top](#table-of-contents)
-
-## Installation:
+  - 
 
 ---
-
-- prolly something like download from docker hub and docker compose up..... i frigging hope
 
 [↥Back to top](#table-of-contents)
 
-## Contributors
+## Installation for Users:
+  - To use Docker, please visit [this](https://github.com/oslabs-beta/dockwell/tree/SetupInstall) repository and follow the instructions in the Readme
 
+## How to Contribute:
+  - Contributions are always welcome!
+  - To contribute please fork the repository and then create a pull request.
+[↥Back to top](#table-of-contents)
 ---
 
-- Kyle Saunders[LinkedIn] | [Github]
-- Sami Messai[LinkedIn] | [Github]
-- Aalok Shah[LinkedIn] | [Github]
-- Josh Paynter[LinkedIn] | [Github]
+- Kyle Saunders [LinkedIn](https://www.linkedin.com/in/kylersaunders/) | [Github](https://github.com/kylersaunders)
+- Sami Messai [LinkedIn](https://www.linkedin.com/in/sami-messai-682873ab/) | [Github](https://github.com/samessai14)
+- Aalok Shah [LinkedIn](https://www.linkedin.com/in/kolashah/) | [Github](https://github.com/kolashah)
+- Josh Paynter [LinkedIn](https://www.linkedin.com/in/josh-paynter-192a9b234/) | [Github](https://github.com/jip1029)
 
 [↥Back to top](#table-of-contents)
 
@@ -96,15 +99,11 @@ Contributers and other info
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ### Monitoring and Data Visualization
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-![Grafana](https://img.shields.io/badge/grafana-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white)
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white)
 
 [↥Back to top](#table-of-contents)
-## How to Contribute
 
----
 
-Contributions are always welcome!
-Do whatever u want idgaf really! i know im fresh
+
 
 [↥Back to top](#table-of-contents)
