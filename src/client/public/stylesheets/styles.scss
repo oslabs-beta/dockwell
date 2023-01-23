@@ -142,12 +142,23 @@ body {
           padding: 2.5px;
           display: flex;
 
-          a {
+          i {
             font-size: 70px;
             position: relative;
             bottom: 12.5px;
             right: 10px;
+
+            // text-decoration: none;
           }
+
+          .green {
+            color: $green;
+          }
+
+          .red {
+            color: $red;
+          }
+
           p {
             // transform: rotate(270deg);
             width: 100px;
@@ -158,11 +169,12 @@ body {
             width: fit-content;
             margin-left: auto;
             margin-right: 0;
-            
-            
 
-           
+
+
+
           }
+
           // display: 
         }
 

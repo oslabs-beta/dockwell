@@ -7,11 +7,9 @@ import LiquidFillGauge from 'react-liquid-gauge';
 const LiquidGauge = (props) => {
   const [initial, setInitial] = useState(0);
   setTimeout(() => {
-    setInitial((prev) => {
-      if (prev === 75) return 75;
-      return prev + 25;
-    });
-  }, 500);
+    return setInitial(100)
+  }, 200)
+  
   const gaugeVal = props.percent ? props.percent : initial;
   const startColor = '#FFFFFF'; //
   const endColor = '#FFFFFF';
@@ -44,7 +42,7 @@ const LiquidGauge = (props) => {
         width={props.width}
         height={props.height}
         value={gaugeVal}
-        riseAnimationTime={20000}
+        riseAnimationTime={9000}
         textOffsetX={0}
         textOffsetY={0}
         riseAnimation
@@ -57,9 +55,7 @@ const LiquidGauge = (props) => {
         waveStyle={{ fill: fillColor }}
         textStyle={{ fill: 'rgb(255, 255, 255)' }}
         waveTextStyle={{ fill: 'rgb(255, 255, 255)' }}
-        // onClick={() => {
-        //   this.setState({ value: Math.random() * 100 });
-        // }}
+        
       />
       <br></br>
       <p className="loading-center">{props.label}</p>
