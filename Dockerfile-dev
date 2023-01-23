@@ -1,9 +1,0 @@
-#some pseudocode here
-FROM node:16.13
-RUN npm install webpack -g
-WORKDIR /usr/src
-COPY package*.json /usr/src
-RUN npm install
-EXPOSE 3535
-# docker build -t megamark3ts/mm-dev .
-# docker run -p 3001:3000 megamark3ts/mm-dev

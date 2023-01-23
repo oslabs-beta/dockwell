@@ -4,6 +4,7 @@ volumes:
     driver: local
   grafana-data:
     driver: local
+  node_modules: {}
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -41,4 +42,20 @@ services:
       - '3000:3000'
     volumes:
       - grafana-data:/var/lib/grafana
-    restart: unless-stopped
+  #docker compose -f docker-compose-dev.yml up
+  dockwell-dev:
+    image: dockwellhub/dwh-dev:latest
+    container_name: dockwell-dev
+    ports:
+      - 7070:7070
+    volumes:
+      - .:/usr/src
+      - node_modules:/usr/src/node_modules
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - PROXY_HOST=0.0.0.0
+      - NODE_ENV=development
+    command: 'npm run dev:docker'
+    depends_on:
+      - prometheus
+      - cadvisor
