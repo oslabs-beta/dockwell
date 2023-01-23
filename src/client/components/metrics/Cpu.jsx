@@ -9,14 +9,8 @@ const cpu = (props) => {
     : 0;
 
   return (
-    <div className="metric">
-      <label>CPU Usage</label>
-      <LiquidGuage
-        className="liquidGauge"
-        percent={totalCpuPerc}
-        width={150}
-        height={150}
-      />
+    <div className="liquidGauge">
+      <LiquidGuage percent={totalCpuPerc} width={150} height={150} />
     </div>
   );
 };

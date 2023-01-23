@@ -27,11 +27,7 @@ const Environments = (props) => {
     <ImagePreview obj={obj} key={'container ' + i} />
   ));
 
-  return (
-    <div className="Environments">
-      <div className="EnvContainer">{previewArray}</div>
-    </div>
-  );
+  return <div className="Environments">{previewArray}</div>;
 };
 
 export default Environments;
