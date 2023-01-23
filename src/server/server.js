@@ -10,6 +10,7 @@ const {
   cpuQuery,
   memoryQuery,
   getContainers,
+  getContainerState,
   getTotals,
   memFailuresQuery,
   healthFailureQuery,
@@ -19,12 +20,12 @@ const PORT = 3535;
 
 app.use(cookieParser()).use(express.json()).use(cors());
 
-app.get('/api/getContainers', getContainers, (req, res) => {
+app.get('/api/getContainers', getContainers, getContainerState, (req, res) => {
   // console.log('containers', res.locals.containers);
   res.status(200).json(res.locals.containers);
 });
 
-app.get('/api/getFastStats', getContainers, (req, res) => {
+app.get('/api/getFastStats', getContainers, getContainerState, (req, res) => {
   // console.log('fast', res.locals.containers);
   res.status(200).json(res.locals.containers);
 });
@@ -32,6 +33,7 @@ app.get('/api/getFastStats', getContainers, (req, res) => {
 app.get(
   '/api/getStats',
   getContainers,
+  getContainerState,
   memoryQuery,
   cpuQuery,
   memFailuresQuery,

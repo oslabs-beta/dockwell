@@ -28,7 +28,7 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
   dockwell:
     # network_mode: host
-    image: dockwellhub/dwh-prod:latest
+    image: dockwellhub/dwh-prod6
     container_name: dockwell
     ports:
       - 3001:3535
