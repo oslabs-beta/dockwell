@@ -24,16 +24,17 @@ Application usage/documentation
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 
-Installation guides for Developers
+Installation Guides
 
-- [Installation](#installation)
+- [Installation](#Installation-for-Users)
+- [How to Contribute](#how-to-contribute)
 
 
 Contributers and other info
 
 - [Contributers](#contributers)
 - [Made With](#made-with)
-- [How to Contribute](#how-to-contribute)
+
 
 ## Features:
 
@@ -64,17 +65,18 @@ Contributers and other info
 
   - A Docker  [Account](https://www.docker.com/ 'Download Docker')
   - 
-  [↥Back to top](#table-of-contents)
-
-## Installation:
 
 ---
 
-
 [↥Back to top](#table-of-contents)
 
-## Contributors
+## Installation for Users:
+  - To use Docker, please visit [this](https://github.com/oslabs-beta/dockwell/tree/SetupInstall) repository and follow the instructions in the Readme
 
+## How to Contribute:
+  - Contributions are always welcome!
+  - To contribute please fork the repository and then create a pull request.
+[↥Back to top](#table-of-contents)
 ---
 
 - Kyle Saunders [LinkedIn](https://www.linkedin.com/in/kylersaunders/) | [Github](https://github.com/kylersaunders)
@@ -97,13 +99,11 @@ Contributers and other info
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ### Monitoring and Data Visualization
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-![Grafana](https://img.shields.io/badge/grafana-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white)
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white)
 
 [↥Back to top](#table-of-contents)
 
 
-Contributions are always welcome!
-To contribute please fork the repository and then create a pull request.
+
 
 [↥Back to top](#table-of-contents)
