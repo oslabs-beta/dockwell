@@ -79,12 +79,18 @@ STEP 2: DOCKER COMPOSE UP
 
 - Open a terminal window, cd into the repository downloaded in Step 1: `cd dockwell-SetupInstall`
 - Enter the command: `docker compose up`
-- Wait 1-2 minutes for background processes to get started.
+
+- You should see the following:
+- <img width="557" alt="Screen Shot 2023-01-23 at 1 36 40 PM" src="https://user-images.githubusercontent.com/7785546/214134207-60b9bea5-f4b8-4ff8-8a5b-e67de80acf80.png">
+
+
+- Wait 1-2 minutes for background processes to get started, and you can confirm everything is running by going viewing Containers in the Desktop Docker Daemon:
+- <img width="986" alt="Screen Shot 2023-01-23 at 1 44 19 PM" src="https://user-images.githubusercontent.com/7785546/214134575-9169d790-b839-4090-a4bd-1991656be7f2.png">
+
+
 - Go to http://localhost:3535 to view your container metrics
 
 ---
-
-- prolly something like download from docker hub and docker compose up..... i frigging hope
 
 [↥Back to top](#table-of-contents)
 
