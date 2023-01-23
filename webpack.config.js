@@ -24,9 +24,15 @@ module.exports = {
     },
     proxy: {
       '/': 'http://localhost:3535/',
+      secure: false,
     },
     compress: true,
+    host: process.env.PROXY_HOST,
     port: 7070,
+    //enable HMR on the devServer
+    hot: true,
+    // fallback to root for other urls
+    historyApiFallback: true,
   },
   module: {
     rules: [

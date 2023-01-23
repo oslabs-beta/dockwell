@@ -74,12 +74,12 @@ promQueryController.getContainers = async (req, res, next) => {
 promQueryController.getContainerState = async (req, res, next) => {
   try {
     for (let container in res.locals.containers) {
-      console.log(res.locals.containers[container]);
+      // console.log(res.locals.containers[container]);
       const { stdout } = await execProm(
         `docker inspect ${res.locals.containers[container].Names} --format "{{json .}}"`
       );
       const data = cliParser(stdout);
-      console.log(data);
+      // console.log(data);
       const containerState = data[0].State.Status;
       res.locals.containers[container].State = containerState;
     }
