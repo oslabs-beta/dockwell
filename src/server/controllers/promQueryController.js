@@ -17,8 +17,8 @@ const options = {
 // host.docker.internal <-- is localhost of the machine when referenced inside of a container
 //query driver config
 
-const endpoint = 'http://localhost:9090';
-// const endpoint = 'http://host.docker.internal:9090';
+// const endpoint = 'http://localhost:9090';
+const endpoint = 'http://host.docker.internal:9090';
 
 const prom = new PrometheusDriver({
   endpoint: endpoint,
@@ -74,12 +74,12 @@ promQueryController.getContainers = async (req, res, next) => {
 promQueryController.getContainerState = async (req, res, next) => {
   try {
     for (let container in res.locals.containers) {
-      console.log(res.locals.containers[container]);
+      // console.log(res.locals.containers[container]);
       const { stdout } = await execProm(
         `docker inspect ${res.locals.containers[container].Names} --format "{{json .}}"`
       );
       const data = cliParser(stdout);
-      console.log(data);
+      // console.log(data);
       const containerState = data[0].State.Status;
       res.locals.containers[container].State = containerState;
     }

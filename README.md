@@ -17,8 +17,6 @@ With the needs of developers in mind, Dockwell uses Prometheus and cAdvisor to s
 
 Dockwell is an open source project and we would love to hear your feedback!
 
-> > > > > > > 339144c29ff21b2df01b4e5b4274c7a05ba0f302
-
 ## Table of Contents
 
 Application usage/documentation
@@ -26,9 +24,10 @@ Application usage/documentation
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 
-Installation guides
+Installation Guides
 
-- [Installation](#installation)
+- [Installation](#Installation-for-Users)
+- [How to Contribute](#how-to-contribute)
 
 Contributers and other info
 
@@ -37,7 +36,6 @@ Contributers and other info
   =======
 - [Made With](#made-with)
   > > > > > > > 339144c29ff21b2df01b4e5b4274c7a05ba0f302
-- [How to Contribute](#how-to-contribute)
 
 ## Features:
 
@@ -83,26 +81,24 @@ System metrics section which displays how much CPU and Memory Docker is currentl
 
 ## Installation:
 
----
-
-- prolly something like download from docker hub and docker compose up..... i frigging hope
-
-[↥Back to top](#table-of-contents)
-
-## Contributors
+- A Docker [Account](https://www.docker.com/ 'Download Docker')
+-
 
 ---
 
-<<<<<<< HEAD
-
-- @Kyle Saunders
-- @Sami Messai
-- @Aalok Shah
-- @Josh Paynter
-
 [↥Back to top](#table-of-contents)
 
-=======
+## Installation for Users:
+
+- To use Docker, please visit [this](https://github.com/oslabs-beta/dockwell/tree/SetupInstall) repository and follow the instructions in the Readme
+
+## How to Contribute:
+
+- Contributions are always welcome!
+- To contribute please fork the repository and then create a pull request.
+  [↥Back to top](#table-of-contents)
+
+---
 
 - Kyle Saunders[LinkedIn] | [Github]
 - Sami Messai[LinkedIn] | [Github]
@@ -129,27 +125,13 @@ System metrics section which displays how much CPU and Memory Docker is currentl
 ### Monitoring and Data Visualization
 
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-![Grafana](https://img.shields.io/badge/grafana-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white)
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white)
 
 [↥Back to top](#table-of-contents)
 
-> > > > > > > 339144c29ff21b2df01b4e5b4274c7a05ba0f302
-
 ## How to Contribute
 
----
-
-<<<<<<< HEAD
-We are always looking to improve!
-To make contributions, create a fork of the dev branch. Ensure that any changes made are reflected in the documentation. Make a pull request to the Dev branch when you have finished making your changes, note that once submitted any changes made will be covered under the MIT liscense.
-
-Feel free to contact the maintainers with any questions or concerns.
-If you come across any bugs or issues while using Dockwell feel free to report by simply opening a new issue on our Github.
-=======
 Contributions are always welcome!
 Do whatever u want idgaf really! i know im fresh
-
-> > > > > > > 339144c29ff21b2df01b4e5b4274c7a05ba0f302
 
 [↥Back to top](#table-of-contents)
