@@ -16,8 +16,8 @@ const options = {
 // host.docker.internal <-- is localhost of the machine when referenced inside of a container
 //query driver config
 
-// const endpoint = 'http://localhost:9090';
-const endpoint = 'http://host.docker.internal:9090';
+const endpoint = 'http://localhost:9090';
+// const endpoint = 'http://host.docker.internal:9090';
 
 const prom = new PrometheusDriver({
   endpoint: endpoint,
