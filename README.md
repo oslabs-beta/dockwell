@@ -27,7 +27,6 @@ Installation guides for Users
 
 - [Installation](#installation)
 
-Installation guides f
 
 Contributers and other info
 
