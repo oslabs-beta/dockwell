@@ -180,10 +180,17 @@ promQueryController.getTotals = async (req, res, next) => {
       memLimit: '0GiB',
     };
     for (let container of data) {
-      let memStr = container.MemPercentage.replace('%', '');
-      let cpuStr = container.CPUPercentage.replace('%', '');
-      totalsFinal.totalMemPercentage += Number(memStr);
-      totalsFinal.totalCpuPercentage += Number(cpuStr);
+      if (
+        container.Name !== 'prometheus' &&
+        container.Name !== 'cadvisor' &&
+        container.Name !== 'dockwell-dev' &&
+        container.Name !== 'dockwell'
+      ) {
+        let memStr = container.MemPercentage.replace('%', '');
+        let cpuStr = container.CPUPercentage.replace('%', '');
+        totalsFinal.totalMemPercentage += Number(memStr);
+        totalsFinal.totalCpuPercentage += Number(cpuStr);
+      }
     }
     const memLimit = data[0].MemUsage.split('/');
     totalsFinal.memLimit = memLimit[1];
