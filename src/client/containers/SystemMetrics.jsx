@@ -47,8 +47,8 @@ const systemMetrics = ({ totals, activeContainers }) => {
         <div className="bottom">
           <div className="errors">
             <div className="healthfail">
-              <p>Health Failures: </p>
-              <i className={healthColor}>{healthFail}</i>
+              <div id='title'>Health Failures: </div>
+              <div id='num' className={healthColor}>{healthFail}</div>
             </div>
           </div>
           <div className="legend">

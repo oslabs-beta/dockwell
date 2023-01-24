@@ -25,10 +25,8 @@ html {
 body {
   background: $background;
   color: $tertiary;
-  background-image: linear-gradient(
-      rgba(45, 45, 45, 0.7) 0.1em,
-      transparent 0.1em
-    ),
+  background-image: linear-gradient(rgba(45, 45, 45, 0.7) 0.1em,
+      transparent 0.1em),
     linear-gradient(90deg, rgba(45, 45, 45, 0.7) 0.1em, transparent 0.1em);
   background-size: 1em 1em;
   padding: 20px;
@@ -130,24 +128,29 @@ body {
         display: flex;
         flex-direction: column;
 
-        .totalMemFail,
         .healthfail {
           background-color: $panels;
-          height: 87.5px;
+          height: 158px;
           width: 135px;
           margin: 0 15 15 0;
           border-radius: 10px;
           padding: 2.5px;
           display: flex;
-
-          i {
-            font-size: 70px;
-            position: relative;
-            bottom: 12.5px;
-            right: 10px;
-
-            // text-decoration: none;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+         
+          #title {
+            font-size: 25;
+            padding-bottom: 15px;
           }
+
+          #num {
+            font-size: 40;
+          }
+
+          //   // text-decoration: none;
+          // }
 
           .green {
             color: $green;
@@ -157,17 +160,17 @@ body {
             color: $red;
           }
 
-          p {
-            // transform: rotate(270deg);
-            width: 100px;
-            margin: 0 auto;
-            position: relative;
-            top: 17.5px;
-            left: 5px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: 0;
-          }
+          // p {
+          //   // transform: rotate(270deg);
+          //   width: 100px;
+          //   margin: 0 auto;
+          //   position: relative;
+          //   top: 17.5px;
+          //   left: 5px;
+          //   width: fit-content;
+          //   margin-left: auto;
+          //   margin-right: 0;
+          // }
 
           // display:
         }
@@ -175,7 +178,7 @@ body {
 
       .legendInner {
         background-color: $panels;
-        height: 190px;
+        height: 158px;
         width: 285px;
         padding: 15px;
         border-radius: 10px;
@@ -237,8 +240,14 @@ body {
     padding: 10px 30px;
     margin: 0 15px;
     border-radius: 10px;
-    height: 100%;
-    max-height: 802.398;
+    // height: 100%;
+    max-height: 803px;
+
+    .carousel-control-next,
+    .carousel-control-prev {
+      margin-top: 50px;
+      height: 700px;
+    }
 
     .carousel-control-next-icon {
       position: relative;
@@ -259,10 +268,10 @@ body {
       border: none;
     }
 
-    h2 {
-      position: relative;
-      top: 10px;
-    }
+    // h2 {
+    //   position: relative;
+    //   top: 10px;
+    // }
 
     select {
       width: 120px;
@@ -283,13 +292,30 @@ body {
     }
 
     .header {
-      width: 80%;
-      cursor: pointer;
+      display: flex;
+      margin: auto 10px;
+      justify-content: space-between;
+
+      .badge {
+        height: min-content;
+        padding: 10px;
+        margin: auto 0;
+        width: 180px;
+      }
+
+      h2 {
+        align-self: center;
+      }
 
       select {
         margin: 2px;
-        float: right;
+        width: 180px;
+        height: 30px;
+        margin: auto 0;
+        border-radius: 50px;
+        padding-left: 5px;
       }
+
     }
   }
 }
@@ -395,7 +421,7 @@ body {
     flex-direction: column;
     border-radius: 10px;
     max-width: 407.5px;
-    max-height: 304px;
+    max-height: 270px;
 
     input,
     select {
