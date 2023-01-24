@@ -6,7 +6,7 @@
 
 ---
 
-<<<<<<< HEAD
+
 Dockwell is an easy to install and easy to spin up GUI that tracks, monitors, and displays all of a user's containers in Docker. With the ability to check logs and quickly compare container health, Dockwell works with Prometheus and Cadvisor to provide developers with an easy to use interface that will greatly assist in their debugging and development processes.
 =======
 Dockwell is an intuitive and comprehensive GUI that tracks, monitors, and displays all of a user's Docker containers.
