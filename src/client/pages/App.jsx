@@ -142,6 +142,9 @@ const App = () => {
                 >
                   GitHub
                 </a>
+                <a href="https://localhost:3000" className="btn btn-link">
+                  Grafana
+                </a>
               </div>
             </div>
             <SystemMetrics
