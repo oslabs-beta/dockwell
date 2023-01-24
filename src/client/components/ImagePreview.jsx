@@ -8,7 +8,6 @@ const ImagePreview = ({ obj }) => {
 
   let date = CreatedAt.substring(0, 19);
   let port = Ports.substring(8, 18);
-  // let state = State[0].toUpperCase() + State.substring(1);
 
   let badgeColor;
 
@@ -102,14 +101,6 @@ const ImagePreview = ({ obj }) => {
           </button>
         )}
 
-        {/* <button
-          type="button"
-          className='btn btn-warning'
-          // onClick={toggleClick}
-          data-toggle="button"
-          aria-pressed="false"
-          autoComplete="off"
-        >Pause</button> */}
       </div>
     </div>
   );

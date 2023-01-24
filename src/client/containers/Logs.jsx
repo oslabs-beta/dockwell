@@ -50,19 +50,19 @@ const Logs = (props) => {
               return <option value={x.Names}>{x.Names}</option>;
             })}
           </select>
+          {(selectedContainer ? true : false) && (
+            <input
+              type="submit"
+              value="Refresh Logs"
+              onClick={(e) => {
+                e.preventDefault();
+                getLogs(selectedContainer);
+              }}
+            />
+          )}
         </form>
       )}
       {(logs ? true : false) && <ul className="logs-list"> {logsJSX}</ul>}
-      {(selectedContainer ? true : false) && (
-        <input
-          type="submit"
-          value="Refresh Logs"
-          onClick={(e) => {
-            e.preventDefault();
-            getLogs(selectedContainer);
-          }}
-        />
-      )}
     </>
   );
 };

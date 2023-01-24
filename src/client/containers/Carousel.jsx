@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import CPU from '../components/metrics/Cpu.jsx';
 import Chart from '../components/Chart.jsx';
 import ChartCompound from '../components/ChartCompound.jsx';
+
 
 function CarouselDisplay(props) {
   const [index, setIndex] = useState(0);
@@ -75,7 +75,7 @@ function CarouselDisplay(props) {
           allActiveContainers={props.activeContainers}
           metric="cpu"
           dataLength={dataLength}
-          metricName="CPU Usage (s)"
+          metricName="CPU Usage (%)"
         ></ChartCompound>
       </Carousel.Item>
       {props.activeContainers.map((obj, i) => (
@@ -97,7 +97,7 @@ function CarouselDisplay(props) {
             className="lineChart"
             dataLength={dataLength}
             activeContainer={obj.cpu}
-            metric="CPU Usage (s)"
+            metric="CPU Usage (%)"
           />
         </Carousel.Item>
       ))}
