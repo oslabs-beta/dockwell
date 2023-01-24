@@ -36,6 +36,12 @@ function CarouselDisplay(props) {
       </select>
     </>
   );
+  for (let index = 0; index < props.activeContainers.length; index++) {
+    console.log(
+      'healthfaliures',
+      props.activeContainers[index].memFailures.value[0]
+    );
+  }
 
   return (
     <Carousel
@@ -71,9 +77,15 @@ function CarouselDisplay(props) {
       {props.activeContainers.map((obj, i) => (
         <Carousel.Item interval={interval} key={'container ' + i}>
           <div className="header">
-            <h2 style={{ display: 'inline', marginRight: '8px' }}>
-              {obj.Names}
-            </h2>
+            <div className="side">
+              <h2 style={{ display: 'inline', marginRight: '8px' }}>
+                {obj.Names}
+              </h2>
+              <div className="memFailures btn btn-danger btn-sm">
+                <p>Mem Fails </p>
+                {obj.memFailures.value[0]}
+              </div>
+            </div>
             {dropDown}
           </div>
           <Chart
