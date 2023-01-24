@@ -11,7 +11,6 @@ const systemMetrics = ({ totals, activeContainers }) => {
   const memPieLabels = [];
   const cpuPieData = [];
   const cpuPieLabels = [];
-  const memFail = []
   const legend = [];
   for (let i = 0; i < activeContainers.length; i++) {
     memPieLabels.push(activeContainers[i].Names);
@@ -21,19 +20,17 @@ const systemMetrics = ({ totals, activeContainers }) => {
     let cpuArr = activeContainers[i].cpu.value;
     memPieData.push(memArr[memArr.length - 1]);
     cpuPieData.push(cpuArr[cpuArr.length - 1]);
-    memFail.push(activeContainers[i].memFailures.value[0])
+    // memFail.push(activeContainers[i].memFailures.value[0])
   }
   const totalmetrics = totals ? totals : {};
-  const healthFail = totalmetrics.dockerHealthFailures
-  const totalMemFail = memFail.reduce((a, b) => {
-    return a + b;
-  }, 0);
+  const healthFail = totalmetrics.dockerHealthFailures;
+  // const totalMemFail = memFail.reduce((a, b) => {
+  //   return a + b;
+  // }, 0);
 
   const healthColor = healthFail === 0 ? 'green' : 'red';
-  const memColor = totalMemFail === 0 ? 'green' : 'red';
+  // const memColor = totalMemFail === 0 ? 'green' : 'red';
 
-
-  
   return (
     <>
       <div className="SystemMetrics">
@@ -56,11 +53,6 @@ const systemMetrics = ({ totals, activeContainers }) => {
             <div className="healthfail">
               <p>Health Failures: </p>
               <i className={healthColor}>{healthFail}</i>
-            </div>
-
-            <div className="totalMemFail">
-              <p>Memory Failures: </p>
-              <i className={memColor}>{totalMemFail}</i>
             </div>
           </div>
           <div className="legend">
