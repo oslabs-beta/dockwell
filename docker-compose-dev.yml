@@ -1,3 +1,5 @@
+#DEVELOPMENT
+#docker compose -f docker-compose-dev.yml up
 version: '3'
 volumes:
   prometheus-data:
@@ -42,7 +44,6 @@ services:
       - '3000:3000'
     volumes:
       - grafana-data:/var/lib/grafana
-  #docker compose -f docker-compose-dev.yml up
   dockwell-dev:
     image: dockwellhub/dwh-dev:latest
     container_name: dockwell-dev
