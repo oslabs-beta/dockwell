@@ -20,13 +20,9 @@ const systemMetrics = ({ totals, activeContainers }) => {
     let cpuArr = activeContainers[i].cpu.value;
     memPieData.push(memArr[memArr.length - 1]);
     cpuPieData.push(cpuArr[cpuArr.length - 1]);
-    // memFail.push(activeContainers[i].memFailures.value[0])
   }
   const totalmetrics = totals ? totals : {};
   const healthFail = totalmetrics.dockerHealthFailures;
-  // const totalMemFail = memFail.reduce((a, b) => {
-  //   return a + b;
-  // }, 0);
 
   const healthColor = healthFail === 0 ? 'green' : 'red';
   // const memColor = totalMemFail === 0 ? 'green' : 'red';

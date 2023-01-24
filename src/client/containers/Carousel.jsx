@@ -36,12 +36,13 @@ function CarouselDisplay(props) {
       </select>
     </>
   );
+  const memFail = [];
   for (let index = 0; index < props.activeContainers.length; index++) {
-    console.log(
-      'healthfaliures',
-      props.activeContainers[index].memFailures.value[0]
-    );
+    memFail.push(props.activeContainers[index].memFailures.value[0]);
   }
+  const totalMemFail = memFail.reduce((a, b) => {
+    return a + b;
+  }, 0);
 
   return (
     <Carousel
@@ -60,6 +61,9 @@ function CarouselDisplay(props) {
         <div className="header">
           <h2 style={{ display: 'inline', marginRight: '8px' }}>Overview</h2>
           {dropDown}
+          <div className="btn btn-danger btn-sm">
+            Total Mem Fails: {totalMemFail}
+          </div>
         </div>
         <ChartCompound
           allActiveContainers={props.activeContainers}
