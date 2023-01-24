@@ -44,19 +44,6 @@ export default function ChartComponent({
         text: `${metric}`,
       },
     },
-    // scales: {
-    //   xAxis: {
-    //     ticks: {
-    //       maxTicksLimit: 10,
-    //       color: 'white',
-    //     },
-    //   },
-    //   yAxis: {
-    //     ticks: {
-    //       color: 'white',
-    //     },
-    //   },
-    // },
   };
 
   const data = {

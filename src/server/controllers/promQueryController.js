@@ -46,7 +46,6 @@ promQueryController.getContainers = async (req, res, next) => {
       return {
         ID: container.ID,
         Names: container.Names,
-        // State: 'running',
         Ports: container.Ports,
         CreatedAt: container.CreatedAt,
         Image: container.Image,
@@ -79,12 +78,10 @@ promQueryController.getContainers = async (req, res, next) => {
 promQueryController.getContainerState = async (req, res, next) => {
   try {
     for (let container in res.locals.containers) {
-      // console.log(res.locals.containers[container]);
       const { stdout } = await execProm(
         `docker inspect ${res.locals.containers[container].Names} --format "{{json .}}"`
       );
       const data = cliParser(stdout);
-      // console.log(data);
       const containerState = data[0].State.Status;
       res.locals.containers[container].State = containerState;
     }
@@ -146,7 +143,6 @@ promQueryController.memFailuresQuery = (req, res, next) => {
     .then((data) => {
       const series = data.result;
       for (let metricObj of series) {
-        // console.log(metricObj);
         const short_id = metricObj.metric.labels.id.substr(8, 12);
         //if substring is a key in getcontainers object
         containers[short_id] &&
@@ -173,7 +169,6 @@ promQueryController.getTotals = async (req, res, next) => {
         MemUsage: container.MemUsage,
       };
     });
-    // console.log(stdout);
     const totalsFinal = {
       totalCpuPercentage: 0,
       totalMemPercentage: 0,
@@ -211,7 +206,6 @@ promQueryController.healthFailureQuery = async (req, res, next) => {
   prom
     .instantQuery(q)
     .then((data) => {
-      // console.log(data.result[0].value.value);
       finalResult.totals.dockerHealthFailures = data.result[0].value.value;
       return next();
     })

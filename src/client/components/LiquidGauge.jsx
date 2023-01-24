@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import { color } from 'd3-color';
 import { interpolateRgb } from 'd3-interpolate';
 import LiquidFillGauge from 'react-liquid-gauge';

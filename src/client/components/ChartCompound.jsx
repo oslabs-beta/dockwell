@@ -22,7 +22,7 @@ ChartJS.register(
 );
 const colors = [
   'rgba(102, 103, 171, .7)',
-  'rgba(139, 194, 140, .7)',
+  'rgba(84, 121, 85, .7)',
   'rgba(234, 103, 89, .7)',
   'rgba(248, 143, 88, .7)',
   'rgba(243, 198, 95, .7)',
@@ -37,27 +37,9 @@ export default function ChartCompound({
 }) {
   const options = {
     plugins: {
-      // legend: {
-      //   display: false,
-      // },
       title: {
         display: true,
         text: `${metricName}`,
-      },
-    },
-    scales: {
-      // xAxes: {
-      //   ticks: {
-      //     // maxTicksLimit: 10,
-      //     // display: false,
-      //     color: 'white',
-      //   },
-      // },
-      yAxes: {
-        ticks: {
-          // display: false,
-          color: 'white',
-        },
       },
     },
   };
@@ -91,8 +73,6 @@ export default function ChartCompound({
       data: y,
       borderColor: colors[i],
       backgroundColor: colors[i],
-      // borderColor: randColor,
-      // backgroundColor: randColor,
     };
   });
 

@@ -21,7 +21,6 @@ const Environments = (props) => {
     setInterval(getFastStats(), 500);
   }, []);
 
-  // console.error('keys', Object.values(fastState));
 
   const previewArray = Object.values(fastState).map((obj, i) => (
     <ImagePreview obj={obj} key={'container ' + i} />
