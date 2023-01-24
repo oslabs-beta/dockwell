@@ -1,27 +1,39 @@
-FROM node:16.19-alpine3.16 as node
+#add bash to node alpine
+FROM node:16.19-alpine3.16 as alp-base
 RUN apk add --no-cache bash 
 
-FROM node as alp-base
+#install docker
+FROM alp-base as docker-base
 RUN apk add --update docker openrc
 RUN rc-update add docker boot
 
+#build node modules for dev & for building
+FROM docker-base as npm-base
+WORKDIR /usr/src
+COPY package*.json ./
+RUN npm install
+
 #DEVELOPMENT
 #docker build --target dev -t dockwellhub/dwh-dev .
-FROM alp-base as dev
-WORKDIR /usr/src
-COPY package*.json /usr/src
-RUN npm install
+FROM npm-base as dev
 EXPOSE 7070 
 
-#PRODUCTION
-#docker build -t dockwellhub/dwh-prod .
-FROM alp-base as build
-WORKDIR /usr/src  
-COPY package*.json ./
-RUN npm install --omit=dev
+#webpack builds bundle.js
+FROM npm-base as build
+WORKDIR /usr/src   
 COPY . .
 ENV NODE_ENV=production
 RUN npm run build:docker 
+
+#PRODUCTION
+#docker build -t dockwellhub/dwh-prod .
+FROM docker-base as prod
+WORKDIR /usr/src 
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY /src ./src
+COPY /prometheus.yml ./
+COPY --from=build /usr/src/build ./build
 EXPOSE 3535
 ENTRYPOINT node ./src/server/server.js 
 
