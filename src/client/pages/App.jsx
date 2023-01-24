@@ -142,7 +142,10 @@ const App = () => {
                 >
                   GitHub
                 </a>
-                <a href="https://localhost:3000" className="btn btn-link">
+                <a
+                  href="https://host.docker.internal:3000"
+                  className="btn btn-link"
+                >
                   Grafana
                 </a>
               </div>
