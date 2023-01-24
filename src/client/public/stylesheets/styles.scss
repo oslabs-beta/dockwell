@@ -1,0 +1,435 @@
+@import 'variables.scss';
+
+.loadGauge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .loading-center {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: $background;
+  color: $tertiary;
+  background-image: linear-gradient(rgba(45, 45, 45, 0.7) 0.1em,
+      transparent 0.1em),
+    linear-gradient(90deg, rgba(45, 45, 45, 0.7) 0.1em, transparent 0.1em);
+  background-size: 1em 1em;
+  padding: 20px;
+}
+
+.App {
+  .main {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+    padding: 30px;
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // height: 90vh;
+  padding-bottom: 30px;
+
+  .title {
+    width: 100%;
+    font-size: 50;
+    font-family: 'Kanit', sans-serif;
+    height: 170.78;
+
+    .links {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      position: absolute;
+      top: 15px;
+      right: 40px;
+
+      a {
+        color: $tertiary;
+        font-size: 1.5rem;
+      }
+
+      svg {
+        margin: auto 0;
+        color: $tertiary;
+      }
+    }
+
+
+    h1 {
+      font-size: 50px;
+      position: relative;
+      bottom: 20px;
+    }
+
+    h2 {
+      position: relative;
+      bottom: 30px;
+      left: 30px;
+    }
+
+
+  }
+
+  .SystemMetrics {
+
+    display: flex;
+    flex-direction: column;
+    // padding: 0 10px 30px 0;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+
+    .mem,
+    .cpu {
+      background-color: $panels;
+      display: flex;
+      flex-direction: column;
+      height: 230px;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+
+      label {
+        margin: 0 auto 10px auto;
+        font-size: 1.2rem;
+        color: $tertiary
+      }
+
+      .circles {
+        display: flex;
+        justify-content: space-evenly;
+
+        .liquidGauge {
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .bottom {
+      display: flex;
+
+      .errors {
+        display: flex;
+        flex-direction: column;
+
+        .totalMemFail,
+        .healthfail {
+          background-color: $panels;
+          height: 87.5px;
+          width: 135px;
+          margin: 0 15 15 0;
+          border-radius: 10px;
+          padding: 2.5px;
+          display: flex;
+
+          i {
+            font-size: 70px;
+            position: relative;
+            bottom: 12.5px;
+            right: 10px;
+
+            // text-decoration: none;
+          }
+
+          .green {
+            color: $green;
+          }
+
+          .red {
+            color: $red;
+          }
+
+          p {
+            // transform: rotate(270deg);
+            width: 100px;
+            margin: 0 auto;
+            position: relative;
+            top: 17.5px;
+            left: 5px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: 0;
+
+
+
+
+          }
+
+          // display: 
+        }
+
+      }
+
+      .legendInner {
+        background-color: $panels;
+        height: 190px;
+        width: 285px;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        overflow: scroll;
+
+        .legendItem1,
+        .legendItem2,
+        .legendItem3,
+        .legendItem4,
+        .legendItem5,
+        .legendItem6 {
+          color: $secondary;
+          border-radius: 15px;
+          margin: 4px 2px 0px 2px;
+          padding: 3px 10px;
+          height: max-content;
+          text-align: center;
+        }
+
+
+        .legendItem1 {
+          background-color: $legend1
+        }
+
+        .legendItem2 {
+          background-color: $legend2;
+        }
+
+        .legendItem3 {
+          background-color: $legend3;
+        }
+
+        .legendItem4 {
+          background-color: $legend4;
+        }
+
+        .legendItem5 {
+          background-color: $legend5;
+        }
+
+        .legendItem6 {
+          background-color: $legend6;
+        }
+      }
+    }
+  }
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+
+  .carouselDiv {
+    background-color: $panels;
+    padding: 10px 30px;
+    margin: 0 15px;
+    border-radius: 10px;
+    height: 100%;
+    max-height: 802.398;
+
+    .carousel-control-next-icon {
+      position: relative;
+      left: 66px;
+      top: 24px;
+    }
+
+    .carousel-control-prev-icon {
+      position: relative;
+      right: 66px;
+      top: 24px;
+    }
+
+    button {
+      width: 50px;
+      height: 5px;
+      margin: 0 10px;
+      border: none;
+    }
+
+    h2 {
+      position: relative;
+      top: 10px
+    }
+
+    select {
+      width: 120px;
+      margin: 0 auto;
+      padding: .2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      background-color: #ddd;
+    }
+
+    .carousel-indicators {
+      position: absolute;
+      top: 810px;
+
+      button.active {
+        background-color: $carouselActive;
+      }
+    }
+
+    .header {
+      width: 80%;
+      cursor: pointer;
+
+      select {
+        margin: 2px;
+        float: right;
+      }
+    }
+  }
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px 0;
+  // margin: 0 10px;
+  height: 100%;
+
+  .Environments {
+    overflow: scroll;
+    height: 50vh;
+    margin-bottom: 15px;
+
+    .ImagePreview {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: fit-content;
+      padding: 10px;
+      border-radius: 10px;
+      color: $secondary;
+      background-color: $panels;
+      margin-bottom: 20px;
+
+      p {
+        margin: 0;
+      }
+
+      .small {
+        font-size: 0.85rem;
+      }
+
+      .space {
+        height: 15px;
+      }
+
+      .large {
+        color: $yellow;
+        font-size: 1.3rem;
+        white-space: nowrap;
+      }
+
+      .blueBadge,
+      .redBadge,
+      .greyBadge {
+        border-radius: 15px;
+        width: min-content;
+        padding: 1px 8px;
+        margin-bottom: 2px;
+      }
+
+      .blueBadge {
+        background-color: $blue;
+        color: $primary;
+      }
+
+      .redBadge {
+        background-color: $lightred;
+        color: $primary;
+      }
+
+      .greyBadge {
+        background-color: $paused;
+        color: $primary;
+      }
+
+      #buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        width: 100px;
+
+        button {
+          border: 0;
+          color: $primary;
+        }
+
+        .btn-success {
+          background-color: $green;
+        }
+
+        .btn-danger {
+          background-color: $red;
+        }
+
+        .btn-warning {
+          background-color: $yellow;
+        }
+      }
+    }
+  }
+
+  .logs {
+    background-color: $panels;
+    // max-height: 40vh;
+    padding: 0 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    max-width: 407.5px;
+    max-height: 304px;
+
+
+    input,
+    select {
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      width: 60%;
+      padding: .2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      background-color: #ddd;
+      list-style: none;
+    }
+
+    .logs-list {
+      background-color: $logbackground;
+      border: 2px solid $logborder;
+      padding-right: 10px;
+      height: 200px;
+      overflow: scroll;
+
+      .logs-list-item {
+        border-bottom: 2px solid $logborder;
+        padding: 10px;
+      }
+    }
+  }
+}
