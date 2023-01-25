@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import GaugeChart from 'react-gauge-chart';
-import LiquidGuage from '../LiquidGauge.jsx';
+import LiquidGuage from '../LiquidGauge';
 
 const memory = (props) => {
-  // console.log('cpu', props.totals);
-  const totalMemPerc = props.totals.hasOwnProperty('totalMemPercentage')
+  const totalMemPerc = props.totals['totalMemPercentage']
     ? props.totals.totalMemPercentage
     : 0;
 
-  // console.log(totals)
   return (
     <div className="liquidGauge">
-      <LiquidGuage
-        percent={totalMemPerc}
-        width={150}
-        height={150}
-      />
+      <LiquidGuage percent={totalMemPerc} width={150} height={150} />
     </div>
   );
 };

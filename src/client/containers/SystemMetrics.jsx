@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-// import cpu from '../components/metrics/Cpu.jsx';
+import React from 'react';
 import CPU from '../components/metrics/Cpu';
 import Memory from '../components/metrics/Memory';
 import CpuPer from '../components/metrics/CpuPer';
@@ -16,8 +15,8 @@ const systemMetrics = ({ totals, activeContainers }) => {
     memPieLabels.push(activeContainers[i].Names);
     cpuPieLabels.push(activeContainers[i].Names);
     legend.push(activeContainers[i].Names);
-    let memArr = activeContainers[i].memory.value;
-    let cpuArr = activeContainers[i].cpu.value;
+    const memArr = activeContainers[i].memory.value;
+    const cpuArr = activeContainers[i].cpu.value;
     memPieData.push(memArr[memArr.length - 1]);
     cpuPieData.push(cpuArr[cpuArr.length - 1]);
   }
@@ -25,7 +24,6 @@ const systemMetrics = ({ totals, activeContainers }) => {
   const healthFail = totalmetrics.dockerHealthFailures;
 
   const healthColor = healthFail === 0 ? 'green' : 'red';
-  // const memColor = totalMemFail === 0 ? 'green' : 'red';
 
   return (
     <>
@@ -47,8 +45,8 @@ const systemMetrics = ({ totals, activeContainers }) => {
         <div className="bottom">
           <div className="errors">
             <div className="healthfail">
-              <p>Health Failures: </p>
-              <i className={healthColor}>{healthFail}</i>
+              <div id='title'>Health Failures: </div>
+              <div id='num' className={healthColor}>{healthFail}</div>
             </div>
           </div>
           <div className="legend">

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import { color } from 'd3-color';
 import { interpolateRgb } from 'd3-interpolate';
 import LiquidFillGauge from 'react-liquid-gauge';
@@ -7,9 +6,9 @@ import LiquidFillGauge from 'react-liquid-gauge';
 const LiquidGauge = (props) => {
   const [initial, setInitial] = useState(0);
   setTimeout(() => {
-    return setInitial(100)
-  }, 200)
-  
+    return setInitial(100);
+  }, 200);
+
   const gaugeVal = props.percent ? props.percent : initial;
   const startColor = '#FFFFFF'; //
   const endColor = '#FFFFFF';
@@ -55,7 +54,6 @@ const LiquidGauge = (props) => {
         waveStyle={{ fill: fillColor }}
         textStyle={{ fill: 'rgb(255, 255, 255)' }}
         waveTextStyle={{ fill: 'rgb(255, 255, 255)' }}
-        
       />
       <br></br>
       <p className="loading-center">{props.label}</p>

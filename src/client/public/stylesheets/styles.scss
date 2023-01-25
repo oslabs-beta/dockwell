@@ -20,15 +20,14 @@ body,
 html {
   margin: 0;
   padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
   background: $background;
   color: $tertiary;
-  background-image: linear-gradient(
-      rgba(45, 45, 45, 0.7) 0.1em,
-      transparent 0.1em
-    ),
+  background-image: linear-gradient(rgba(45, 45, 45, 0.7) 0.1em,
+      transparent 0.1em),
     linear-gradient(90deg, rgba(45, 45, 45, 0.7) 0.1em, transparent 0.1em);
   background-size: 1em 1em;
   padding: 20px;
@@ -47,7 +46,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // height: 90vh;
+  height: fit-content;
   padding-bottom: 30px;
 
   .title {
@@ -72,6 +71,15 @@ body {
       svg {
         margin: auto 0;
         color: $tertiary;
+      }
+
+      .grafana {
+        // color: rgb(239, 90, 39);
+        background-image: linear-gradient(180deg, rgba(239, 90, 39, 1) 0%, rgba(251, 197, 26, 1) 85%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        // font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
       }
     }
 
@@ -130,23 +138,25 @@ body {
         display: flex;
         flex-direction: column;
 
-        .totalMemFail,
         .healthfail {
           background-color: $panels;
-          height: 87.5px;
+          height: 158px;
           width: 135px;
           margin: 0 15 15 0;
           border-radius: 10px;
           padding: 2.5px;
           display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
 
-          i {
-            font-size: 70px;
-            position: relative;
-            bottom: 12.5px;
-            right: 10px;
+          #title {
+            font-size: 25;
+            padding-bottom: 15px;
+          }
 
-            // text-decoration: none;
+          #num {
+            font-size: 40;
           }
 
           .green {
@@ -156,26 +166,12 @@ body {
           .red {
             color: $red;
           }
-
-          p {
-            // transform: rotate(270deg);
-            width: 100px;
-            margin: 0 auto;
-            position: relative;
-            top: 17.5px;
-            left: 5px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: 0;
-          }
-
-          // display:
         }
       }
 
       .legendInner {
         background-color: $panels;
-        height: 190px;
+        height: 158px;
         width: 285px;
         padding: 15px;
         border-radius: 10px;
@@ -233,17 +229,24 @@ body {
   width: 100%;
 
   .carouselDiv {
-    background-color: $panels;
+    background-color: $carouselPanel;
     padding: 10px 30px;
     margin: 0 15px;
     border-radius: 10px;
     height: 100%;
-    max-height: 802.398;
+    max-height: 803px;
+
+    .carousel-control-next,
+    .carousel-control-prev {
+      margin-top: 50px;
+      height: 700px;
+    }
 
     .carousel-control-next-icon {
       position: relative;
       left: 66px;
       top: 24px;
+      color: $carouselActive
     }
 
     .carousel-control-prev-icon {
@@ -259,38 +262,67 @@ body {
       border: none;
     }
 
+    // h2 {
+    //   position: relative;
+    //   top: 10px;
+    // }
+
+
+    // background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    // background-repeat: no-repeat;
+    // background-position: right 1rem center;
+    // background-size: 1em;
+
+
+  }
+
+  .carousel-indicators {
+    position: absolute;
+    top: 810px;
+
+    button.active {
+      background-color: $carouselActive;
+    }
+  }
+
+  .header {
+    display: flex;
+    margin: auto 10px;
+    justify-content: space-between;
+
+    .badge {
+      height: min-content;
+      padding: 10px;
+      margin: auto 0;
+      width: 180px;
+    }
+
     h2 {
-      position: relative;
-      top: 10px;
+      align-self: center;
+      color: $panels;
+      font-weight: 600;
+      margin: auto 0;
     }
 
     select {
-      width: 120px;
       margin: 0 auto;
-      padding: 0.2rem;
+      width: 160px;
+      padding: 0 10px;
+      height: 32px;
+      margin: auto 0;
+      border-radius: 50px;
       cursor: pointer;
-      border-radius: 5px;
-      background-color: #ddd;
+      background-color: $carouselActive;
+      color: $carouselPanel;
+      font-size: .8rem;
+      text-align: center;
+      // appearance: none;
+      font-weight: 600;
+
+      
     }
 
-    .carousel-indicators {
-      position: absolute;
-      top: 810px;
-
-      button.active {
-        background-color: $carouselActive;
-      }
-    }
-
-    .header {
-      width: 80%;
-      cursor: pointer;
-
-      select {
-        margin: 2px;
-        float: right;
-      }
-    }
+  
   }
 }
 
@@ -312,6 +344,7 @@ body {
       flex-direction: row;
       justify-content: space-between;
       height: fit-content;
+      width: 390px;
       padding: 10px;
       border-radius: 10px;
       color: $secondary;
@@ -331,7 +364,7 @@ body {
       }
 
       .large {
-        color: $yellow;
+        color: $yellowfont;
         font-size: 1.3rem;
         white-space: nowrap;
       }
@@ -387,6 +420,12 @@ body {
     }
   }
 
+  form {
+    display: flex;
+    margin-top: 20px;
+
+  }
+
   .logs {
     background-color: $panels;
     // max-height: 40vh;
@@ -395,19 +434,22 @@ body {
     flex-direction: column;
     border-radius: 10px;
     max-width: 407.5px;
-    max-height: 304px;
+    max-height: 270px;
 
     input,
     select {
       margin: 0 auto;
       display: flex;
       justify-content: center;
-      width: 60%;
+      width: 50%;
       padding: 0.2rem;
       cursor: pointer;
       border-radius: 5px;
       background-color: #ddd;
       list-style: none;
+      border: none;
+
+
     }
 
     .logs-list {
