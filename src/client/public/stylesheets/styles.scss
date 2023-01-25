@@ -54,7 +54,14 @@ body {
     width: 100%;
     font-size: 50;
     font-family: 'Kanit', sans-serif;
+
     // height: 170.78;
+    img {
+      width: 124px;
+      position: absolute;
+      top: 8px;
+      left: 349px;
+    }
 
     .links {
       display: flex;
@@ -74,6 +81,7 @@ body {
         color: $tertiary;
       }
 
+
       .grafana {
         // color: rgb(239, 90, 39);
         background-image: linear-gradient(180deg, rgba(239, 90, 39, 1) 0%, rgba(251, 197, 26, 1) 85%);
@@ -91,9 +99,10 @@ body {
     }
 
     h2 {
+      font-size: 1.3rem;
       position: relative;
       bottom: 30px;
-      left: 30px;
+      left: 64px;
     }
   }
 
@@ -227,7 +236,7 @@ body {
   padding: 30px 0;
   margin: 0 auto;
   height: 823px;
-    width: 765px;
+  width: 765px;
 
   .carouselDiv {
     background-color: $carouselPanel;
@@ -235,7 +244,7 @@ body {
     margin: 0 15px;
     border-radius: 10px;
     height: 100%;
-    
+
 
     .carousel-control-next,
     .carousel-control-prev {
@@ -322,10 +331,10 @@ body {
       // appearance: none;
       font-weight: 600;
 
-      
+
     }
 
-  
+
   }
 }
 
