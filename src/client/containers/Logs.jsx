@@ -12,6 +12,7 @@ const Logs = (props) => {
         return;
       }
       const output = await axios.get(`/api/control/logs/${name}`);
+      console.log(output);
       if (typeof output.data.stdout === 'object') {
         setLogs(output.data.stdout);
       } else {
@@ -19,7 +20,7 @@ const Logs = (props) => {
       }
     } catch (err) {
       const output = err;
-      setLogs(output);
+      setLogs(output.data);
     }
   }
 
@@ -32,7 +33,7 @@ const Logs = (props) => {
     logsJSX = logsByMostRecent.map((log, i) => (
       <li className="logs-list-item" key={i}>
         {' '}
-        {log}
+        {typeof log === 'string' ? log : JSON.stringify(log)}
       </li>
     ));
   }

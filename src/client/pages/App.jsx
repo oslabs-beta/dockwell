@@ -102,11 +102,13 @@ const App = () => {
       {!loadingScreen && (
         <div className="main">
           <div className="left">
-            <div className="title">
-              <h1>Dockwell.</h1>
-              <h2>A docker visualizer</h2>
-              <img src='https://i.imgur.com/9KoYyqd.png'/>
-              <Links />
+            <div className="top">
+              <div className="title">
+                <h1>Dockwell.</h1>
+                <h2>A docker visualizer</h2>
+                <Links />
+              </div>
+              <img src="https://i.imgur.com/9KoYyqd.png" />
             </div>
             <SystemMetrics activeContainers={activeContainers} />
           </div>

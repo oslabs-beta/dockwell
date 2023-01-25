@@ -15,9 +15,13 @@ controlContainer.dockerTaskName = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: 'controlContainer.dockerTaskName - error in the docker task containername command: ' + err,
+      log:
+        'controlContainer.dockerTaskName - error in the docker task containername command: ' +
+        err,
       status: 500,
-      message: {  err:'Expected metrics for running containers were not found'  },
+      message: {
+        err: 'Expected metrics for running containers were not found',
+      },
     });
   }
 };

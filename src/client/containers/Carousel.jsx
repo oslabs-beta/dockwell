@@ -60,7 +60,34 @@ function CarouselDisplay(props) {
           <div className="badge rounded-pill bg-dark">
             Total Memory Failures: {totalMemFail}
           </div>
-          <h2 style={{ display: 'inline', marginRight: '8px' }}>Overview</h2>
+          <h2
+            style={{ display: 'inline', marginRight: '8px' }}
+            onClick={(e) => {
+              e.preventDefault();
+              const output = [];
+              props.activeContainers.forEach((x) => {
+                const timestamp = [x.Names, 'timestamp'];
+                x.memory.time.forEach((y) => timestamp.push(y));
+                const memory = [x.Names, 'memory usage (MB)'];
+                x.memory.value.forEach((y) => memory.push(y));
+                const cpu = [x.Names, 'cpu usage (%)'];
+                x.cpu.value.forEach((y) => cpu.push(y));
+                output.push(timestamp, memory, cpu);
+              });
+              const csvContent =
+                'data:text/csv;charset=utf-8,' +
+                output.map((e) => e.join(',')).join('\n');
+              const encodedUri = encodeURI(csvContent);
+              var link = document.createElement('a');
+              link.setAttribute('href', encodedUri);
+              link.setAttribute('download', 'allContainersData.csv');
+              document.body.appendChild(link);
+              link.click();
+              link.remove();
+            }}
+          >
+            Overview
+          </h2>
           {dropDown}
         </div>
         <ChartCompound
@@ -82,7 +109,31 @@ function CarouselDisplay(props) {
             <div className="badge rounded-pill bg-dark">
               Memory Failures: {obj.memFailures.value[0]}
             </div>
-            <h2>{obj.Names}</h2>
+            <h2
+              onClick={(e) => {
+                e.preventDefault();
+                const output = [
+                  ['timestamp'],
+                  ['memory usage (MB)'],
+                  ['cpu usage (%)'],
+                ];
+                obj.memory.time.forEach((x) => output[0].push(x));
+                obj.cpu.value.forEach((x) => output[1].push(x));
+                obj.memory.value.forEach((x) => output[2].push(x));
+                const csvContent =
+                  'data:text/csv;charset=utf-8,' +
+                  output.map((e) => e.join(',')).join('\n');
+                const encodedUri = encodeURI(csvContent);
+                var link = document.createElement('a');
+                link.setAttribute('href', encodedUri);
+                link.setAttribute('download', `${obj.Names}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+              }}
+            >
+              {obj.Names}
+            </h2>
             {dropDown}
           </div>
           <Chart
