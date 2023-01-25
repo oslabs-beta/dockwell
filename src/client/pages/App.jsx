@@ -105,6 +105,7 @@ const App = () => {
             <div className="title">
               <h1>Dockwell.</h1>
               <h2>A docker visualizer</h2>
+              <img src='https://i.imgur.com/9KoYyqd.png'/>
               <Links />
             </div>
             <SystemMetrics activeContainers={activeContainers} />

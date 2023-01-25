@@ -21,47 +21,67 @@ html {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
+
 }
 
 body {
   background: $background;
+  margin: 0 auto;
   color: $tertiary;
   background-image: linear-gradient(rgba(45, 45, 45, 0.7) 0.1em,
       transparent 0.1em),
     linear-gradient(90deg, rgba(45, 45, 45, 0.7) 0.1em, transparent 0.1em);
   background-size: 1em 1em;
   padding: 20px;
-}
-
-.App {
-  .main {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 2fr 4fr 2fr;
-    padding: 30px;
-  }
-}
-
-.left {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  height: fit-content;
-  padding-bottom: 30px;
+  // width: 100vh;
+  max-width: 1700px;
 
-  .title {
-    width: 100%;
-    font-size: 50;
-    font-family: 'Kanit', sans-serif;
-    height: 170.78;
+  .links {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    position: absolute;
+    top: 15px;
+    right: 40px;
 
-    .links {
-      display: flex;
-      justify-content: center;
-      align-items: baseline;
-      position: absolute;
-      top: 15px;
-      right: 40px;
+  }
+
+  .App {
+
+    .main {
+      width: fit-content;
+      display: grid;
+      grid-template-columns: 2fr 4fr 2fr;
+      padding: 30px;
+      margin-top: 20px;
+    }
+  }
+
+  .left {
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+    align-items: center;
+    height: fit-content;
+    padding-bottom: 30px;
+
+    .title {
+      width: 100%;
+      font-size: 50;
+      font-family: 'Kanit', sans-serif;
+
+      // height: 170.78;
+      img {
+        width: 110px;
+        position: absolute;
+        top: 48px;
+        left: 320px;
+      }
+
+
 
       a {
         color: $tertiary;
@@ -72,6 +92,7 @@ body {
         margin: auto 0;
         color: $tertiary;
       }
+
 
       .grafana {
         // color: rgb(239, 90, 39);
@@ -90,20 +111,22 @@ body {
     }
 
     h2 {
+      font-size: 1.3rem;
       position: relative;
       bottom: 30px;
-      left: 30px;
+      left: 64px;
     }
   }
 
   .SystemMetrics {
     display: flex;
     flex-direction: column;
+    // grid-template-rows: 2fr 2fr 2fr;
     // padding: 0 10px 30px 0;
     margin: 0 auto;
-    height: 100%;
+    // height: 100%;
     width: 100%;
-    border-radius: 10px;
+    // border-radius: 10px;
 
     .mem,
     .cpu {
@@ -140,7 +163,7 @@ body {
 
         .healthfail {
           background-color: $panels;
-          height: 158px;
+          // height: 178px;
           width: 135px;
           margin: 0 15 15 0;
           border-radius: 10px;
@@ -171,7 +194,7 @@ body {
 
       .legendInner {
         background-color: $panels;
-        height: 158px;
+        // height: 178px;
         width: 285px;
         padding: 15px;
         border-radius: 10px;
@@ -226,15 +249,16 @@ body {
   padding: 30px 0;
   margin: 0 auto;
   height: fit-content;
-  width: 100%;
+  width: 765px;
 
-  .carouselDiv {
+  .CarouselDiv {
     background-color: $carouselPanel;
+    overflow: scroll;
     padding: 10px 30px;
     margin: 0 15px;
     border-radius: 10px;
-    height: 100%;
-    max-height: 803px;
+    height: 81vh;
+
 
     .carousel-control-next,
     .carousel-control-prev {
@@ -262,23 +286,12 @@ body {
       border: none;
     }
 
-    // h2 {
-    //   position: relative;
-    //   top: 10px;
-    // }
-
-
-    // background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    // background-repeat: no-repeat;
-    // background-position: right 1rem center;
-    // background-size: 1em;
-
 
   }
 
   .carousel-indicators {
     position: absolute;
-    top: 810px;
+    top: 730px;
 
     button.active {
       background-color: $carouselActive;
@@ -298,6 +311,8 @@ body {
     }
 
     h2 {
+      font-size: 1.75em;
+      overflow: scroll;
       align-self: center;
       color: $panels;
       font-weight: 600;
@@ -319,10 +334,10 @@ body {
       // appearance: none;
       font-weight: 600;
 
-      
+
     }
 
-  
+
   }
 }
 
@@ -332,7 +347,7 @@ body {
 
   padding: 30px 0;
   // margin: 0 10px;
-  height: 100%;
+  height: fit-content;
 
   .Environments {
     overflow: scroll;
@@ -433,21 +448,23 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    max-width: 407.5px;
-    max-height: 270px;
+    max-width: 390.5px;
+    // max-height: 265px;
 
     input,
     select {
-      margin: 0 auto;
+      margin: 0 12px;
+      text-align: center;
       display: flex;
       justify-content: center;
-      width: 50%;
+      width: 100%;
       padding: 0.2rem;
       cursor: pointer;
       border-radius: 5px;
       background-color: #ddd;
       list-style: none;
       border: none;
+
 
 
     }
