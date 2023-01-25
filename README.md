@@ -81,7 +81,7 @@ STEP 1: DOCKER SETTINGS
         "metrics-addr" : "127.0.0.1:9323",
         "experimental" : true
       }
- ![Screen Shot 2023-01-25 at 9 58 09 AM](https://user-images.githubusercontent.com/7785546/214613039-c3a0b064-a6bb-47c8-be3e-a011b9392085.png)
+    - ![Screen Shot 2023-01-25 at 9 58 09 AM](https://user-images.githubusercontent.com/7785546/214613039-c3a0b064-a6bb-47c8-be3e-a011b9392085.png)
 
 
 
