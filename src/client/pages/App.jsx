@@ -5,6 +5,7 @@ import Environments from '../containers/Environments';
 import Carousel from '../containers/Carousel';
 import Logs from '../containers/Logs';
 import LiquidGauge from '../components/LiquidGauge';
+import logo from '../public/assets/logo.png';
 
 const App = () => {
   const [queryData, setQueryData] = useState({});
@@ -109,6 +110,7 @@ const App = () => {
             <div className="title">
               <h1>Dockwell.</h1>
               <h2>A docker visualizer</h2>
+              <img src={logo} />
               <div className="links">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +139,7 @@ const App = () => {
                   href="https://github.com/oslabs-beta/dockwell"
                   className="btn btn-link"
                 >
-                  GitHub   |    
+                  GitHub |
                 </a>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
