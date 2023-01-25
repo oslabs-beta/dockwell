@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import Chart from '../components/Chart.jsx';
-import ChartCompound from '../components/ChartCompound.jsx';
-
+import Chart from '../components/Chart';
+import ChartCompound from '../components/ChartCompound';
+// import { ArrowDownSquareFill } from 'react-bootstrap-icons';
 
 function CarouselDisplay(props) {
   const [index, setIndex] = useState(0);
@@ -13,10 +14,11 @@ function CarouselDisplay(props) {
     setIndex(selectedIndex);
   };
 
-  // console.log('AC', activeContainers);
 
   const dropDown = (
     <>
+      <i className="bi bi-arrow-down-square-fill"></i>
+
       <select
         className="dropdown"
         placeholder="Data Points:"
@@ -27,7 +29,7 @@ function CarouselDisplay(props) {
         }}
       >
         <option value="" disabled selected>
-          Data points:
+          Change Interval:
         </option>
         <option value={25}>25</option>
         <option value={50}>50</option>

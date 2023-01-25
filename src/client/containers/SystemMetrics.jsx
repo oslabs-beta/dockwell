@@ -15,8 +15,8 @@ const systemMetrics = ({ totals, activeContainers }) => {
     memPieLabels.push(activeContainers[i].Names);
     cpuPieLabels.push(activeContainers[i].Names);
     legend.push(activeContainers[i].Names);
-    let memArr = activeContainers[i].memory.value;
-    let cpuArr = activeContainers[i].cpu.value;
+    const memArr = activeContainers[i].memory.value;
+    const cpuArr = activeContainers[i].cpu.value;
     memPieData.push(memArr[memArr.length - 1]);
     cpuPieData.push(cpuArr[cpuArr.length - 1]);
   }
