@@ -4,19 +4,16 @@ import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 export function CpuPer({ cpuData, cpuLabels }) {
-  // console.log('cpuData: ', cpuData);
-  // console.log('label: ', cpuLabels);
 
   const data = {
-    // labels: cpuLabels,
 
     datasets: [
       {
-        label: 'CPU Usage (s)',
+        label: 'CPU Usage (%)',
         data: cpuData,
         backgroundColor: [
           'rgba(102, 103, 171, .8)', 
-          'rgba(139, 194, 140, .8)',
+          'rgba(84, 121, 85, .8)',
           'rgba(234, 103, 89, .8)', 
           'rgba(248, 143, 88, .8)', 
           'rgba(243, 198, 95, .8)',
@@ -24,7 +21,7 @@ export function CpuPer({ cpuData, cpuLabels }) {
         ],
         borderColor: [
           'rgba(102, 103, 171, 1)', 
-          'rgba(139, 194, 140, 1)',
+          'rgba(84, 121, 85, .1)',
           'rgba(234, 103, 89, 1)', 
           'rgba(248, 143, 88, 1)', 
           'rgba(243, 198, 95, 1)',

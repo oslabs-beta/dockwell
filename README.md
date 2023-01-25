@@ -3,12 +3,7 @@
 ---
 
 ## About
-
 ---
-
-
-Dockwell is an easy to install and easy to spin up GUI that tracks, monitors, and displays all of a user's containers in Docker. With the ability to check logs and quickly compare container health, Dockwell works with Prometheus and Cadvisor to provide developers with an easy to use interface that will greatly assist in their debugging and development processes.
-=======
 Dockwell is an intuitive and comprehensive GUI that tracks, monitors, and displays all of a user's Docker containers.
 
 We made Dockwell so that developers can quickly visualize container metrics to assist in their debugging and development process.
@@ -16,6 +11,8 @@ We made Dockwell so that developers can quickly visualize container metrics to a
 With the needs of developers in mind, Dockwell uses Prometheus and cAdvisor to scrape real-time metrics from the host machine, all from its own containerized environment.
 
 Dockwell is an open source project and we would love to hear your feedback!
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/105250729/214136456-38e208cf-4deb-4f24-a676-654c9e0d4091.gif)
 
 ## Table of Contents
 
@@ -26,90 +23,62 @@ Application usage/documentation
 
 Installation Guides
 
-- [Installation](#Installation-for-Users)
+- [Installation](#installation)
 - [How to Contribute](#how-to-contribute)
 
 Contributers and other info
 
-- [Contributers](#contributers)
-  <<<<<<< HEAD
-  =======
+- [Contributors](#contributors)
 - [Made With](#made-with)
-  > > > > > > > 339144c29ff21b2df01b4e5b4274c7a05ba0f302
 
 ## Features:
 
----
-
-<<<<<<< HEAD
-Live reloading of metric data displayed by individual container or all containers at once, in simple to read charts.
+Live reloading of metric data displayed in simple to read charts.
+  - Memory and CPU usage data are displayed graphically for each individual container.
+  - Memory and CPU usage data for _all containers_ are also displaed so that users can quickly compare metrics
 
 Environments section which displays all of a users active and inactive containers with the functionality to start, pause, and kill containers.
 
-System metrics section which displays how much CPU and Memory Docker is currently using from the host machine, as well as by container.
-
-# Logs section that allows a user to check and refresh the logs from each container's environment.
-
-- Memory and CPU usage data are displayed graphically for each individual container.
-- Memory and CPU usage data for _all containers_ are also displaed so that users can quickly compare metrics
-<!-- Live reloading of metric data displayed by individual container or all containers at once, in simple to read charts. -->
-
-- The right side of the interface displays all of a users active and inactive containers with the functionality to start, pause, unpause, and kill containers.
-
-<!-- System metrics section which displays how much CPU and Memory Docker is currently using from the host machine, as well as by container. -->
-
-- The left side of the interfece displays a breakdown of memory and CPU usage.
+System metrics section which displays how much CPU and Memory Docker is currently using
   - A liguid guage shows the percent of each metric being used by all containers
   - A pie chart depicts the ratio metric usage by container
-- All charts are dynamic and update every 1000ms
-  <!-- Logs section that allows a user to check and refresh the logs from each container's environment. -->
-  > > > > > > > 339144c29ff21b2df01b4e5b4274c7a05ba0f302
+ 
+Logs section that allows a user to check and refresh the logs from each container's environment.
+ 
+All charts are dynamic and update every 1000ms
 
 [↥Back to top](#table-of-contents)
 
 ## Prerequisites:
-
----
-
 - The host computer running Dockwell must have:
 
   - A Docker [Account](https://www.docker.com/ 'Download Docker')
-
-  - Hopefully at least a few containers (idk?)
 
   [↥Back to top](#table-of-contents)
 
 ## Installation:
 
-- A Docker [Account](https://www.docker.com/ 'Download Docker')
--
-
----
+- All you have to do is visit [this](https://github.com/oslabs-beta/dockwell/tree/SetupInstall) repository and follow the instructions in the Readme
 
 [↥Back to top](#table-of-contents)
-
-## Installation for Users:
-
-- To use Docker, please visit [this](https://github.com/oslabs-beta/dockwell/tree/SetupInstall) repository and follow the instructions in the Readme
 
 ## How to Contribute:
 
 - Contributions are always welcome!
 - To contribute please fork the repository and then create a pull request.
+
   [↥Back to top](#table-of-contents)
 
----
+## Contributors: 
 
-- Kyle Saunders[LinkedIn] | [Github]
-- Sami Messai[LinkedIn] | [Github]
-- Aalok Shah[LinkedIn] | [Github]
-- Josh Paynter[LinkedIn] | [Github]
+- Kyle Saunders [LinkedIn](https://www.linkedin.com/in/kylersaunders/) | [Github](https://github.com/kylersaunders)
+- Sami Messai [LinkedIn](https://www.linkedin.com/in/sami-messai-682873ab/) | [Github](https://github.com/samessai14)
+- Aalok Shah [LinkedIn](https://www.linkedin.com/in/kolashah/) | [Github](https://github.com/kolashah)
+- Josh Paynter [LinkedIn](https://www.linkedin.com/in/josh-paynter-192a9b234/) | [Github](https://github.com/jip1029)
 
 [↥Back to top](#table-of-contents)
 
 ## Made With
-
----
 
 ### FrontEnd
 
@@ -126,12 +95,5 @@ System metrics section which displays how much CPU and Memory Docker is currentl
 
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white)
-
-[↥Back to top](#table-of-contents)
-
-## How to Contribute
-
-Contributions are always welcome!
-Do whatever u want idgaf really! i know im fresh
 
 [↥Back to top](#table-of-contents)

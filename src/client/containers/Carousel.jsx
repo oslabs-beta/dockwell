@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import CPU from '../components/metrics/Cpu.jsx';
-import Chart from '../components/Chart.jsx';
-import ChartCompound from '../components/ChartCompound.jsx';
+import Chart from '../components/Chart';
+import ChartCompound from '../components/ChartCompound';
+// import { ArrowDownSquareFill } from 'react-bootstrap-icons';
 
 function CarouselDisplay(props) {
   const [index, setIndex] = useState(0);
@@ -13,10 +14,11 @@ function CarouselDisplay(props) {
     setIndex(selectedIndex);
   };
 
-  // console.log('AC', activeContainers);
 
   const dropDown = (
     <>
+      <i className="bi bi-arrow-down-square-fill"></i>
+
       <select
         className="dropdown"
         placeholder="Data Points:"
@@ -27,7 +29,7 @@ function CarouselDisplay(props) {
         }}
       >
         <option value="" disabled selected>
-          Data points
+          Change Interval:
         </option>
         <option value={25}>25</option>
         <option value={50}>50</option>
@@ -59,11 +61,11 @@ function CarouselDisplay(props) {
         className="carousel-item-styles"
       >
         <div className="header">
+          <div className="badge rounded-pill bg-dark">
+            Total Memory Failures: {totalMemFail}
+          </div>
           <h2 style={{ display: 'inline', marginRight: '8px' }}>Overview</h2>
           {dropDown}
-          <div className="btn btn-danger btn-sm">
-            Total Mem Fails: {totalMemFail}
-          </div>
         </div>
         <ChartCompound
           allActiveContainers={props.activeContainers}
@@ -75,21 +77,16 @@ function CarouselDisplay(props) {
           allActiveContainers={props.activeContainers}
           metric="cpu"
           dataLength={dataLength}
-          metricName="CPU Usage (s)"
+          metricName="CPU Usage (%)"
         ></ChartCompound>
       </Carousel.Item>
       {props.activeContainers.map((obj, i) => (
         <Carousel.Item interval={interval} key={'container ' + i}>
           <div className="header">
-            <div className="side">
-              <h2 style={{ display: 'inline', marginRight: '8px' }}>
-                {obj.Names}
-              </h2>
-              <div className="memFailures btn btn-danger btn-sm">
-                <p>Mem Fails </p>
-                {obj.memFailures.value[0]}
-              </div>
+            <div className="badge rounded-pill bg-dark">
+              Memory Failures: {obj.memFailures.value[0]}
             </div>
+            <h2>{obj.Names}</h2>
             {dropDown}
           </div>
           <Chart
@@ -102,7 +99,7 @@ function CarouselDisplay(props) {
             className="lineChart"
             dataLength={dataLength}
             activeContainer={obj.cpu}
-            metric="CPU Usage (s)"
+            metric="CPU Usage (%)"
           />
         </Carousel.Item>
       ))}
