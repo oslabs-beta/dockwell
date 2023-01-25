@@ -81,7 +81,6 @@ STEP 1: DOCKER SETTINGS
         "experimental" : true
       }
  ![dockerDesktop](https://user-images.githubusercontent.com/7785546/214609278-e31485c3-a6ef-4cd1-b98f-b355b45d10ed.gif)
- <img src="![dockerDesktop](https://user-images.githubusercontent.com/7785546/214609278-e31485c3-a6ef-4cd1-b98f-b355b45d10ed.gif)" width="250" height="250"/>
 
 
 STEP 2: DOWNLOAD CONFIGURATION FILES
