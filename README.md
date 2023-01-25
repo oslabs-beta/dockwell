@@ -80,7 +80,7 @@ STEP 1: DOCKER SETTINGS
         "metrics-addr" : "127.0.0.1:9323",
         "experimental" : true
       }
-    - ![dockerDesktop](https://user-images.githubusercontent.com/7785546/214609278-e31485c3-a6ef-4cd1-b98f-b355b45d10ed.gif)
+ ![dockerDesktop](https://user-images.githubusercontent.com/7785546/214609278-e31485c3-a6ef-4cd1-b98f-b355b45d10ed.gif)
 
 
 STEP 2: DOWNLOAD CONFIGURATION FILES
