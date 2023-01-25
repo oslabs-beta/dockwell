@@ -1,12 +1,11 @@
-//imports
-const PrometheusDriver = require('prometheus-query').PrometheusDriver;
-
 const { promisify } = require('util');
 const { exec } = require('child_process');
 const execProm = promisify(exec);
-const cliParser = require('../serverUtils/dockerCliJS');
+const cliParser = require('../utils/dockerCliParser');
 const { Metric } = require('prometheus-query');
 const { container } = require('webpack');
+
+const PrometheusDriver = require('prometheus-query').PrometheusDriver;
 
 // default options
 const options = {
@@ -14,10 +13,11 @@ const options = {
   currentWorkingDirectory: null, // uses current working directory
   echo: true, // echo command output to stdout/stderr
 };
-// host.docker.internal <-- is localhost of the machine when referenced inside of a container
-//query driver config
 
+// for use when app is run locally, sans container:
 // const endpoint = 'http://localhost:9090';
+
+// for use when hosted in a container (localhost of a given docker container):
 const endpoint = 'http://host.docker.internal:9090';
 
 const prom = new PrometheusDriver({
@@ -54,7 +54,7 @@ promQueryController.getContainers = async (req, res, next) => {
     });
     //goes through the array from the map above, and creates an object where each key is a container ID, and the value is the object created in the step above.
     const finalData = {};
-    for (let metricObj of data) {
+    for (const metricObj of data) {
       if (
         metricObj.Names !== 'prometheus' &&
         metricObj.Names !== 'cadvisor' &&
@@ -69,15 +69,20 @@ promQueryController.getContainers = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: `error ${err} occurred in stopContainer`,
-      message: { err: 'an error occured' },
+      log:
+        'promQLController.getContainers - error in the docker ps --all format JSON command: ' +
+        err,
+      status: 500,
+      message: {
+        err: 'Expected metrics for running containers were not found',
+      },
     });
   }
 };
 
 promQueryController.getContainerState = async (req, res, next) => {
   try {
-    for (let container in res.locals.containers) {
+    for (const container in res.locals.containers) {
       const { stdout } = await execProm(
         `docker inspect ${res.locals.containers[container].Names} --format "{{json .}}"`
       );
@@ -88,8 +93,9 @@ promQueryController.getContainerState = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: `error ${err} occurred in getContainerState`,
-      message: { err: 'an error occured' },
+      log: 'promQLController.getContainerState - error in the docker inspect containername command',
+      status: 500,
+      message: { err },
     });
   }
 };
@@ -101,7 +107,7 @@ promQueryController.cpuQuery = (req, res, next) => {
     .instantQuery(q)
     .then((data) => {
       const series = data.result;
-      for (let metricObj of series) {
+      for (const metricObj of series) {
         const short_id = metricObj.metric.labels.id.substr(8, 12);
         containers[short_id] &&
           (containers[short_id].cpu = {
@@ -111,7 +117,16 @@ promQueryController.cpuQuery = (req, res, next) => {
       }
       return next();
     })
-    .catch(console.error);
+    .catch((err) => {
+      return next({
+        log:
+          'promQLController.cpuQuery - error in the promQL CPU query: ' + err,
+        status: 500,
+        message: {
+          err: 'Expected metrics for running containers were not found',
+        },
+      });
+    });
 };
 
 promQueryController.memoryQuery = (req, res, next) => {
@@ -121,7 +136,7 @@ promQueryController.memoryQuery = (req, res, next) => {
     .instantQuery(q)
     .then((y) => {
       const series = y.result;
-      for (let metricObj of series) {
+      for (const metricObj of series) {
         const short_id = metricObj.metric.labels.id.substr(8, 12);
         containers[short_id] &&
           (containers[short_id].memory = {
@@ -131,18 +146,27 @@ promQueryController.memoryQuery = (req, res, next) => {
       }
       return next();
     })
-    .catch(console.error);
+    .catch((err) => {
+      return next({
+        log:
+          'promQLController.memoryQuery - error in the promQL MEMORY query: ' +
+          err,
+        status: 500,
+        message: {
+          err: 'Expected metrics for running containers were not found',
+        },
+      });
+    });
 };
 
 promQueryController.memFailuresQuery = (req, res, next) => {
   const q = queries['memFailures'];
   const { containers } = res.locals;
-
   prom
     .instantQuery(q)
     .then((data) => {
       const series = data.result;
-      for (let metricObj of series) {
+      for (const metricObj of series) {
         const short_id = metricObj.metric.labels.id.substr(8, 12);
         //if substring is a key in getcontainers object
         containers[short_id] &&
@@ -152,7 +176,17 @@ promQueryController.memFailuresQuery = (req, res, next) => {
       }
       return next();
     })
-    .catch(console.error);
+    .catch((err) => {
+      return next({
+        log:
+          'promQLController.memFailuresQuery - error in the promQL MEM FAILURES query: ' +
+          err,
+        status: 500,
+        message: {
+          err: 'Expected metrics for running containers were not found',
+        },
+      });
+    });
 };
 
 promQueryController.getTotals = async (req, res, next) => {
@@ -174,15 +208,15 @@ promQueryController.getTotals = async (req, res, next) => {
       totalMemPercentage: 0,
       memLimit: '0GiB',
     };
-    for (let container of data) {
+    for (const container of data) {
       if (
         container.Name !== 'prometheus' &&
         container.Name !== 'cadvisor' &&
         container.Name !== 'dockwell-dev' &&
         container.Name !== 'dockwell'
       ) {
-        let memStr = container.MemPercentage.replace('%', '');
-        let cpuStr = container.CPUPercentage.replace('%', '');
+        const memStr = container.MemPercentage.replace('%', '');
+        const cpuStr = container.CPUPercentage.replace('%', '');
         totalsFinal.totalMemPercentage += Number(memStr);
         totalsFinal.totalCpuPercentage += Number(cpuStr);
       }
@@ -194,8 +228,11 @@ promQueryController.getTotals = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: `error ${err} occurred in stopContainer`,
-      message: { err: 'an error occured' },
+      log: 'promQLController.getTotals - error in the parser: ' + err,
+      status: 500,
+      message: {
+        err: 'Expected metrics for running containers were not found',
+      },
     });
   }
 };
@@ -209,7 +246,17 @@ promQueryController.healthFailureQuery = async (req, res, next) => {
       finalResult.totals.dockerHealthFailures = data.result[0].value.value;
       return next();
     })
-    .catch(console.error);
+    .catch((err) => {
+      return next({
+        log:
+          'promQLController.healthFailureQuery - error in the promQL HEALTH FAILURES query: ' +
+          err,
+        status: 500,
+        message: {
+          err: 'Expected metrics for running containers were not found',
+        },
+      });
+    });
 };
 
 module.exports = promQueryController;

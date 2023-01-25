@@ -19,6 +19,8 @@ const PORT = 3535;
 
 app.use(cookieParser()).use(express.json()).use(cors());
 
+app.use(express.static(path.join(__dirname, '../../build')));
+
 app.get('/api/getContainers', getContainers, getContainerState, (req, res) => {
   res.status(200).json(res.locals.containers);
 });
@@ -49,17 +51,21 @@ app.get(
   }
 );
 
-app.use('/', express.static(path.join(__dirname, '../../build')));
+//404 handler
+app.get((req, res) => {
+  return res.sendStatus(404);
+});
 
+//global error handler
 app.use((err, _req, res, next) => {
   const defaultErr = {
-    log: 'Caught Unknown middleware error.',
+    log: 'Express error handler caught an unknown middleware error',
     status: 500,
-    message: { err: 'An unknown error occured.' },
+    message: { err: 'An unknown server error occured.' },
   };
   const { log, status, message } = Object.assign(defaultErr, err);
   console.log('ERROR: ', log);
-  return res.status(status).send(message);
+  return res.status(status).json(message);
 });
 
 app.listen(PORT, () => {

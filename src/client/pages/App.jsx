@@ -1,15 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import SystemMetrics from '../containers/SystemMetrics.jsx';
-import Environments from '../containers/Environments.jsx';
-import Carousel from '../containers/Carousel.jsx';
-import Logs from '../containers/Logs.jsx';
-import LiquidGauge from '../components/LiquidGauge.jsx';
+import SystemMetrics from '../containers/SystemMetrics';
+import Environments from '../containers/Environments';
+import Carousel from '../containers/Carousel';
+import Logs from '../containers/Logs';
+import LiquidGauge from '../components/LiquidGauge';
 
 const App = () => {
   const [queryData, setQueryData] = useState({});
   //filters running containers
-  const [allContainers, setAllContainers] = useState([]);
+  // const [allContainers, setAllContainers] = useState([]);
   const [activeContainers, setActiveContainers] = useState([]);
   const [loadingScreen, setLoadingScreen] = useState(true);
 
@@ -19,7 +19,7 @@ const App = () => {
       .then((res) => {
         setQueryData((prev) => {
           const newQueryState = { ...prev };
-          for (let key in res.data) {
+          for (const key in res.data) {
             if (!(key in newQueryState)) {
               newQueryState[key] = res.data[key];
             } else if (
@@ -59,7 +59,7 @@ const App = () => {
         });
       })
       .catch((err) =>
-        console.error('Initial fetch GET request to DB: ERROR: ', err)
+        console.error('Error updating main metrics: ', err)
       );
     return getStatsFunc;
   };
@@ -70,11 +70,11 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const allContainers = [];
+    // const allContainers = [];
     const activeContainers = [];
     for (const key in queryData) {
       if (key !== 'totals') {
-        allContainers.push(queryData[key]);
+        // allContainers.push(queryData[key]);
         if (
           queryData[key].State === 'running' &&
           queryData[key].cpu &&
@@ -85,7 +85,7 @@ const App = () => {
         }
       }
     }
-    setAllContainers(allContainers);
+    // setAllContainers(allContainers);
     setActiveContainers(activeContainers);
   }, [queryData]);
 
@@ -154,8 +154,8 @@ const App = () => {
                       y1="122.45%"
                       y2="31.139%"
                     >
-                      <stop offset="0%" stop-color="#FFF100" />
-                      <stop offset="100%" stop-color="#F05A28" />
+                      <stop offset="0%" stopColor="#FFF100" />
+                      <stop offset="100%" stopColor="#F05A28" />
                     </linearGradient>
                   </defs>
                   <path

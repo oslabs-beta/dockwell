@@ -11,7 +11,7 @@ const Logs = (props) => {
         setLogs(null);
         return;
       }
-      let output = await axios.get(`/api/control/logs/${name}`);
+      const output = await axios.get(`/api/control/logs/${name}`);
       if (typeof output.data.stdout === 'object') {
         setLogs(output.data.stdout);
       } else {
@@ -23,9 +23,13 @@ const Logs = (props) => {
     }
   }
 
-  let logsJSX = [<li>No LOGS</li>];
+  let logsJSX = [<li key=''>No LOGS</li>];
+  const logsByMostRecent = [];
   if (logs !== null) {
-    logsJSX = logs.map((log) => <li className="logs-list-item"> {log}</li>);
+    for(let i = logs.length - 1; i >= 0; i--){
+      logsByMostRecent.push(logs[i]);
+    }
+    logsJSX = logsByMostRecent.map((log, i) => <li className="logs-list-item" key={i}> {log}</li>);
   }
 
   return (
@@ -46,8 +50,12 @@ const Logs = (props) => {
               Select to view logs:
             </option>
             <option value={null}></option>
-            {props.activeContainers?.map((x) => {
-              return <option value={x.Names}>{x.Names}</option>;
+            {props.activeContainers?.map((x, i) => {
+              return (
+                <option value={x.Names} key={i}>
+                  {x.Names}
+                </option>
+              );
             })}
           </select>
           {(selectedContainer ? true : false) && (
