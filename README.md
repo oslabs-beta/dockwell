@@ -70,16 +70,23 @@ Contributers and other info
   [↥Back to top](#table-of-contents)
 
 ## Installation:
+STEP 1: DOCKER SETTINGS
+  - For Dockwell to collect container metrics, it requires permission from the host Docker.
+  - Linux: /etc/docker/daemon.json
+  - Windows Server: C:\ProgramData\docker\config\daemon.json
+  - Docker Desktop for Mac / Docker Desktop for Windows: Click the Docker icon in the toolbar, select Settings, then select Engine. Click Advanced.
+    Add the following to the Docker Engine JSON:
+ ```{
+      "metrics-addr" : "127.0.0.1:9323",
+      "experimental" : true
+    }```
 
-STEP 1: DOWNLOAD CONFIGURATION FILES
+STEP 2: DOWNLOAD CONFIGURATION FILES
+- Download and unzip this repository to your host machine.
 
-- Go to https://github.com/oslabs-beta/dockwell/tree/SetupInstall
-- Download the repository as a zip folder to your host machine
-- Unzip the folder into a directory of your choosing
+STEP 3: DOCKER COMPOSE UP
 
-STEP 2: DOCKER COMPOSE UP
-
-- Open a terminal window, cd into the repository downloaded in Step 1: `cd dockwell-SetupInstall`
+- Open a terminal window, cd into the repository downloaded in Step 2: `cd dockwell-SetupInstall`
 - Enter the command: `docker compose up`
 
 - You should see the following:
