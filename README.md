@@ -7,9 +7,7 @@
 ## About
 
 ---
-
-![docker_experimental](https://user-images.githubusercontent.com/101525834/214611650-abe7a79c-fa23-4982-ab54-a83ad2b616c1.gif)
-
+![docker_experimental_large](https://user-images.githubusercontent.com/101525834/214612221-47fcf108-fb9d-41cd-ab22-fe8766f0e6f9.gif)
 
 Dockwell is an intuitive and comprehensive GUI that tracks, monitors, and displays all of a user's Docker containers.
 
