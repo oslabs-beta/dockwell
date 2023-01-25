@@ -12,7 +12,10 @@ With the needs of developers in mind, Dockwell uses Prometheus and cAdvisor to s
 
 Dockwell is an open source project and we would love to hear your feedback!
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/105250729/214136456-38e208cf-4deb-4f24-a676-654c9e0d4091.gif)
+
+https://user-images.githubusercontent.com/105250729/214631275-7a81bddb-1fbd-4cc6-a478-97a6a3efad06.mov
+
+
 
 ## Table of Contents
 
