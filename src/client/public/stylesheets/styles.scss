@@ -20,47 +20,70 @@ body,
 html {
   margin: 0;
   padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
   background: $background;
+  margin: 0 auto;
   color: $tertiary;
-  background-image: linear-gradient(rgba(45, 45, 45, 0.7) 0.1em,
-      transparent 0.1em),
+  background-image: linear-gradient(
+      rgba(45, 45, 45, 0.7) 0.1em,
+      transparent 0.1em
+    ),
     linear-gradient(90deg, rgba(45, 45, 45, 0.7) 0.1em, transparent 0.1em);
   background-size: 1em 1em;
   padding: 20px;
-}
-
-.App {
-  .main {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 2fr 4fr 2fr;
-    padding: 30px;
-  }
-}
-
-.left {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  // height: 90vh;
-  padding-bottom: 30px;
+  // width: 100vh;
+  max-width: 1700px;
 
-  .title {
-    width: 100%;
-    font-size: 50;
-    font-family: 'Kanit', sans-serif;
-    height: 170.78;
+  .links {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    position: absolute;
+    top: 15px;
+    right: 40px;
+  }
 
-    .links {
+  .App {
+    .main {
+      width: fit-content;
+      display: grid;
+      grid-template-columns: 2fr 4fr 2fr;
+      padding: 30px;
+      margin-top: 20px;
+    }
+  }
+
+  .left {
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+    align-items: center;
+    height: fit-content;
+    padding-bottom: 30px;
+    // position: relative;
+    img {
+      width: 110px;
+      position: relative;
+      bottom: 34px;
+      right: 36px;
+    }
+
+    .top {
       display: flex;
-      justify-content: center;
-      align-items: baseline;
-      position: absolute;
-      top: 15px;
-      right: 40px;
+      justify-content: space-between;
+    }
+    .title {
+      width: 100%;
+      font-size: 50;
+      font-family: 'Kanit', sans-serif;
+
+      // height: 170.78;
 
       a {
         color: $tertiary;
@@ -71,8 +94,19 @@ body {
         margin: auto 0;
         color: $tertiary;
       }
-    }
 
+      .grafana {
+        // color: rgb(239, 90, 39);
+        background-image: linear-gradient(
+          180deg,
+          rgba(239, 90, 39, 1) 0%,
+          rgba(251, 197, 26, 1) 85%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        // font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    }
 
     h1 {
       font-size: 50px;
@@ -81,23 +115,22 @@ body {
     }
 
     h2 {
+      font-size: 1.3rem;
       position: relative;
       bottom: 30px;
-      left: 30px;
+      left: 64px;
     }
-
-
   }
 
   .SystemMetrics {
-
     display: flex;
     flex-direction: column;
+    // grid-template-rows: 2fr 2fr 2fr;
     // padding: 0 10px 30px 0;
     margin: 0 auto;
-    height: 100%;
+    // height: 100%;
     width: 100%;
-    border-radius: 10px;
+    // border-radius: 10px;
 
     .mem,
     .cpu {
@@ -112,7 +145,7 @@ body {
       label {
         margin: 0 auto 10px auto;
         font-size: 1.2rem;
-        color: $tertiary
+        color: $tertiary;
       }
 
       .circles {
@@ -132,23 +165,26 @@ body {
         display: flex;
         flex-direction: column;
 
-        .totalMemFail,
         .healthfail {
           background-color: $panels;
-          height: 87.5px;
+          font-weight: 600;
+          // height: 178px;
           width: 135px;
           margin: 0 15 15 0;
           border-radius: 10px;
           padding: 2.5px;
           display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
 
-          i {
-            font-size: 70px;
-            position: relative;
-            bottom: 12.5px;
-            right: 10px;
+          #title {
+            font-size: 25;
+            padding-bottom: 10px;
+          }
 
-            // text-decoration: none;
+          #num {
+            font-size: 40;
           }
 
           .green {
@@ -158,31 +194,12 @@ body {
           .red {
             color: $red;
           }
-
-          p {
-            // transform: rotate(270deg);
-            width: 100px;
-            margin: 0 auto;
-            position: relative;
-            top: 17.5px;
-            left: 5px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: 0;
-
-
-
-
-          }
-
-          // display: 
         }
-
       }
 
       .legendInner {
         background-color: $panels;
-        height: 190px;
+        // height: 178px;
         width: 285px;
         padding: 15px;
         border-radius: 10px;
@@ -203,9 +220,8 @@ body {
           text-align: center;
         }
 
-
         .legendItem1 {
-          background-color: $legend1
+          background-color: $legend1;
         }
 
         .legendItem2 {
@@ -237,21 +253,28 @@ body {
   flex-direction: column;
   padding: 30px 0;
   margin: 0 auto;
-  height: 100%;
-  width: 100%;
+  height: fit-content;
+  width: 765px;
 
-  .carouselDiv {
-    background-color: $panels;
+  .CarouselDiv {
+    background-color: $carouselPanel;
+    overflow: scroll;
     padding: 10px 30px;
     margin: 0 15px;
     border-radius: 10px;
-    height: 100%;
-    max-height: 802.398;
+    height: 81vh;
+
+    .carousel-control-next,
+    .carousel-control-prev {
+      margin-top: 50px;
+      height: 700px;
+    }
 
     .carousel-control-next-icon {
       position: relative;
       left: 66px;
       top: 24px;
+      color: $carouselActive;
     }
 
     .carousel-control-prev-icon {
@@ -266,38 +289,52 @@ body {
       margin: 0 10px;
       border: none;
     }
+  }
+
+  .carousel-indicators {
+    position: absolute;
+    top: 730px;
+
+    button.active {
+      background-color: $carouselActive;
+    }
+  }
+
+  .header {
+    display: flex;
+    margin: auto 10px;
+    justify-content: space-between;
+
+    .badge {
+      height: min-content;
+      padding: 10px;
+      margin: auto 0;
+      width: 180px;
+    }
 
     h2 {
-      position: relative;
-      top: 10px
+      font-size: 1.75em;
+      overflow: scroll;
+      align-self: center;
+      color: $panels;
+      font-weight: 600;
+      margin: auto 0;
     }
 
     select {
-      width: 120px;
       margin: 0 auto;
-      padding: .2rem;
+      width: 160px;
+      padding: 0 10px;
+      height: 32px;
+      margin: auto 0;
+      border-radius: 50px;
       cursor: pointer;
-      border-radius: 5px;
-      background-color: #ddd;
-    }
-
-    .carousel-indicators {
-      position: absolute;
-      top: 810px;
-
-      button.active {
-        background-color: $carouselActive;
-      }
-    }
-
-    .header {
-      width: 80%;
-      cursor: pointer;
-
-      select {
-        margin: 2px;
-        float: right;
-      }
+      background-color: $carouselActive;
+      color: $carouselPanel;
+      font-size: 0.8rem;
+      text-align: center;
+      // appearance: none;
+      font-weight: 600;
     }
   }
 }
@@ -308,7 +345,7 @@ body {
 
   padding: 30px 0;
   // margin: 0 10px;
-  height: 100%;
+  height: fit-content;
 
   .Environments {
     overflow: scroll;
@@ -320,6 +357,7 @@ body {
       flex-direction: row;
       justify-content: space-between;
       height: fit-content;
+      width: 390px;
       padding: 10px;
       border-radius: 10px;
       color: $secondary;
@@ -339,7 +377,7 @@ body {
       }
 
       .large {
-        color: $yellow;
+        color: $yellowfont;
         font-size: 1.3rem;
         white-space: nowrap;
       }
@@ -395,6 +433,11 @@ body {
     }
   }
 
+  form {
+    display: flex;
+    margin-top: 20px;
+  }
+
   .logs {
     background-color: $panels;
     // max-height: 40vh;
@@ -402,33 +445,40 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    max-width: 407.5px;
-    max-height: 304px;
-
+    max-width: 390.5px;
+    // max-height: 265px;
 
     input,
     select {
-      margin: 0 auto;
+      margin: 0 12px;
+      text-align: center;
       display: flex;
       justify-content: center;
-      width: 60%;
-      padding: .2rem;
+      width: 100%;
+      padding: 0.2rem;
       cursor: pointer;
       border-radius: 5px;
       background-color: #ddd;
       list-style: none;
+      border: none;
     }
 
     .logs-list {
       background-color: $logbackground;
       border: 2px solid $logborder;
-      padding-right: 10px;
+      margin: 0;
+      padding: 2px;
       height: 200px;
+      // width: 100%;
       overflow: scroll;
 
       .logs-list-item {
+        margin: 0;
+        padding: 0;
+        font-size: 10px;
+        list-style-type: none;
         border-bottom: 2px solid $logborder;
-        padding: 10px;
+        word-wrap: break-word;
       }
     }
   }

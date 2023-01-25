@@ -15,6 +15,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/client/index.html',
       filename: './index.html',
+      favicon: path.resolve(
+        __dirname,
+        './src/client/public/assets/favicon.ico'
+      ),
+      logo: path.resolve(__dirname, './src/client/public/assets/logo.png'),
     }),
   ],
 
@@ -60,6 +65,13 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
         exclude: [/node_modules/],
+      },
+      {
+        test: /\.(png)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '/public/assets/logo.png',
+        },
       },
       {
         test: /\.module\.css$/,

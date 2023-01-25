@@ -1,8 +1,7 @@
-//imports
 const { promisify } = require('util');
 const { exec } = require('child_process');
 const execProm = promisify(exec);
-const cliParser = require('../serverUtils/dockerCliJS');
+const cliParser = require('../utils/dockerCliParser');
 
 const controlContainer = {};
 
@@ -15,7 +14,15 @@ controlContainer.dockerTaskName = async (req, res, next) => {
     res.locals.container = { stdout, stderr };
     return next();
   } catch (err) {
-    console.log(err);
+    return next({
+      log:
+        'controlContainer.dockerTaskName - error in the docker task containername command: ' +
+        err,
+      status: 500,
+      message: {
+        err: 'Expected metrics for running containers were not found',
+      },
+    });
   }
 };
 

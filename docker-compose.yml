@@ -2,7 +2,8 @@ version: '3'
 volumes:
   prometheus-data:
     driver: local
-  node_modules: {}
+  grafana-data:
+    driver: local
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -26,6 +27,13 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
   dockwell:
     image: dockwellhub/dwh-prod:latest
     container_name: dockwell

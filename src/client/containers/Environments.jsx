@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ImagePreview from '../components/ImagePreview.jsx';
+import ImagePreview from '../components/ImagePreview';
 import axios from 'axios';
 
 const Environments = (props) => {
@@ -7,12 +7,12 @@ const Environments = (props) => {
 
   const getFastStats = () => {
     axios
-      .get(`/api/getFastStats`)
+      .get('/api/getFastStats')
       .then((data) => {
         setFastState(data.data);
       })
       .catch((err) => {
-        console.error('error');
+        console.error('Error fetching high-level container metrics: ', err);
       });
     return getFastStats;
   };
@@ -20,8 +20,6 @@ const Environments = (props) => {
   useEffect(() => {
     setInterval(getFastStats(), 500);
   }, []);
-
-  // console.error('keys', Object.values(fastState));
 
   const previewArray = Object.values(fastState).map((obj, i) => (
     <ImagePreview obj={obj} key={'container ' + i} />

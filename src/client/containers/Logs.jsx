@@ -11,7 +11,8 @@ const Logs = (props) => {
         setLogs(null);
         return;
       }
-      let output = await axios.get(`/api/control/logs/${name}`);
+      const output = await axios.get(`/api/control/logs/${name}`);
+      console.log(output);
       if (typeof output.data.stdout === 'object') {
         setLogs(output.data.stdout);
       } else {
@@ -19,13 +20,22 @@ const Logs = (props) => {
       }
     } catch (err) {
       const output = err;
-      setLogs(output);
+      setLogs(output.data);
     }
   }
 
-  let logsJSX = [<li>No LOGS</li>];
+  let logsJSX = [<li key="">No LOGS</li>];
+  const logsByMostRecent = [];
   if (logs !== null) {
-    logsJSX = logs.map((log) => <li className="logs-list-item"> {log}</li>);
+    for (let i = logs.length - 1; i >= 0; i--) {
+      logsByMostRecent.push(logs[i]);
+    }
+    logsJSX = logsByMostRecent.map((log, i) => (
+      <li className="logs-list-item" key={i}>
+        {' '}
+        {typeof log === 'string' ? log : JSON.stringify(log)}
+      </li>
+    ));
   }
 
   return (
@@ -35,34 +45,34 @@ const Logs = (props) => {
           <br></br>
           <select
             className="dropdown"
-            placeholder="Select to view logs:"
-            defaultValue={null}
+            defaultValue={'DEFAULT'}
             onChange={(e) => {
               getLogs(e.target.value);
               setSelectedContainer(e.target.value);
             }}
           >
-            <option value="" disabled selected>
-              Select to view logs:
-            </option>
-            <option value={null}></option>
-            {props.activeContainers?.map((x) => {
-              return <option value={x.Names}>{x.Names}</option>;
+            <option value={'Default'}>Select to view Logs:</option>
+            {props.activeContainers?.map((x, i) => {
+              return (
+                <option value={x.Names} key={i}>
+                  {x.Names}
+                </option>
+              );
             })}
           </select>
+          {(selectedContainer ? true : false) && (
+            <input
+              type="submit"
+              value="Refresh Logs"
+              onClick={(e) => {
+                e.preventDefault();
+                getLogs(selectedContainer);
+              }}
+            />
+          )}
         </form>
       )}
       {(logs ? true : false) && <ul className="logs-list"> {logsJSX}</ul>}
-      {(selectedContainer ? true : false) && (
-        <input
-          type="submit"
-          value="Refresh Logs"
-          onClick={(e) => {
-            e.preventDefault();
-            getLogs(selectedContainer);
-          }}
-        />
-      )}
     </>
   );
 };

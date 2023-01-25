@@ -1,3 +1,5 @@
+#DEVELOPMENT
+#docker compose -f docker-compose-dev.yml up
 version: '3'
 volumes:
   prometheus-data:
@@ -28,8 +30,7 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-    depends_on:
-      - redis
+  #redis is only here for demonstration
   redis:
     image: redis:latest
     container_name: redis
@@ -42,9 +43,8 @@ services:
       - '3000:3000'
     volumes:
       - grafana-data:/var/lib/grafana
-  #docker compose -f docker-compose-dev.yml up
   dockwell-dev:
-    image: dockwellhub/dwh-dev:latest
+    image: dockwell_dev:latest
     container_name: dockwell-dev
     ports:
       - 7070:7070

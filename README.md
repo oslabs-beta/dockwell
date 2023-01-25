@@ -3,10 +3,8 @@
 ---
 
 ## About
-
 ---
-
-Dockwell is an intuitive and comprehensive GUI that tracks, monitors, and displays all of a user's Docker containers. 
+Dockwell is an intuitive and comprehensive GUI that tracks, monitors, and displays all of a user's Docker containers.
 
 We made Dockwell so that developers can quickly visualize container metrics to assist in their debugging and development process.
 
@@ -14,7 +12,9 @@ With the needs of developers in mind, Dockwell uses Prometheus and cAdvisor to s
 
 Dockwell is an open source project and we would love to hear your feedback!
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/105250729/214136456-38e208cf-4deb-4f24-a676-654c9e0d4091.gif)
+
+https://user-images.githubusercontent.com/105250729/214631275-7a81bddb-1fbd-4cc6-a478-97a6a3efad06.mov
+
 
 
 ## Table of Contents
@@ -26,58 +26,53 @@ Application usage/documentation
 
 Installation Guides
 
-- [Installation](#Installation-for-Users)
+- [Installation](#installation)
 - [How to Contribute](#how-to-contribute)
-
 
 Contributers and other info
 
-- [Contributers](#contributers)
+- [Contributors](#contributors)
 - [Made With](#made-with)
-
 
 ## Features:
 
----
+Live reloading of metric data displayed in simple to read charts.
+  - Memory and CPU usage data are displayed graphically for each individual container.
+  - Memory and CPU usage data for _all containers_ are also displaed so that users can quickly compare metrics
 
-- Memory and CPU usage data are displayed graphically for each individual container. 
-- Memory and CPU usage data for *all containers* are also displaed so that users can quickly compare metrics
-<!-- Live reloading of metric data displayed by individual container or all containers at once, in simple to read charts. -->
+Environments section which displays all of a users active and inactive containers with the functionality to start, pause, and kill containers.
 
-- The right side of the interface displays all of a users active and inactive containers with the functionality to start, pause, unpause, and kill containers.
-
-<!-- System metrics section which displays how much CPU and Memory Docker is currently using from the host machine, as well as by container. -->
-- The left side of the interfece displays a breakdown of memory and CPU usage. 
+System metrics section which displays how much CPU and Memory Docker is currently using
   - A liguid guage shows the percent of each metric being used by all containers
   - A pie chart depicts the ratio metric usage by container
-  
-  
-- All charts are dynamic and update every 1000ms
-<!-- Logs section that allows a user to check and refresh the logs from each container's environment. -->
+ 
+Logs section that allows a user to check and refresh the logs from each container's environment.
+ 
+All charts are dynamic and update every 1000ms
 
 [↥Back to top](#table-of-contents)
 
 ## Prerequisites:
-
----
-
 - The host computer running Dockwell must have:
 
-  - A Docker  [Account](https://www.docker.com/ 'Download Docker')
-  - 
+  - A Docker [Account](https://www.docker.com/ 'Download Docker')
 
----
+  [↥Back to top](#table-of-contents)
+
+## Installation:
+
+- All you have to do is visit [this](https://github.com/oslabs-beta/dockwell/tree/SetupInstall) repository and follow the instructions in the Readme
 
 [↥Back to top](#table-of-contents)
-
-## Installation for Users:
-  - To use Docker, please visit [this](https://github.com/oslabs-beta/dockwell/tree/SetupInstall) repository and follow the instructions in the Readme
 
 ## How to Contribute:
-  - Contributions are always welcome!
-  - To contribute please fork the repository and then create a pull request.
-[↥Back to top](#table-of-contents)
----
+
+- Contributions are always welcome!
+- To contribute please fork the repository and then create a pull request.
+
+  [↥Back to top](#table-of-contents)
+
+## Contributors: 
 
 - Kyle Saunders [LinkedIn](https://www.linkedin.com/in/kylersaunders/) | [Github](https://github.com/kylersaunders)
 - Sami Messai [LinkedIn](https://www.linkedin.com/in/sami-messai-682873ab/) | [Github](https://github.com/samessai14)
@@ -88,22 +83,20 @@ Contributers and other info
 
 ## Made With
 
-
-***
 ### FrontEnd
+
 ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
+
 ### BackEnd
+
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+
 ### Monitoring and Data Visualization
+
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white)
-
-[↥Back to top](#table-of-contents)
-
-
-
 
 [↥Back to top](#table-of-contents)

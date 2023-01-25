@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import CPU from '../components/metrics/Cpu.jsx';
-import Chart from '../components/Chart.jsx';
-import ChartCompound from '../components/ChartCompound.jsx';
+import Chart from '../components/Chart';
+import ChartCompound from '../components/ChartCompound';
+// import { ArrowDownSquareFill } from 'react-bootstrap-icons';
 
 function CarouselDisplay(props) {
   const [index, setIndex] = useState(0);
@@ -13,22 +14,19 @@ function CarouselDisplay(props) {
     setIndex(selectedIndex);
   };
 
-  // console.log('AC', activeContainers);
-
   const dropDown = (
     <>
+      <i className="bi bi-arrow-down-square-fill"></i>
+
       <select
         className="dropdown"
-        placeholder="Data Points:"
-        defaultValue={null}
+        defaultValue={'DEFAULT'}
         onChange={(e) => {
           e.preventDefault();
           setDataLength(e.target.value);
         }}
       >
-        <option value="" disabled selected>
-          Data points
-        </option>
+        <option value={'Default'}>Interval:</option>
         <option value={25}>25</option>
         <option value={50}>50</option>
         <option value={75}>75</option>
@@ -36,6 +34,13 @@ function CarouselDisplay(props) {
       </select>
     </>
   );
+  const memFail = [];
+  for (let index = 0; index < props.activeContainers.length; index++) {
+    memFail.push(props.activeContainers[index].memFailures.value[0]);
+  }
+  const totalMemFail = memFail.reduce((a, b) => {
+    return a + b;
+  }, 0);
 
   return (
     <Carousel
@@ -52,7 +57,37 @@ function CarouselDisplay(props) {
         className="carousel-item-styles"
       >
         <div className="header">
-          <h2 style={{ display: 'inline', marginRight: '8px' }}>Overview</h2>
+          <div className="badge rounded-pill bg-dark">
+            Total Memory Failures: {totalMemFail}
+          </div>
+          <h2
+            style={{ display: 'inline', marginRight: '8px' }}
+            onClick={(e) => {
+              e.preventDefault();
+              const output = [];
+              props.activeContainers.forEach((x) => {
+                const timestamp = [x.Names, 'timestamp'];
+                x.memory.time.forEach((y) => timestamp.push(y));
+                const memory = [x.Names, 'memory usage (MB)'];
+                x.memory.value.forEach((y) => memory.push(y));
+                const cpu = [x.Names, 'cpu usage (%)'];
+                x.cpu.value.forEach((y) => cpu.push(y));
+                output.push(timestamp, memory, cpu);
+              });
+              const csvContent =
+                'data:text/csv;charset=utf-8,' +
+                output.map((e) => e.join(',')).join('\n');
+              const encodedUri = encodeURI(csvContent);
+              var link = document.createElement('a');
+              link.setAttribute('href', encodedUri);
+              link.setAttribute('download', 'allContainersData.csv');
+              document.body.appendChild(link);
+              link.click();
+              link.remove();
+            }}
+          >
+            Overview
+          </h2>
           {dropDown}
         </div>
         <ChartCompound
@@ -65,13 +100,38 @@ function CarouselDisplay(props) {
           allActiveContainers={props.activeContainers}
           metric="cpu"
           dataLength={dataLength}
-          metricName="CPU Usage (s)"
+          metricName="CPU Usage (%)"
         ></ChartCompound>
       </Carousel.Item>
       {props.activeContainers.map((obj, i) => (
         <Carousel.Item interval={interval} key={'container ' + i}>
           <div className="header">
-            <h2 style={{ display: 'inline', marginRight: '8px' }}>
+            <div className="badge rounded-pill bg-dark">
+              Memory Failures: {obj.memFailures.value[0]}
+            </div>
+            <h2
+              onClick={(e) => {
+                e.preventDefault();
+                const output = [
+                  ['timestamp'],
+                  ['memory usage (MB)'],
+                  ['cpu usage (%)'],
+                ];
+                obj.memory.time.forEach((x) => output[0].push(x));
+                obj.cpu.value.forEach((x) => output[1].push(x));
+                obj.memory.value.forEach((x) => output[2].push(x));
+                const csvContent =
+                  'data:text/csv;charset=utf-8,' +
+                  output.map((e) => e.join(',')).join('\n');
+                const encodedUri = encodeURI(csvContent);
+                var link = document.createElement('a');
+                link.setAttribute('href', encodedUri);
+                link.setAttribute('download', `${obj.Names}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+              }}
+            >
               {obj.Names}
             </h2>
             {dropDown}
@@ -86,7 +146,7 @@ function CarouselDisplay(props) {
             className="lineChart"
             dataLength={dataLength}
             activeContainer={obj.cpu}
-            metric="CPU Usage (s)"
+            metric="CPU Usage (%)"
           />
         </Carousel.Item>
       ))}

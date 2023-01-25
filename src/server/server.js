@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const PrometheusDriver = require('prometheus-query').PrometheusDriver;
 const path = require('path');
 
 const app = express();
@@ -20,14 +19,14 @@ const PORT = 3535;
 
 app.use(cookieParser()).use(express.json()).use(cors());
 
-app.get('/api/getContainers', getContainers, getContainerState, (req, res) => {
-  // console.log('containers', res.locals.containers);
+app.use(express.static(path.join(__dirname, '../../build')));
+
+app.get('/api/getFastStats', getContainers, getContainerState, (req, res) => {
   res.status(200).json(res.locals.containers);
 });
 
-app.get('/api/getFastStats', getContainers, getContainerState, (req, res) => {
-  // console.log('fast', res.locals.containers);
-  res.status(200).json(res.locals.containers);
+app.get('/api/getTotals', getTotals, healthFailureQuery, (req, res) => {
+  res.status(200).json(res.locals.finalResult.totals);
 });
 
 app.get(
@@ -37,11 +36,8 @@ app.get(
   memoryQuery,
   cpuQuery,
   memFailuresQuery,
-  getTotals,
-  healthFailureQuery,
   (req, res) => {
-    // console.log('stats', res.locals.containers);
-    res.status(200).json(res.locals.finalResult);
+    res.status(200).json(res.locals.containers);
   }
 );
 
@@ -53,17 +49,21 @@ app.get(
   }
 );
 
-app.use('/', express.static(path.join(__dirname, '../../build')));
+//404 handler
+app.get((req, res) => {
+  return res.sendStatus(404);
+});
 
+//global error handler
 app.use((err, _req, res, next) => {
   const defaultErr = {
-    log: 'Caught Unknown middleware error.',
+    log: 'Express error handler caught an unknown middleware error',
     status: 500,
-    message: { err: 'An unknown error occured.' },
+    message: { err: 'An unknown server error occured.' },
   };
   const { log, status, message } = Object.assign(defaultErr, err);
   console.log('ERROR: ', log);
-  return res.status(status).send(message);
+  return res.status(status).json(message);
 });
 
 app.listen(PORT, () => {
