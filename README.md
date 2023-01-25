@@ -76,10 +76,10 @@ STEP 1: DOCKER SETTINGS
   - Windows Server: C:\ProgramData\docker\config\daemon.json
   - Docker Desktop for Mac / Docker Desktop for Windows: Click the Docker icon in the toolbar, select Settings, then select Engine. Click Advanced.
     Add the following to the Docker Engine JSON:
- ```{
+  - {
       "metrics-addr" : "127.0.0.1:9323",
       "experimental" : true
-    }```
+    }
 
 STEP 2: DOWNLOAD CONFIGURATION FILES
 - Download and unzip this repository to your host machine.
