@@ -223,7 +223,8 @@ promQueryController.getTotals = async (req, res, next) => {
     }
     const memLimit = data[0].MemUsage.split('/');
     totalsFinal.memLimit = memLimit[1];
-    res.locals.finalResult = { totals: totalsFinal, ...res.locals.containers };
+    // res.locals.finalResult = { totals: totalsFinal, ...res.locals.containers };
+    res.locals.finalResult = { totals: totalsFinal };
 
     return next();
   } catch (err) {
