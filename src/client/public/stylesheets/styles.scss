@@ -24,7 +24,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vh;
+  // width: 100vh;
   max-width: 1700px;
 }
 
@@ -64,10 +64,10 @@ body {
 
     // height: 170.78;
     img {
-      width: 124px;
+      width: 110px;
       position: absolute;
-      top: 8px;
-      left: 349px;
+      top: 48px;
+      left: 320px;
     }
 
     .links {
