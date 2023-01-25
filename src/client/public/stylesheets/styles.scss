@@ -21,15 +21,16 @@ html {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-
 }
 
 body {
   background: $background;
   margin: 0 auto;
   color: $tertiary;
-  background-image: linear-gradient(rgba(45, 45, 45, 0.7) 0.1em,
-      transparent 0.1em),
+  background-image: linear-gradient(
+      rgba(45, 45, 45, 0.7) 0.1em,
+      transparent 0.1em
+    ),
     linear-gradient(90deg, rgba(45, 45, 45, 0.7) 0.1em, transparent 0.1em);
   background-size: 1em 1em;
   padding: 20px;
@@ -47,11 +48,9 @@ body {
     position: absolute;
     top: 15px;
     right: 40px;
-
   }
 
   .App {
-
     .main {
       width: fit-content;
       display: grid;
@@ -67,21 +66,24 @@ body {
     align-items: center;
     height: fit-content;
     padding-bottom: 30px;
+    // position: relative;
+    img {
+      width: 110px;
+      position: relative;
+      bottom: 34px;
+      right: 36px;
+    }
 
+    .top {
+      display: flex;
+      justify-content: space-between;
+    }
     .title {
       width: 100%;
       font-size: 50;
       font-family: 'Kanit', sans-serif;
 
       // height: 170.78;
-      img {
-        width: 110px;
-        position: absolute;
-        top: 48px;
-        left: 320px;
-      }
-
-
 
       a {
         color: $tertiary;
@@ -93,14 +95,16 @@ body {
         color: $tertiary;
       }
 
-
       .grafana {
         // color: rgb(239, 90, 39);
-        background-image: linear-gradient(180deg, rgba(239, 90, 39, 1) 0%, rgba(251, 197, 26, 1) 85%);
+        background-image: linear-gradient(
+          180deg,
+          rgba(239, 90, 39, 1) 0%,
+          rgba(251, 197, 26, 1) 85%
+        );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         // font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
       }
     }
 
@@ -163,6 +167,7 @@ body {
 
         .healthfail {
           background-color: $panels;
+          font-weight: 600;
           // height: 178px;
           width: 135px;
           margin: 0 15 15 0;
@@ -175,7 +180,7 @@ body {
 
           #title {
             font-size: 25;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
           }
 
           #num {
@@ -259,7 +264,6 @@ body {
     border-radius: 10px;
     height: 81vh;
 
-
     .carousel-control-next,
     .carousel-control-prev {
       margin-top: 50px;
@@ -270,7 +274,7 @@ body {
       position: relative;
       left: 66px;
       top: 24px;
-      color: $carouselActive
+      color: $carouselActive;
     }
 
     .carousel-control-prev-icon {
@@ -285,8 +289,6 @@ body {
       margin: 0 10px;
       border: none;
     }
-
-
   }
 
   .carousel-indicators {
@@ -329,15 +331,11 @@ body {
       cursor: pointer;
       background-color: $carouselActive;
       color: $carouselPanel;
-      font-size: .8rem;
+      font-size: 0.8rem;
       text-align: center;
       // appearance: none;
       font-weight: 600;
-
-
     }
-
-
   }
 }
 
@@ -438,7 +436,6 @@ body {
   form {
     display: flex;
     margin-top: 20px;
-
   }
 
   .logs {
@@ -464,21 +461,24 @@ body {
       background-color: #ddd;
       list-style: none;
       border: none;
-
-
-
     }
 
     .logs-list {
       background-color: $logbackground;
       border: 2px solid $logborder;
-      padding-right: 10px;
+      margin: 0;
+      padding: 2px;
       height: 200px;
+      // width: 100%;
       overflow: scroll;
 
       .logs-list-item {
+        margin: 0;
+        padding: 0;
+        font-size: 10px;
+        list-style-type: none;
         border-bottom: 2px solid $logborder;
-        padding: 10px;
+        word-wrap: break-word;
       }
     }
   }

@@ -14,8 +14,8 @@ COPY package*.json ./
 RUN npm install
 
 #DEVELOPMENT
-#docker build --target dev -t dockwellhub/dwh-dev .
-FROM npm-base as dev
+#docker build --target dockwell_dev -t dockwell_dev .
+FROM npm-base as dockwell_dev
 EXPOSE 7070 
 
 #webpack builds bundle.js

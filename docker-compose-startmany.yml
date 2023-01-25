@@ -2,6 +2,6 @@ version: '3'
 services:
   redis4u:
     image: redis:latest
-    container_name: redis
+    container_name: redis4u
     ports:
       - 6379:6379
