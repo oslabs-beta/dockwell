@@ -58,9 +58,7 @@ const App = () => {
           return newQueryState;
         });
       })
-      .catch((err) =>
-        console.error('Error updating main metrics: ', err)
-      );
+      .catch((err) => console.error('Error updating main metrics: ', err));
     return getStatsFunc;
   };
 
@@ -85,6 +83,7 @@ const App = () => {
         }
       }
     }
+    //testing
     // setAllContainers(allContainers);
     setActiveContainers(activeContainers);
   }, [queryData]);
@@ -137,7 +136,7 @@ const App = () => {
                   href="https://github.com/oslabs-beta/dockwell"
                   className="btn btn-link"
                 >
-                  GitHub   |    
+                  GitHub |
                 </a>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
