@@ -82,6 +82,7 @@ STEP 1: DOCKER SETTINGS
         "experimental" : true
       }
     - ![Screen Shot 2023-01-25 at 9 58 09 AM](https://user-images.githubusercontent.com/7785546/214613039-c3a0b064-a6bb-47c8-be3e-a011b9392085.png)
+    - <img width="557" alt="Screen Shot 2023-01-23 at 1 36 40 PM" src="https://user-images.githubusercontent.com/7785546/214134207-60b9bea5-f4b8-4ff8-8a5b-e67de80acf80.png](https://user-images.githubusercontent.com/7785546/214613039-c3a0b064-a6bb-47c8-be3e-a011b9392085.png">
 
 
 
