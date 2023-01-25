@@ -21,10 +21,6 @@ app.use(cookieParser()).use(express.json()).use(cors());
 
 app.use(express.static(path.join(__dirname, '../../build')));
 
-// app.get('/api/getContainers', getContainers, getContainerState, (req, res) => {
-//   res.status(200).json(res.locals.containers);
-// });
-
 app.get('/api/getFastStats', getContainers, getContainerState, (req, res) => {
   res.status(200).json(res.locals.containers);
 });
