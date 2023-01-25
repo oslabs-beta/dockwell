@@ -6,7 +6,11 @@ const Legend = ({ names }: { names: String[] }) => {
     names[i] = names[i].charAt(0).toUpperCase() + names[i].slice(1);
   }
   for (let i = 0; i < names.length; i++) {
-    namesArray.push(<div className={`legendItem${i + 1}`}>{names[i]}</div>);
+    namesArray.push(
+      <div className={`legendItem${i + 1}`} key={i}>
+        {names[i]}
+      </div>
+    );
   }
 
   return <div className="legendInner">{namesArray}</div>;

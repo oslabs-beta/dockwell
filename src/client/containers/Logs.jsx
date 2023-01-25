@@ -23,13 +23,18 @@ const Logs = (props) => {
     }
   }
 
-  let logsJSX = [<li key=''>No LOGS</li>];
+  let logsJSX = [<li key="">No LOGS</li>];
   const logsByMostRecent = [];
   if (logs !== null) {
-    for(let i = logs.length - 1; i >= 0; i--){
+    for (let i = logs.length - 1; i >= 0; i--) {
       logsByMostRecent.push(logs[i]);
     }
-    logsJSX = logsByMostRecent.map((log, i) => <li className="logs-list-item" key={i}> {log}</li>);
+    logsJSX = logsByMostRecent.map((log, i) => (
+      <li className="logs-list-item" key={i}>
+        {' '}
+        {log}
+      </li>
+    ));
   }
 
   return (
@@ -39,17 +44,13 @@ const Logs = (props) => {
           <br></br>
           <select
             className="dropdown"
-            placeholder="Select to view logs:"
-            defaultValue={null}
+            defaultValue={'DEFAULT'}
             onChange={(e) => {
               getLogs(e.target.value);
               setSelectedContainer(e.target.value);
             }}
           >
-            <option value="" disabled selected>
-              Select to view logs:
-            </option>
-            <option value={null}></option>
+            <option value={'Default'}>Select to view Logs:</option>
             {props.activeContainers?.map((x, i) => {
               return (
                 <option value={x.Names} key={i}>

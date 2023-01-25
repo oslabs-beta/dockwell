@@ -14,23 +14,19 @@ function CarouselDisplay(props) {
     setIndex(selectedIndex);
   };
 
-
   const dropDown = (
     <>
       <i className="bi bi-arrow-down-square-fill"></i>
 
       <select
         className="dropdown"
-        placeholder="Data Points:"
-        defaultValue={null}
+        defaultValue={'DEFAULT'}
         onChange={(e) => {
           e.preventDefault();
           setDataLength(e.target.value);
         }}
       >
-        <option value="" disabled selected>
-          Change Interval:
-        </option>
+        <option value={'Default'}>Interval:</option>
         <option value={25}>25</option>
         <option value={50}>50</option>
         <option value={75}>75</option>
