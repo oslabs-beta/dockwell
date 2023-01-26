@@ -1,11 +1,12 @@
 # INSTALLATION GUIDE FOR USERS
 
+# Dockwell &middot; ![Github Repo Size](https://img.shields.io/github/repo-size/oslabs-beta/Dockwell) ![GitHub License](https://img.shields.io/github/license/oslabs-beta/Dockwell) ![GitHub Commit](https://img.shields.io/github/last-commit/oslabs-beta/Dockwell) ![GitHub Stars](https://img.shields.io/github/stars/oslabs-beta/Dockwell)
+
 ---
 
 ## About
 
----
-![docker_experimental_large](https://user-images.githubusercontent.com/101525834/214612221-47fcf108-fb9d-41cd-ab22-fe8766f0e6f9.gif)
+--- 
 
 Dockwell is an intuitive and comprehensive GUI that tracks, monitors, and displays all of a user's Docker containers.
 
