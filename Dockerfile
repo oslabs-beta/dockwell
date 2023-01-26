@@ -37,8 +37,4 @@ COPY --from=build /usr/src/build ./build
 EXPOSE 3535
 ENTRYPOINT node ./src/server/server.js 
 
-# docker buildx build \
-#    --platform linux/amd64,linux/arm64,linux/arm/v7 \
-#    -t dockwellhub/dwh-prod:latest \
-#    --push \
-#    . 
+# docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t dockwellhub/dwh-prod:latest --push . 
