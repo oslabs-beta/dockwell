@@ -12,7 +12,6 @@ const Logs = (props) => {
         return;
       }
       const output = await axios.get(`/api/control/logs/${name}`);
-      console.log(output);
       if (typeof output.data.stdout === 'object') {
         setLogs(output.data.stdout);
       } else {
