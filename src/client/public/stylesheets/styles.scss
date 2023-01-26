@@ -51,6 +51,9 @@ body {
   }
 
   .App {
+    @media screen and (max-width: 1600px) {
+      transform: scale(0.9);
+    }
     .main {
       width: fit-content;
       display: grid;
@@ -96,7 +99,6 @@ body {
       }
 
       .grafana {
-        // color: rgb(239, 90, 39);
         background-image: linear-gradient(
           180deg,
           rgba(239, 90, 39, 1) 0%,
@@ -105,6 +107,13 @@ body {
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         // font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .grafana:hover {
+        background-image: linear-gradient(
+          180deg,
+          rgb(250, 133, 94) 0%,
+          rgb(255, 219, 99) 85%
+        );
       }
     }
 
@@ -125,12 +134,8 @@ body {
   .SystemMetrics {
     display: flex;
     flex-direction: column;
-    // grid-template-rows: 2fr 2fr 2fr;
-    // padding: 0 10px 30px 0;
     margin: 0 auto;
-    // height: 100%;
     width: 100%;
-    // border-radius: 10px;
 
     .mem,
     .cpu {
@@ -168,7 +173,6 @@ body {
         .healthfail {
           background-color: $panels;
           font-weight: 600;
-          // height: 178px;
           width: 135px;
           margin: 0 15 15 0;
           border-radius: 10px;
@@ -199,7 +203,6 @@ body {
 
       .legendInner {
         background-color: $panels;
-        // height: 178px;
         width: 285px;
         padding: 15px;
         border-radius: 10px;
@@ -262,8 +265,10 @@ body {
     padding: 10px 30px;
     margin: 0 15px;
     border-radius: 10px;
-    height: 81vh;
-
+    height: 80vh;
+    @media screen and (max-width: 1600px) {
+      height: 90vh;
+    }
     .carousel-control-next,
     .carousel-control-prev {
       margin-top: 50px;
@@ -319,6 +324,10 @@ body {
       color: $panels;
       font-weight: 600;
       margin: auto 0;
+      &:hover {
+        color: $red;
+        cursor: pointer;
+      }
     }
 
     select {
@@ -364,22 +373,32 @@ body {
       background-color: $panels;
       margin-bottom: 20px;
 
-      p {
-        margin: 0;
-      }
+      .information {
+        width: 290px;
+        // flex-shrink: 1;
 
-      .small {
-        font-size: 0.85rem;
-      }
+        // .labels {
+        //   word-wrap: break-word;
+        // }
 
-      .space {
-        height: 15px;
-      }
+        p {
+          margin: 0;
+        }
 
-      .large {
-        color: $yellowfont;
-        font-size: 1.3rem;
-        white-space: nowrap;
+        .small {
+          font-size: 0.85rem;
+        }
+
+        .space {
+          height: 15px;
+        }
+
+        .large {
+          color: $yellowfont;
+          font-size: 1.3rem;
+          // white-space: nowrap;
+          // word-wrap: break-word;
+        }
       }
 
       .blueBadge,
@@ -440,13 +459,11 @@ body {
 
   .logs {
     background-color: $panels;
-    // max-height: 40vh;
     padding: 0 10px 10px 10px;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
     max-width: 390.5px;
-    // max-height: 265px;
 
     input,
     select {
@@ -469,7 +486,6 @@ body {
       margin: 0;
       padding: 2px;
       height: 200px;
-      // width: 100%;
       overflow: scroll;
 
       .logs-list-item {
