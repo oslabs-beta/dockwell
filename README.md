@@ -74,9 +74,7 @@ Contributers and other info
 
 ## Installation:
 STEP 1: DOCKER SETTINGS
-  - For Dockwell to collect container metrics, it requires permission from the host Docker.
-  - Linux: /etc/docker/daemon.json
-  - Windows Server: C:\ProgramData\docker\config\daemon.json
+_For Dockwell to collect container metrics, permission from the host Docker is required_
   - Docker Desktop for Mac / Docker Desktop for Windows: Click the Docker icon in the toolbar, select Settings, then select Engine. Click Advanced.
     Add the following to the Docker Engine JSON:
     - {
@@ -86,6 +84,8 @@ STEP 1: DOCKER SETTINGS
     - ![Screen Shot 2023-01-25 at 9 58 09 AM](https://user-images.githubusercontent.com/7785546/214613039-c3a0b064-a6bb-47c8-be3e-a011b9392085.png)
 
 
+  - For Linux users: add the flags above to your daemon.json file at /etc/docker/daemon.json
+  - Windows Server users: add the same to your config file at C:\ProgramData\docker\config\daemon.json
 
 
 STEP 2: DOWNLOAD CONFIGURATION FILES
@@ -93,16 +93,17 @@ STEP 2: DOWNLOAD CONFIGURATION FILES
 
 STEP 3: DOCKER COMPOSE UP
 
-- Open a terminal window, cd into the repository downloaded in Step 2: `cd dockwell-SetupInstall`
-- Enter the command: `docker compose up`
+- Open a terminal or command prompt window, cd into the unzipped repository downloaded in Step 2: `cd dockwell-SetupInstall`
+- Start Docker Compose using the command: `docker compose up`
 
-- You should see the following:
+_You should see the following:_
 - <img width="557" alt="Screen Shot 2023-01-23 at 1 36 40 PM" src="https://user-images.githubusercontent.com/7785546/214134207-60b9bea5-f4b8-4ff8-8a5b-e67de80acf80.png">
 
 
-- Wait 1-2 minutes for background processes to get started, and you can confirm everything is running by going viewing Containers in the Desktop Docker Daemon:
+_You can confirm the Compose stack is running correctly by viewing Containers in your Docker Desktop app:_
 - <img width="986" alt="Screen Shot 2023-01-23 at 1 44 19 PM" src="https://user-images.githubusercontent.com/7785546/214134575-9169d790-b839-4090-a4bd-1991656be7f2.png">
 
+STEP 4: ACCESSING THE TOOL
 
 - Go to http://localhost:3535 to view your container metrics
 
