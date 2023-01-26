@@ -3,9 +3,7 @@ volumes:
   prometheus-data:
     driver: local
   grafana-data:
-    driver: local
-  prometheus-startup:
-    driver: local
+    driver: local 
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -13,8 +11,7 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      # - prometheus-startup:/etc/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml 
       - prometheus-data:/prometheus
     command:
       - --config.file=/etc/prometheus/prometheus.yml
