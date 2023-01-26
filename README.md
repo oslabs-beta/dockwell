@@ -2,6 +2,46 @@
 
 # Dockwell &middot; ![Github Repo Size](https://img.shields.io/github/repo-size/oslabs-beta/Dockwell) ![GitHub License](https://img.shields.io/github/license/oslabs-beta/Dockwell) ![GitHub Commit](https://img.shields.io/github/last-commit/oslabs-beta/Dockwell) ![GitHub Stars](https://img.shields.io/github/stars/oslabs-beta/Dockwell)
 
+## Installation:
+
+STEP 1: DOCKER SETTINGS
+
+_For Dockwell to collect container metrics, permission from the host Docker is required_
+  - Docker Desktop for Mac / Docker Desktop for Windows: Click the Docker icon in the toolbar, select Settings, then select Engine. Click Advanced.
+    Add the following to the Docker Engine JSON:
+    ```
+    {
+        "metrics-addr" : "127.0.0.1:9323",
+        "experimental" : true
+      }
+![Screen Shot 2023-01-25 at 9 58 09 AM](https://user-images.githubusercontent.com/7785546/214613039-c3a0b064-a6bb-47c8-be3e-a011b9392085.png)
+
+
+  - For Linux users: add the flags above to your daemon.json file at /etc/docker/daemon.json
+  - Windows Server users: add the same to your config file at C:\ProgramData\docker\config\daemon.json
+
+
+STEP 2: DOWNLOAD CONFIGURATION FILES
+- Download and unzip this repository to your host machine.
+
+STEP 3: DOCKER COMPOSE UP
+
+- Open a terminal or command prompt window, cd into the unzipped repository downloaded in Step 2: `cd dockwell-SetupInstall`
+- Start Docker Compose using the command: `docker compose up`
+
+_You should see the following:_
+
+<img width="557" alt="Screen Shot 2023-01-23 at 1 36 40 PM" src="https://user-images.githubusercontent.com/7785546/214134207-60b9bea5-f4b8-4ff8-8a5b-e67de80acf80.png">
+
+
+_You can confirm the Compose stack is running correctly by viewing Containers in your Docker Desktop app:_
+
+<img width="986" alt="Screen Shot 2023-01-23 at 1 44 19 PM" src="https://user-images.githubusercontent.com/7785546/214134575-9169d790-b839-4090-a4bd-1991656be7f2.png">
+
+STEP 4: ACCESSING THE TOOL
+
+- Go to http://localhost:3535 to view your container metrics 
+
 ---
 
 ## About
@@ -27,11 +67,7 @@ https://user-images.githubusercontent.com/105250729/214632218-a314674d-d5d0-4d57
 Application usage/documentation
 
 - [Features](#features)
-- [Prerequisites](#prerequisites)
-
-Installation guides for Users
-
-- [Installation](#installation)
+- [Prerequisites](#prerequisites) 
 
 
 Contributers and other info
@@ -68,44 +104,7 @@ Contributers and other info
 
   - A Docker [Account](https://www.docker.com/ "Download Docker")
 
-  - Hopefully at least a few containers (idk?)
-
-  [↥Back to top](#table-of-contents)
-
-## Installation:
-STEP 1: DOCKER SETTINGS
-_For Dockwell to collect container metrics, permission from the host Docker is required_
-  - Docker Desktop for Mac / Docker Desktop for Windows: Click the Docker icon in the toolbar, select Settings, then select Engine. Click Advanced.
-    Add the following to the Docker Engine JSON:
-    - {
-        "metrics-addr" : "127.0.0.1:9323",
-        "experimental" : true
-      }
-    - ![Screen Shot 2023-01-25 at 9 58 09 AM](https://user-images.githubusercontent.com/7785546/214613039-c3a0b064-a6bb-47c8-be3e-a011b9392085.png)
-
-
-  - For Linux users: add the flags above to your daemon.json file at /etc/docker/daemon.json
-  - Windows Server users: add the same to your config file at C:\ProgramData\docker\config\daemon.json
-
-
-STEP 2: DOWNLOAD CONFIGURATION FILES
-- Download and unzip this repository to your host machine.
-
-STEP 3: DOCKER COMPOSE UP
-
-- Open a terminal or command prompt window, cd into the unzipped repository downloaded in Step 2: `cd dockwell-SetupInstall`
-- Start Docker Compose using the command: `docker compose up`
-
-_You should see the following:_
-- <img width="557" alt="Screen Shot 2023-01-23 at 1 36 40 PM" src="https://user-images.githubusercontent.com/7785546/214134207-60b9bea5-f4b8-4ff8-8a5b-e67de80acf80.png">
-
-
-_You can confirm the Compose stack is running correctly by viewing Containers in your Docker Desktop app:_
-- <img width="986" alt="Screen Shot 2023-01-23 at 1 44 19 PM" src="https://user-images.githubusercontent.com/7785546/214134575-9169d790-b839-4090-a4bd-1991656be7f2.png">
-
-STEP 4: ACCESSING THE TOOL
-
-- Go to http://localhost:3535 to view your container metrics
+  - Hopefully at least a few containers (idk?) 
 
 ---
 
