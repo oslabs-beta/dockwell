@@ -115,6 +115,12 @@ promQueryController.cpuQuery = (req, res, next) => {
             value: [metricObj.value.value],
           });
       }
+      if (containers) {
+        for (const key in containers) {
+          if (!containers[key].cpu)
+            res.locals.containers[key].cpu = { time: ['00:00:00'], value: [0] };
+        }
+      }
       return next();
     })
     .catch((err) => {
@@ -143,6 +149,15 @@ promQueryController.memoryQuery = (req, res, next) => {
             time: [metricObj.value.time.toString().slice(16, 24)],
             value: [(metricObj.value.value / 1000000).toFixed(3)],
           });
+      }
+      if (containers) {
+        for (const key in containers) {
+          if (!containers[key].memory)
+            res.locals.containers[key].memory = {
+              time: ['00:00:00'],
+              value: [0],
+            };
+        }
       }
       return next();
     })
@@ -173,6 +188,14 @@ promQueryController.memFailuresQuery = (req, res, next) => {
           (containers[short_id].memFailures = {
             value: [metricObj.value.value],
           });
+      }
+      if (containers) {
+        for (const key in containers) {
+          if (!containers[key].memFailures)
+            res.locals.containers[key].memFailures = {
+              value: [0],
+            };
+        }
       }
       return next();
     })
@@ -223,7 +246,6 @@ promQueryController.getTotals = async (req, res, next) => {
     }
     const memLimit = data[0].MemUsage.split('/');
     totalsFinal.memLimit = memLimit[1];
-    // res.locals.finalResult = { totals: totalsFinal, ...res.locals.containers };
     res.locals.finalResult = { totals: totalsFinal };
 
     return next();
