@@ -5,9 +5,6 @@ import LiquidFillGauge from 'react-liquid-gauge';
 
 const LiquidGauge = (props) => {
   const [initial, setInitial] = useState(0);
-  setTimeout(() => {
-    return setInitial(100);
-  }, 200);
 
   const gaugeVal = props.percent ? props.percent : initial;
   const startColor = '#FFFFFF'; //
@@ -41,7 +38,7 @@ const LiquidGauge = (props) => {
         width={props.width}
         height={props.height}
         value={gaugeVal}
-        riseAnimationTime={9000}
+        // riseAnimationTime={4000}
         textOffsetX={0}
         textOffsetY={0}
         riseAnimation
