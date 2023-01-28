@@ -9,8 +9,8 @@ import Links from '../containers/Links';
 
 const App = () => {
   const [queryData, setQueryData] = useState({});
+  const [loader, setLoader] = useState(0);
   //filters running containers
-  // const [allContainers, setAllContainers] = useState([]);
   const [activeContainers, setActiveContainers] = useState([]);
   const [loadingScreen, setLoadingScreen] = useState(true);
 
@@ -24,16 +24,12 @@ const App = () => {
             if (!(key in newQueryState)) {
               newQueryState[key] = res.data[key];
             } else if (
-              // key !== 'totals' &&
               newQueryState[key].State === 'running' &&
               newQueryState[key].cpu &&
               newQueryState[key].memory &&
               res.data[key].cpu &&
               res.data[key].memory
             ) {
-              // newQueryState[key].State = res.data[key].State;
-              // newQueryState[key].Status = res.data[key].Status;
-              // newQueryState[key].Ports = res.data[key].Ports;
               newQueryState[key].memory.time = [
                 ...prev[key].memory.time,
                 ...res.data[key].memory.time,
@@ -77,7 +73,12 @@ const App = () => {
           queryData[key].cpu &&
           queryData[key].memory
         ) {
-          setLoadingScreen(false);
+          setTimeout(() => {
+            setLoader(82);
+          }, 400);
+          setTimeout(() => {
+            setLoadingScreen(false);
+          }, 2000);
           activeContainers.push(queryData[key]);
         }
       }
@@ -91,7 +92,7 @@ const App = () => {
         <>
           <div className="loadGauge">
             <LiquidGauge
-              percent={0}
+              percent={loader}
               width={500}
               height={500}
               label="LOADING METRICS..."
