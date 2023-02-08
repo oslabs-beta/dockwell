@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 //this will be small previews of the users individual docker containers with buttons to start and stop each one
-const ImagePreview = ({ obj }) => {
+const ImagePreview = ({ obj, getFastStats }) => {
   const { Names, State, Ports, CreatedAt, Image, Status } = obj;
   const date = CreatedAt.substring(0, 19);
   const port = Ports.substring(8, 18);
@@ -16,6 +16,7 @@ const ImagePreview = ({ obj }) => {
       .catch((err) => {
         console.error('Error sending start/stop commands: ', err);
       });
+    getFastStats();
   };
 
   if (State === 'running') {
