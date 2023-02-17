@@ -56,10 +56,11 @@ promQueryController.getContainers = async (req, res, next) => {
     const finalData = {};
     for (const metricObj of data) {
       if (
-        metricObj.Names !== 'prometheus' &&
-        metricObj.Names !== 'cadvisor' &&
-        metricObj.Names !== 'dockwell-dev' &&
-        metricObj.Names !== 'dockwell'
+        true
+        // metricObj.Names !== 'prometheus' &&
+        // metricObj.Names !== 'cadvisor' &&
+        // metricObj.Names !== 'dockwell-dev'
+        // metricObj.Names !== 'dockwell'
       ) {
         finalData[metricObj.ID] = metricObj;
       }
@@ -233,10 +234,11 @@ promQueryController.getTotals = async (req, res, next) => {
     };
     for (const container of data) {
       if (
-        container.Name !== 'prometheus' &&
-        container.Name !== 'cadvisor' &&
-        container.Name !== 'dockwell-dev' &&
-        container.Name !== 'dockwell'
+        true
+        // container.Name !== 'prometheus' &&
+        // container.Name !== 'cadvisor' &&
+        // container.Name !== 'dockwell-dev'
+        // container.Name !== 'dockwell'
       ) {
         const memStr = container.MemPercentage.replace('%', '');
         const cpuStr = container.CPUPercentage.replace('%', '');

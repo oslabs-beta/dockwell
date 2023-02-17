@@ -25,7 +25,7 @@ const systemMetrics = ({ activeContainers }) => {
     return getTotalsFunc;
   };
   useEffect(() => {
-    setInterval(getTotalsFunc(), 1000);
+    setInterval(getTotalsFunc(), 5000);
   }, []);
 
   for (let i = 0; i < activeContainers.length; i++) {

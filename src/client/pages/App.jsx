@@ -61,7 +61,7 @@ const App = () => {
 
   useEffect(() => {
     //tell it to repeat
-    setInterval(getStatsFunc(), 1000);
+    setInterval(getStatsFunc(), 4000);
   }, []);
 
   useEffect(() => {
@@ -109,7 +109,7 @@ const App = () => {
                 <h2>A docker visualizer</h2>
                 <Links />
               </div>
-              <img src="https://i.imgur.com/9KoYyqd.png" />
+              {/* <img src="https://i.imgur.com/9KoYyqd.png" /> */}
             </div>
             <SystemMetrics activeContainers={activeContainers} />
           </div>
