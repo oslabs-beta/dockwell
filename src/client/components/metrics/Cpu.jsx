@@ -3,9 +3,7 @@ import GaugeChart from 'react-gauge-chart';
 import LiquidGuage from '../LiquidGauge.jsx';
 
 const cpu = (props) => {
-  const totalCpuPerc = props.totals.hasOwnProperty('totalCpuPercentage')
-    ? props.totals.totalCpuPercentage
-    : 0;
+  const totalCpuPerc = props.totals.totalCpuPercentage || 0;
 
   return (
     <div className="liquidGauge">

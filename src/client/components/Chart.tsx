@@ -25,7 +25,7 @@ export default function ChartComponent({
   metric,
   activeContainer,
   dataLength,
-}) {
+}: any) {
   let x, y;
   if (activeContainer.value.length > dataLength) {
     y = activeContainer.value.slice(activeContainer.value.length - dataLength);

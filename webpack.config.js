@@ -3,13 +3,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const path = require('path');
 
+//this export included as a potential compiler for the TS server
+//can compile front end & backend as separate bundles, then pack into docker image
+//currently, TS server is dockerized as TS, then TS-node transpiles to JS on docker run
 module.exports = {
-  mode: process.env.NODE_ENV,
+  // mode: process.env.NODE_ENV || 'production',
   entry: './src/client/index.js',
+  devtool: 'inline-source-map',
   output: {
     path: path.join(__dirname, '/build'),
     publicPath: '/',
     filename: 'bundle.js',
+    clean: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -22,7 +27,6 @@ module.exports = {
       logo: path.resolve(__dirname, './src/client/public/assets/logo.png'),
     }),
   ],
-
   devServer: {
     static: {
       directory: path.join(__dirname, '/src/client'),

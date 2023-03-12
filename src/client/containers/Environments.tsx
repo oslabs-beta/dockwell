@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ImagePreview from '../components/ImagePreview';
 import axios from 'axios';
 
-const Environments = (props) => {
+const Environments = (props: any) => {
   const [fastState, setFastState] = useState({});
 
   const getFastStats = () => {

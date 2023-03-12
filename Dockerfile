@@ -11,7 +11,7 @@ RUN rc-update add docker boot
 FROM docker-base as npm-base
 WORKDIR /usr/src
 COPY package*.json ./
-RUN npm install
+RUN npm install 
 
 #DEVELOPMENT
 #docker build --target dockwell_dev -t dockwell_dev .
@@ -31,10 +31,11 @@ FROM docker-base as prod
 WORKDIR /usr/src 
 COPY package*.json ./
 RUN npm ci --omit=dev
-COPY /src ./src
+COPY /src/server ./src/server
 COPY /prometheus.yml ./
 COPY --from=build /usr/src/build ./build
 EXPOSE 3535
-ENTRYPOINT node ./src/server/server.js 
+# ENTRYPOINT node ./src/server/server.js 
+ENTRYPOINT npx ts-node ./src/server/server.ts
 
 # docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t dockwellhub/dwh-prod:latest --push . 
