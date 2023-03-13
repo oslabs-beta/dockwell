@@ -35,7 +35,6 @@ const queries = {
 };
 
 const promQueryController: any = {};
-console.log('promql standing by');
 
 //to grab all the containers and their status in docker and formating that into an object of objects, where each object has the info on each container from the docker cli command docker ps
 promQueryController.getContainers = async (

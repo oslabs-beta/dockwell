@@ -5,7 +5,6 @@ const cliParser = require('../utils/dockerCliParser.ts');
 import { Request, Response, NextFunction, RequestHandler } from 'express';
 
 const controlContainer: any = {};
-console.log('cc standing by');
 
 controlContainer.dockerTaskName = async (
   req: Request,

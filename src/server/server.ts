@@ -77,5 +77,5 @@ app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Listening on ${PORT}`);
+  console.log(`Dockwell server listening on ${PORT}`);
 });
