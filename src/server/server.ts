@@ -1,7 +1,12 @@
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const path = require('path');
+import express, {
+  Request,
+  Response,
+  NextFunction,
+  RequestHandler,
+} from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import path from 'path';
 
 const app = express();
 
@@ -13,8 +18,8 @@ const {
   getTotals,
   memFailuresQuery,
   healthFailureQuery,
-} = require('./controllers/promQueryController');
-const controlContainer = require('./controllers/containerController');
+} = require('./controllers/promQueryController.ts');
+const controlContainer = require('./controllers/containerController.ts');
 const PORT = 3535;
 
 app.use(cookieParser()).use(express.json()).use(cors());
@@ -36,7 +41,7 @@ app.get(
   memoryQuery,
   cpuQuery,
   memFailuresQuery,
-  (req, res) => {
+  (req: Request, res: Response) => {
     res.status(200).json(res.locals.containers);
   }
 );
@@ -44,18 +49,23 @@ app.get(
 app.get(
   '/api/control/:task/:name',
   controlContainer.dockerTaskName,
-  (req, res) => {
+  (req: Request, res: Response) => {
     res.status(200).json(res.locals.container);
   }
 );
 
+app.get('/', (req: Request, res: Response) => {
+  console.log('sending file');
+  res.sendFile('../../build/index.html');
+});
+
 //404 handler
-app.get((req, res) => {
+app.use((req: Request, res: Response) => {
   return res.sendStatus(404);
 });
 
 //global error handler
-app.use((err, _req, res, next) => {
+app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   const defaultErr = {
     log: 'Express error handler caught an unknown middleware error',
     status: 500,
@@ -67,5 +77,5 @@ app.use((err, _req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Listening on ${PORT}`);
+  console.log(`Dockwell server listening on ${PORT}`);
 });

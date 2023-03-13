@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 //this will be small previews of the users individual docker containers with buttons to start and stop each one
-const ImagePreview = ({ obj, getFastStats }) => {
+const ImagePreview = ({ obj, getFastStats }: any) => {
   const { Names, State, Ports, CreatedAt, Image, Status } = obj;
   const date = CreatedAt.substring(0, 19);
   const port = Ports.substring(8, 18);
   let badgeColor;
 
-  const toggleClick = (cmd) => {
+  const toggleClick = (cmd: string) => {
     State === 'paused' && cmd === 'start' ? (cmd = 'unpause') : '';
     axios
       .get(`/api/control/${cmd}/${Names}`)
@@ -49,7 +49,7 @@ const ImagePreview = ({ obj, getFastStats }) => {
             }}
             data-toggle="button"
             aria-pressed="false"
-            autoComplete="off"
+            // autoComplete="off"
           >
             Start
           </button>
@@ -63,7 +63,7 @@ const ImagePreview = ({ obj, getFastStats }) => {
             }}
             data-toggle="button"
             aria-pressed="false"
-            autoComplete="off"
+            // autoComplete="off"
           >
             Pause
           </button>
@@ -77,7 +77,7 @@ const ImagePreview = ({ obj, getFastStats }) => {
             }}
             data-toggle="button"
             aria-pressed="false"
-            autoComplete="off"
+            // autoComplete="off"
           >
             Stop
           </button>
@@ -91,7 +91,7 @@ const ImagePreview = ({ obj, getFastStats }) => {
             }}
             data-toggle="button"
             aria-pressed="false"
-            autoComplete="off"
+            // autoComplete="off"
           >
             Kill
           </button>

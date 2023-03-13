@@ -34,7 +34,7 @@ export default function ChartCompound({
   allActiveContainers,
   dataLength,
   metricName,
-}) {
+}: any) {
   const options = {
     plugins: {
       title: {
@@ -44,7 +44,7 @@ export default function ChartCompound({
     },
   };
 
-  const allXAxis = allActiveContainers.map((container) => {
+  const allXAxis = allActiveContainers.map((container: any) => {
     let x;
     if (container[metric].value.length > dataLength) {
       x = container[metric].time.slice(
@@ -56,7 +56,7 @@ export default function ChartCompound({
     return x;
   });
 
-  const allYAxis = allActiveContainers.map((container, i) => {
+  const allYAxis = allActiveContainers.map((container: any, i: number) => {
     let y;
     if (container[metric].value.length > dataLength) {
       y = container[metric].value.slice(

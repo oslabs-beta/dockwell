@@ -1,3 +1,4 @@
+import { Request, Response, NextFunction, RequestHandler } from 'express';
 const { promisify } = require('util');
 const { exec } = require('child_process');
 const execProm = promisify(exec);
@@ -6,9 +7,8 @@ const { Metric } = require('prometheus-query');
 const { container } = require('webpack');
 
 const PrometheusDriver = require('prometheus-query').PrometheusDriver;
-
 // default options
-const options = {
+const options: any = {
   machineName: null, // uses local docker
   currentWorkingDirectory: null, // uses current working directory
   echo: true, // echo command output to stdout/stderr
@@ -34,15 +34,19 @@ const queries = {
   receiveErrs: 'container_network_receive_errors_total',
 };
 
-const promQueryController = {};
+const promQueryController: any = {};
 
 //to grab all the containers and their status in docker and formating that into an object of objects, where each object has the info on each container from the docker cli command docker ps
-promQueryController.getContainers = async (req, res, next) => {
+promQueryController.getContainers = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //executes command in user's terminal
     const { stdout } = await execProm('docker ps --all --format "{{json .}}"');
     //parse incoming data
-    const data = cliParser(stdout).map((container) => {
+    const data = cliParser(stdout).map((container: any) => {
       return {
         ID: container.ID,
         Names: container.Names,
@@ -53,7 +57,7 @@ promQueryController.getContainers = async (req, res, next) => {
       };
     });
     //goes through the array from the map above, and creates an object where each key is a container ID, and the value is the object created in the step above.
-    const finalData = {};
+    const finalData: any = {};
     for (const metricObj of data) {
       if (
         true
@@ -81,7 +85,11 @@ promQueryController.getContainers = async (req, res, next) => {
   }
 };
 
-promQueryController.getContainerState = async (req, res, next) => {
+promQueryController.getContainerState = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     for (const container in res.locals.containers) {
       const { stdout } = await execProm(
@@ -101,12 +109,16 @@ promQueryController.getContainerState = async (req, res, next) => {
   }
 };
 
-promQueryController.cpuQuery = (req, res, next) => {
+promQueryController.cpuQuery = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const q = queries['cpu'];
   const { containers } = res.locals;
   prom
     .instantQuery(q)
-    .then((data) => {
+    .then((data: any) => {
       const series = data.result;
       for (const metricObj of series) {
         const short_id = metricObj.metric.labels.id.substr(8, 12);
@@ -124,7 +136,7 @@ promQueryController.cpuQuery = (req, res, next) => {
       }
       return next();
     })
-    .catch((err) => {
+    .catch((err: Error) => {
       return next({
         log:
           'promQLController.cpuQuery - error in the promQL CPU query: ' + err,
@@ -136,12 +148,16 @@ promQueryController.cpuQuery = (req, res, next) => {
     });
 };
 
-promQueryController.memoryQuery = (req, res, next) => {
+promQueryController.memoryQuery = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const q = queries['memory'];
   const { containers } = res.locals;
   prom
     .instantQuery(q)
-    .then((y) => {
+    .then((y: any) => {
       const series = y.result;
       for (const metricObj of series) {
         const short_id = metricObj.metric.labels.id.substr(8, 12);
@@ -162,7 +178,7 @@ promQueryController.memoryQuery = (req, res, next) => {
       }
       return next();
     })
-    .catch((err) => {
+    .catch((err: Error) => {
       return next({
         log:
           'promQLController.memoryQuery - error in the promQL MEMORY query: ' +
@@ -175,12 +191,16 @@ promQueryController.memoryQuery = (req, res, next) => {
     });
 };
 
-promQueryController.memFailuresQuery = (req, res, next) => {
+promQueryController.memFailuresQuery = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const q = queries['memFailures'];
   const { containers } = res.locals;
   prom
     .instantQuery(q)
-    .then((data) => {
+    .then((data: any) => {
       const series = data.result;
       for (const metricObj of series) {
         const short_id = metricObj.metric.labels.id.substr(8, 12);
@@ -200,7 +220,7 @@ promQueryController.memFailuresQuery = (req, res, next) => {
       }
       return next();
     })
-    .catch((err) => {
+    .catch((err: Error) => {
       return next({
         log:
           'promQLController.memFailuresQuery - error in the promQL MEM FAILURES query: ' +
@@ -213,12 +233,16 @@ promQueryController.memFailuresQuery = (req, res, next) => {
     });
 };
 
-promQueryController.getTotals = async (req, res, next) => {
+promQueryController.getTotals = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { stdout } = await execProm(
       'docker stats --no-stream --format "{{json .}}"'
     );
-    const data = cliParser(stdout).map((container) => {
+    const data = cliParser(stdout).map((container: any) => {
       return {
         ID: container.ID,
         Name: container.Name,
@@ -262,16 +286,20 @@ promQueryController.getTotals = async (req, res, next) => {
   }
 };
 
-promQueryController.healthFailureQuery = async (req, res, next) => {
+promQueryController.healthFailureQuery = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const q = queries['healthFailures'];
   const { finalResult } = res.locals;
   prom
     .instantQuery(q)
-    .then((data) => {
+    .then((data: any) => {
       finalResult.totals.dockerHealthFailures = data.result[0].value.value;
       return next();
     })
-    .catch((err) => {
+    .catch((err: Error) => {
       return next({
         log:
           'promQLController.healthFailureQuery - error in the promQL HEALTH FAILURES query: ' +
