@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-const Logs = (props) => {
+const Logs = (props: any) => {
   const [selectedContainer, setSelectedContainer] = useState(null);
   const [logs, setLogs] = useState(null);
 
-  async function getLogs(name) {
+  async function getLogs(name: string) {
     try {
       if (!name) {
         setLogs(null);
@@ -51,7 +51,7 @@ const Logs = (props) => {
             }}
           >
             <option value={'Default'}>Select to view Logs:</option>
-            {props.activeContainers?.map((x, i) => {
+            {props.activeContainers?.map((x: any, i: number) => {
               return (
                 <option value={x.Names} key={i}>
                   {x.Names}

@@ -1,4 +1,4 @@
-module.exports = (input) => {
+module.exports = (input: any) => {
   const output = [];
   let clean = input.trim();
   clean = clean.split('\n');

@@ -1,16 +1,17 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import Chart from '../components/Chart';
 import ChartCompound from '../components/ChartCompound';
 // import { ArrowDownSquareFill } from 'react-bootstrap-icons';
 
-function CarouselDisplay(props) {
+function CarouselDisplay(props: any) {
+  const selector = useRef(null);
   const [index, setIndex] = useState(0);
   const [dataLength, setDataLength] = useState(25);
   const interval = 50000000;
 
-  const handleSelect = (selectedIndex) => {
+  const handleSelect = (selectedIndex: number) => {
     setIndex(selectedIndex);
   };
 
@@ -19,11 +20,12 @@ function CarouselDisplay(props) {
       <i className="bi bi-arrow-down-square-fill"></i>
 
       <select
+        ref={selector}
         className="dropdown"
         defaultValue={'DEFAULT'}
         onChange={(e) => {
           e.preventDefault();
-          setDataLength(e.target.value);
+          setDataLength(selector.current.value);
         }}
       >
         <option value={'Default'}>Interval:</option>
@@ -64,14 +66,14 @@ function CarouselDisplay(props) {
             style={{ display: 'inline', marginRight: '8px' }}
             onClick={(e) => {
               e.preventDefault();
-              const output = [];
-              props.activeContainers.forEach((x) => {
+              const output: any[] = [];
+              props.activeContainers.forEach((x: any) => {
                 const timestamp = [x.Names, 'timestamp'];
-                x.memory.time.forEach((y) => timestamp.push(y));
+                x.memory.time.forEach((y: any) => timestamp.push(y));
                 const memory = [x.Names, 'memory usage (MB)'];
-                x.memory.value.forEach((y) => memory.push(y));
+                x.memory.value.forEach((y: any) => memory.push(y));
                 const cpu = [x.Names, 'cpu usage (%)'];
-                x.cpu.value.forEach((y) => cpu.push(y));
+                x.cpu.value.forEach((y: any) => cpu.push(y));
                 output.push(timestamp, memory, cpu);
               });
               const csvContent =
@@ -103,7 +105,7 @@ function CarouselDisplay(props) {
           metricName="CPU Usage (%)"
         ></ChartCompound>
       </Carousel.Item>
-      {props.activeContainers.map((obj, i) => (
+      {props.activeContainers.map((obj: any, i: number) => (
         <Carousel.Item interval={interval} key={'container ' + i}>
           <div className="header">
             <div className="badge rounded-pill bg-dark">
@@ -117,9 +119,9 @@ function CarouselDisplay(props) {
                   ['memory usage (MB)'],
                   ['cpu usage (%)'],
                 ];
-                obj.memory.time.forEach((x) => output[0].push(x));
-                obj.cpu.value.forEach((x) => output[1].push(x));
-                obj.memory.value.forEach((x) => output[2].push(x));
+                obj.memory.time.forEach((x: any) => output[0].push(x));
+                obj.cpu.value.forEach((x: any) => output[1].push(x));
+                obj.memory.value.forEach((x: any) => output[2].push(x));
                 const csvContent =
                   'data:text/csv;charset=utf-8,' +
                   output.map((e) => e.join(',')).join('\n');

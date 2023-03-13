@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ImagePreview from '../components/ImagePreview';
 import axios from 'axios';
 
-const Environments = (props) => {
+const Environments = (props: any) => {
   const [fastState, setFastState] = useState({});
 
   const getFastStats = () => {
@@ -18,11 +18,15 @@ const Environments = (props) => {
   };
 
   useEffect(() => {
-    setInterval(getFastStats(), 500);
+    setInterval(getFastStats(), 10000);
   }, []);
 
   const previewArray = Object.values(fastState).map((obj, i) => (
-    <ImagePreview obj={obj} key={'container ' + i} />
+    <ImagePreview
+      getFastStats={getFastStats}
+      obj={obj}
+      key={'container ' + i}
+    />
   ));
 
   return <div className="Environments">{previewArray}</div>;

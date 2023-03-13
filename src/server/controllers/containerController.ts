@@ -1,11 +1,16 @@
 const { promisify } = require('util');
 const { exec } = require('child_process');
 const execProm = promisify(exec);
-const cliParser = require('../utils/dockerCliParser');
+const cliParser = require('../utils/dockerCliParser.ts');
+import { Request, Response, NextFunction, RequestHandler } from 'express';
 
-const controlContainer = {};
+const controlContainer: any = {};
 
-controlContainer.dockerTaskName = async (req, res, next) => {
+controlContainer.dockerTaskName = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { name, task } = req.params;
     let { stdout, stderr } = await execProm(`docker ${task} ${name}`);
